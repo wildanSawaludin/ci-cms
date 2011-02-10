@@ -1,16 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
-/*
-admin levels
-*/
-define('LEVEL_NONE', 0);
-define('LEVEL_VIEW', 1);
-define('LEVEL_ADD', 2);
-define('LEVEL_EDIT', 3);
-define('LEVEL_DEL', 4);
-
-
 /*
 |--------------------------------------------------------------------------
 | File and Directory Modes
@@ -38,15 +27,15 @@ define('DIR_WRITE_MODE', 0777);
 |
 */
 
-define('FOPEN_READ', 							'rb');
+define('FOPEN_READ',							'rb');
 define('FOPEN_READ_WRITE',						'r+b');
-define('FOPEN_WRITE_CREATE_DESTRUCTIVE', 		'wb');	// truncates existing file data, use with care
-define('FOPEN_READ_WRITE_CREATE_DESTRUCTIVE', 	'w+b'); // truncates existing file data, use with care
-define('FOPEN_WRITE_CREATE', 					'ab');
-define('FOPEN_READ_WRITE_CREATE', 				'a+b');
-define('FOPEN_WRITE_CREATE_STRICT', 			'xb');
+define('FOPEN_WRITE_CREATE_DESTRUCTIVE',		'wb'); // truncates existing file data, use with care
+define('FOPEN_READ_WRITE_CREATE_DESTRUCTIVE',	'w+b'); // truncates existing file data, use with care
+define('FOPEN_WRITE_CREATE',					'ab');
+define('FOPEN_READ_WRITE_CREATE',				'a+b');
+define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
 
 /* End of file constants.php */
-/* Location: ./system/application/config/constants.php */
+/* Location: ./application/config/constants.php */

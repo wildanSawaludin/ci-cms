@@ -1,4 +1,4 @@
-<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /*
 | -------------------------------------------------------------------------
 | URI ROUTING
@@ -9,7 +9,7 @@
 | and its corresponding controller class/method. The segments in a
 | URL normally follow this pattern:
 |
-| 	www.your-site.com/class/method/id/
+|	example.com/class/method/id/
 |
 | In some instances, however, you may want to remap this relationship
 | so that a different class/function is called than the one
@@ -23,56 +23,24 @@
 | RESERVED ROUTES
 | -------------------------------------------------------------------------
 |
-| There are two reserved routes:
+| There area two reserved routes:
 |
-|	$route['default_controller'] = 'home';
+|	$route['default_controller'] = 'welcome';
 |
 | This route indicates which controller class should be loaded if the
 | URI contains no data. In the above example, the "welcome" class
 | would be loaded.
 |
-|	$route['scaffolding_trigger'] = 'scaffolding';
+|	$route['404_override'] = 'errors/page_missing';
 |
-| This route lets you set a "secret" word that will trigger the
-| scaffolding feature for added security. Note: Scaffolding must be
-| enabled in the controller in which you intend to use it.   The reserved 
-| routes must come before any wildcard or regular expression routes.
+| This route will tell the Router what URI segments to use if those provided
+| in the URL cannot be matched to a valid route.
 |
 */
 
-//language route
+$route['default_controller'] = "welcome";
+$route['404_override'] = '';
 
-$route['(\w{2})(/.*)?'] = 'language/set/$2';
 
-$handle = opendir(APPPATH.'modules');
-
-if ($handle)
-{
-	while ( false !== ($module = readdir($handle)) )
-	{
-		// make sure we don't map silly dirs like .svn, or . or ..
-		
-		if (substr($module, 0, 1) != ".")
-		{
-			if ( file_exists(APPPATH.'modules/'.$module.'/'.$module.'_routes.php') )
-			{
-				include(APPPATH.'modules/'.$module.'/'.$module.'_routes.php');
-			}
-			if ($module != 'admin') {
-				$route[$module] = $module;
-				$route[$module.'(/.*)?'] = $module.'$1';
-				$route['admin/'.$module.'(/.*)?'] = "$module/admin$1";				
-			}
-
-		}
-	}
-}
-$route['default_controller'] = "page";
-$route['scaffolding_trigger'] = "";
-$route['admin'.'(/.*)?'] = 'admin$1';
-if (!isset($route['(.*)']))
-{
-//in case a module want to get it all
-	$route['(.*)'] = "page/index/$1";
-}
-
+/* End of file routes.php */
+/* Location: ./application/config/routes.php */
