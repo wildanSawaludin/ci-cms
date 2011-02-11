@@ -45,11 +45,11 @@ class MX_Router extends CI_Router
 	
 	public function _validate_request($segments) {		
 		
+		$tmp = $segments;
+			
 		/* locate module admin controllers */
 		if($segments[0] == 'admin' AND count($segments) > 1)
 		{
-			$tmp = $segments;
-			
 			$segments[0] = $tmp[1];
 			$segments[1] = $tmp[0];
 			
@@ -57,34 +57,28 @@ class MX_Router extends CI_Router
 			{
 				return $located;
 			}
+			
+			$segments[0] = $tmp[0];
+			$segments[1] = $tmp[1];
 		}
-		
-		/* Locate standard module controllers */
-		if((count($segments) > 1) AND $segments[1] == 'admin')
-		{
-			$tmp = $segments;
-			$segments[0] = $tmp[1];
-			$segments[1] = $tmp[0];
-		}
-		
+				
 		
 		// If all else failed try the default controller
-		//print_r($segments);
-		
-		if(count($segments) == 1 AND $segments[0] !='')
+		if(count($segments) == 1 AND $segments[0] !='' AND $segments[0] != 'admin')
 		{
-			$tmp = $segments;
 			$segments[0] = $this->routes['default_controller'];
 			$segments[1] = 'index';
 			$segments[2] = $tmp[0];
-			echo "One<br>";
-			print_r($segments);
+			
 			if($located = $this->locate($segments))
 			{
 				return $located;
 			}
+			
+			$segments[0] = $tmp[0];
+			$segments[1] = $tmp[1];
+			$segments[2] = $tmp[2];
 		}
-		
 		
 		// Make sure we block access to module/admin
 		if ($located = $this->locate($segments))
