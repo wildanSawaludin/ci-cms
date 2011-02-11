@@ -45,13 +45,62 @@ class MX_Router extends CI_Router
 	
 	public function _validate_request($segments) {		
 		
-		/* locate module controller */
-		if ($located = $this->locate($segments)) return $located;	
+		/* locate module admin controllers */
+		if($segments[0] == 'admin' AND count($segments) > 1)
+		{
+			$tmp = $segments;
+			
+			$segments[0] = $tmp[1];
+			$segments[1] = $tmp[0];
+			
+			if($located = $this->locate($segments))
+			{
+				return $located;
+			}
+		}
+		
+		/* Locate standard module controllers */
+		if((count($segments) > 1) AND $segments[1] == 'admin')
+		{
+			$tmp = $segments;
+			$segments[0] = $tmp[1];
+			$segments[1] = $tmp[0];
+		}
+		
+		
+		// If all else failed try the default controller
+		//print_r($segments);
+		
+		if(count($segments) == 1 AND $segments[0] !='')
+		{
+			$tmp = $segments;
+			$segments[0] = $this->routes['default_controller'];
+			$segments[1] = 'index';
+			$segments[2] = $tmp[0];
+			echo "One<br>";
+			print_r($segments);
+			if($located = $this->locate($segments))
+			{
+				return $located;
+			}
+		}
+		
+		
+		// Make sure we block access to module/admin
+		if ($located = $this->locate($segments))
+		{
+			return $located;
+		}
+		
 		
 		/* use a default 404_override controller */
 		if (isset($this->routes['404_override']) AND $segments = explode('/', $this->routes['404_override'])) {
-			if ($located = $this->locate($segments)) return $located;
+			if ($located = $this->locate($segments))
+			{
+				 return $located;
+			}
 		}
+		
 		
 		/* no controller found */
 		show_404();
@@ -70,11 +119,10 @@ class MX_Router extends CI_Router
 		}
 	
 		/* get the segments array elements */
-		list($module, $directory, $controller) = array_pad($segments, 3, NULL);
-
+		list($module, $directory, $controller) = array_pad($segments, 3, NULL);	
+		
 		foreach (Modules::$locations as $location => $offset) {
 		
-			/* module exists? */
 			if (is_dir($source = $location.$module.'/controllers/')) {
 				
 				$this->module = $module;
@@ -105,6 +153,7 @@ class MX_Router extends CI_Router
 				if(is_file($source.$module.$ext)) {
 					return $segments;
 				}
+				
 			}
 		}
 		

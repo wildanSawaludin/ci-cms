@@ -14,7 +14,12 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/ci-cms2';
+$config['base_url']	= 'http://localhost/ci-cms2/';
+
+/*
+javascripts files
+*/
+$config['javascripts'] = array('jquery-1.2.6.pack.js', 'jquery-ui-personalized-1.5b3.packed.js', 'sitelib.js'); 
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +31,8 @@ $config['base_url']	= 'http://localhost/ci-cms2';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
+
 
 /*
 |--------------------------------------------------------------------------
@@ -180,7 +186,7 @@ $config['directory_trigger']	= 'd'; // experimental not currently in use
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 0;
+$config['log_threshold'] = 4;
 
 /*
 |--------------------------------------------------------------------------
@@ -224,7 +230,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = '098765abcdef1234';
 
 /*
 |--------------------------------------------------------------------------

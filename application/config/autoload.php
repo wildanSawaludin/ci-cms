@@ -52,7 +52,26 @@ $autoload['packages'] = array(APPPATH.'third_party');
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array();
+/*
+| -------------------------------------------------------------------
+|  Auto-load Libraries
+| -------------------------------------------------------------------
+| These are the classes located in the system/libraries folder
+| or in your system/application/libraries folder.
+|
+| Prototype:
+|
+|	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
+*/
+$ci =& get_instance();
+if ($ci->uri->segment(1) != 'install')
+{
+	$autoload['libraries'] = array('session', 'database', 'system', 'javascripts', 'block', 'plugin',  'user', 'layout', 'navigation');
+}
+else
+{
+$autoload['libraries'] = array('system');
+}
 
 
 /*
@@ -64,7 +83,7 @@ $autoload['libraries'] = array();
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array();
+$autoload['helper'] = array('url', 'locale', 'form', 'text');
 
 
 /*
