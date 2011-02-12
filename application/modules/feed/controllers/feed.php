@@ -3,12 +3,12 @@
  * $Id
  **/
  
-class Feed extends Controller 
+class Feed extends CI_Controller 
 {
 
-    function Feed()
+    function __construct()
     {
-        parent::Controller();
+        parent::__construct();
 		
         $this->load->helper('xml');
     }
