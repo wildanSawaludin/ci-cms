@@ -3,9 +3,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title><?php echo $this->system->site_name; ?> | <?php echo __("Administration");?></title>
-	<link rel="shortcut icon" href="<?php echo base_url();?>application/views/themes/admin/images/favicon.ico" type="image/x-icon" />
-	<link rel="stylesheet" href="<?php echo base_url();?>application/views/themes/admin/style/admin.css" type="text/css" media="screen" charset="utf-8" />
-	<link rel="stylesheet" href="<?php echo base_url();?>application/views/themes/admin/style/tabs.css" type="text/css" media="screen" charset="utf-8" />
+	<link rel="shortcut icon" href="<?php echo base_url();?>application/views/<?php echo $this->system->theme_dir;?>admin/images/favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" href="<?php echo base_url();?>application/views/<?php echo $this->system->theme_dir;?>admin/style/admin.css" type="text/css" media="screen" charset="utf-8" />
+	<link rel="stylesheet" href="<?php echo base_url();?>application/views/<?php echo $this->system->theme_dir;?>admin/style/tabs.css" type="text/css" media="screen" charset="utf-8" />
 	<!--[if IE]>
 		<link rel="stylesheet" href="<?php echo base_url()?>application/views/themes/admin/style/ie.css" type="text/css" media="screen" charset="utf-8" />
 	<![endif]-->
@@ -15,7 +15,7 @@
 	<?php endforeach; ?>
     <!-- End Javascript -->
 	<?php if ($this->uri->segment(3) == ('edit' || 'create' || 'add')):?>
-	<script src="<?php echo base_url()?>application/views/themes/admin/javascript/tinymce/tiny_mce.js" type="text/javascript"></script>
+	<script src="<?php echo base_url()?>application/views/<?php echo $this->system->theme_dir;?>admin/javascript/tinymce/tiny_mce.js" type="text/javascript"></script>
 	<script language="javascript" type="text/javascript">
 		tinyMCE.init({
 		mode : "textareas",
@@ -41,7 +41,7 @@
 	</script>
 <?php endif;?>
 	<!--[if lt IE 7]>
-		<script defer type="text/javascript" src="<?php echo base_url()?>application/views/themes/admin/javascript/pngfix.js"></script>
+		<script defer type="text/javascript" src="<?php echo base_url()?>application/views/<?php echo $this->system->theme_dir;?>admin/javascript/pngfix.js"></script>
 	<![endif]-->
 <?php $this->plugin->do_action('header');?>	
 </head>
