@@ -12,7 +12,7 @@ define('LEVEL_ADD', 2);
 define('LEVEL_EDIT', 3);
 define('LEVEL_DEL', 4);
 
-
+define('CICMS_VERSION', '2.0.0.0');
 
 /*
 |--------------------------------------------------------------------------

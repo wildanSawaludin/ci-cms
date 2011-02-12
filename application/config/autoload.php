@@ -66,7 +66,7 @@ $autoload['packages'] = array(APPPATH.'third_party');
 $ci =& get_instance();
 if ($ci->uri->segment(1) != 'install')
 {
-	$autoload['libraries'] = array('session', 'database', 'system', 'javascripts', 'block', 'plugin',  'user', 'layout', 'navigation');
+	$autoload['libraries'] = array('session', 'database', 'system', 'cache', 'javascripts', 'block', 'plugin',  'user', 'layout', 'navigation');
 }
 else
 {

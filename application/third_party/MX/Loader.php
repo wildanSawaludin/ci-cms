@@ -171,6 +171,7 @@ class MX_Loader extends CI_Loader
 		foreach ($libraries as $_library) $this->library($_library);	
 	}
 
+
 	/** Load a module model **/
 	public function model($model, $object_name = NULL, $connect = FALSE) {
 		

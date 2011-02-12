@@ -1,4 +1,11 @@
 <?php (defined('BASEPATH')) OR exit('No direct script access allowed');
+/*
+|---------------------------------------------------------------------
+| Modified for use with CI_CMS2
+|
+| Added code to provide get_instance() static method
+|---------------------------------------------------------------------
+*/
 
 /* load MX core classes */
 require dirname(__FILE__).'/Base.php';
@@ -52,6 +59,7 @@ class MX_Controller
 		/* autoload module items */
 		$this->load->_autoloader($this->autoload);
 	}
+	
 	
 	public function __get($class) {
 		return CI::$APP->$class;
