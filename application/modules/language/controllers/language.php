@@ -1,10 +1,10 @@
 <?php   if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-	class Language extends Controller {
+	class Language extends CI_Controller {
 		
-		function Language()
+		function __construct()
 		{
-			parent::Controller();
+			parent::__construct();
 			
 			$this->template['module'] = "language";
 					
