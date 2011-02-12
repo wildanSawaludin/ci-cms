@@ -7,11 +7,11 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Admin extends Controller {
+class Admin extends CI_Controller {
 
-	function Admin()
+	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 
 		$this->template['module']	= 'forum';
 		

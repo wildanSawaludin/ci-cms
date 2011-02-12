@@ -8,12 +8,13 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Forum_model extends Model {
+class Forum_model extends CI_Model {
 
 	var $options = array();
-	function Forum_model()
+	
+	function __construct()
 	{
-		parent::Model();
+		parent::__construct();
 	}
 	
 	function get_user_level()

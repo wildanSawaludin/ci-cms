@@ -8,12 +8,14 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Message_model extends Model {
+class Message_model extends CI_Model {
 
 	var $fields = array();
-	function Message_model()
+	
+	function __construct()
 	{
-		parent::Model();
+		parent::__construct();
+		
 		$this->fields = array(
 			'forum_messages' => array(
 				'mid'  => '',
