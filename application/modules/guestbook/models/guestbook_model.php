@@ -1,12 +1,13 @@
 <?php   if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Guestbook_model extends Model {
+class Guestbook_model extends CI_Model {
 
 	var $fields = array();
 	var $settings = array('notify_admin' => 'Y', 'style' => 'blue');
-	function Guestbook_model()
+	
+	function __construct()
 	{
-		parent::Model();
+		parent::__construct();
 		$this->table = 'guestbook_posts';
 		$this->fields = array(
 			$this->table => array(

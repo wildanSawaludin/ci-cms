@@ -1,10 +1,10 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Guestbook extends Controller {
+class Guestbook extends CI_Controller {
 
-	function Guestbook()
+	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 	
 
 		$this->template['module']	= 'guestbook';
