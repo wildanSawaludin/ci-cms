@@ -8,11 +8,11 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Downloads extends Controller {
+class Downloads extends CI_Controller {
 
-	function Downloads()
+	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 	
 		$this->template['module']	= 'downloads';
 		$this->load->model('download_model', 'downloads');

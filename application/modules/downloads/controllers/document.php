@@ -8,13 +8,12 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Document extends Controller {
+class Document extends CI_Controller {
 
-	function Document()
+	function __construct()
 	{
-		parent::Controller();
-	
-
+		parent::__construct();
+		
 		$this->template['module']	= 'downloads';
 		$this->load->model('download_model', 'downloads');
 

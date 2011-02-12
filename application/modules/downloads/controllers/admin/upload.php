@@ -8,11 +8,11 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Upload extends Controller {
+class Upload extends CI_Controller {
 
-	function Upload()
+	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 	
 		$this->load->library('administration');
 

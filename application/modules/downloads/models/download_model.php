@@ -8,7 +8,8 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Download_model extends Model {
+class Download_model extends CI_Model {
+	
 	var $cat_fields = array(
 			'id' => '',
 			'pid' => '',
@@ -41,10 +42,12 @@ class Download_model extends Model {
 			'icon'   => '',
 			'status' => '1'
 		);
+	
 	var $_cats;
-	function Download_model()
+	
+	function __construct()
 	{
-		parent::Model();
+		parent::__construct();
 	}
 	
 	

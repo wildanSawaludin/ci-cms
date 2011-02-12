@@ -8,11 +8,11 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Category extends Controller {
+class Category extends CI_Controller {
 
-	function Category()
+	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 	
 		$this->load->library('administration');
 
