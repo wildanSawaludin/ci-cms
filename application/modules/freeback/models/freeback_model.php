@@ -1,9 +1,10 @@
 <?php 
 
-class Freeback_Model extends Model {
-	function Freeback_Model()
+class Freeback_Model extends CI_Model {
+	
+	function __construct()
 	{
-		parent::Model();
+		parent::__construct();
 	}
 
 	function getMailto($data = FALSE)

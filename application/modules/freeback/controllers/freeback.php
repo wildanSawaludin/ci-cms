@@ -3,12 +3,12 @@
  * $Id
  **/
 
-class Freeback extends Controller
+class Freeback extends CI_Controller
 {
 
-    function Freeback()
+    function __construct()
     {
-        parent::Controller();
+        parent::__construct();
         $this->template['module']	= 'freeback';
 		$this->template['title']	= 'Freeback form';
 		$this->load->model('freeback_model');
