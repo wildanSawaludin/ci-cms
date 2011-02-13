@@ -28,14 +28,16 @@ class Plugin {
 		log_message('debug', "Plugin Class Initialized");
 	}
 	
-	function add_filter($tag, $function_to_add, $priority = 10, $accepted_args = 1) {
+	function add_filter($tag, $function_to_add, $priority = 10, $accepted_args = 1) 
+	{
 
 		// So the format is wp_filter['tag']['array of priorities']['array of functions serialized']['array of ['array (functions, accepted_args)]']
 		$this->_filter[$tag][$priority][serialize($function_to_add)] = array('function' => $function_to_add, 'accepted_args' => $accepted_args);
 		return true;
 	}
 
-	function apply_filters($tag, $string) {
+	function apply_filters($tag, $string) 
+	{
 
 
 		$this->merge_filters($tag);
@@ -57,7 +59,8 @@ class Plugin {
 		return $string;
 	}
 
-	function merge_filters($tag) {
+	function merge_filters($tag) 
+	{
 
 
 		if ( isset($this->_filter['all']) )
@@ -69,7 +72,8 @@ class Plugin {
 		}
 	}
 
-	function remove_filter($tag, $function_to_remove, $priority = 10, $accepted_args = 1) {
+	function remove_filter($tag, $function_to_remove, $priority = 10, $accepted_args = 1) 
+	{
 		unset($this->_filter[$tag][$priority][serialize($function_to_remove)]);
 		return true;
 	}
@@ -78,11 +82,13 @@ class Plugin {
 	// Action functions
 	//
 
-	function add_action($tag, $function_to_add, $priority = 10, $accepted_args = 1) {
+	function add_action($tag, $function_to_add, $priority = 10, $accepted_args = 1) 
+	{
 		$this->add_filter($tag, $function_to_add, $priority, $accepted_args);
 	}
 
-	function do_action($tag, $arg = '') {
+	function do_action($tag, $arg = '') 
+	{
 		$args = array();
 		if ( is_array($arg) && 1 == count($arg) && is_object($arg[0]) ) // array(&$this)
 			$args[] =& $arg[0];
@@ -110,12 +116,14 @@ class Plugin {
 	}
 
 	// Returns the number of times an action has been done
-	function did_action($tag) {
+	function did_action($tag) 
+	{
 
 		return count(array_keys($this->_action, $tag));
 	}
 
-	function do_action_ref_array($tag, $args) {
+	function do_action_ref_array($tag, $args) 
+	{
 
 		if ( !is_array($this->_action) )
 			$this->_action = array($tag);
@@ -136,7 +144,8 @@ class Plugin {
 
 	}
 
-	function remove_action($tag, $function_to_remove, $priority = 10, $accepted_args = 1) {
+	function remove_action($tag, $function_to_remove, $priority = 10, $accepted_args = 1) 
+	{
 		$this->remove_filter($tag, $function_to_remove, $priority, $accepted_args);
 	}
 

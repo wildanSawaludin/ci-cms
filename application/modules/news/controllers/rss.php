@@ -46,7 +46,18 @@
 					}
 				}
 				$data['contents'] = $contents;
-				header("Content-Type: application/rss+xml");
+				
+				// Test user agent and return content type based on browser
+				// since Mozilla browser do not want to consume the proper
+				// content type. Force content type to text/xml
+				if(stripos($this->agent->agent_string(), 'Mozilla') === false)
+				{
+					header("content-Type: text/xml");
+				}
+				else
+				{
+					header("Content-Type: application/rss+xml");
+				}
 				
 				$this->load->view('rss', $data);
 			}
