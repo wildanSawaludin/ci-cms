@@ -53,11 +53,11 @@
 				// content type. Force content type to text/xml
 				if(stripos($this->agent->agent_string(), 'Mozilla') === false)
 				{
-					header("content-Type: text/xml");
+					header("Content-Type: application/rss+xml");
 				}
 				else
 				{
-					header("Content-Type: application/rss+xml");
+					header("content-Type: text/xml");
 				}
 				
 				$this->load->view('rss', $data);
