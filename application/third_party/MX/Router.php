@@ -84,7 +84,7 @@ class MX_Router extends CI_Router
 		}
 		
 		/* Check for language routes */
-		if((preg_match('#(\w{2})(/.*)?#', $segments[0])) && (count($segments) >= 1))
+		if(strlen($segments[0]) == 2 || ((preg_match('#(\w{2}/)#', $segments[0])) && (count($segments) >= 1)))
 		{
 			// Rewrite for language
 			$tmp[0] = 'language';
