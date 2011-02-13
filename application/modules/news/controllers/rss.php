@@ -9,6 +9,7 @@
 			//$this->output->enable_profiler(true);
 			$this->template['module'] = "news";
 
+			$this->load->library('user_agent');
 			$this->load->model('news_model', 'news');
 			$this->load->helper('xml');
 		}
