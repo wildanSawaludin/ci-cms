@@ -31,13 +31,13 @@
 			
 			if($this->uri->uri_string() == $lang)
 			{
-				$redirect = str_replace();
+				$redirect = '';
 			}
 			else
 			{
 				$redirect = str_replace("$lang/" , "", $this->uri->uri_string());
 			}
-
+			
 			redirect($redirect);
 		}
 	}

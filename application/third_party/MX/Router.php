@@ -83,23 +83,8 @@ class MX_Router extends CI_Router
 			return $located;
 		}
 		
-		
-		// If all else failed try the default controller
-		if(count($segments) == 1 AND $segments[0] !='' AND $segments[0] != 'admin')
-		{
-			$tmp[0] = $this->routes['default_controller'];
-			$tmp[1] = 'index';
-			$tmp[2] = $segments[0];
-			
-			if($located = $this->locate($tmp))
-			{
-				return $located;
-			}
-			
-		}
-		
 		/* Check for language routes */
-		if((preg_match('#(\w{2})(/.*)?#', $segments[0])) && (count($segments) > 1))
+		if((preg_match('#(\w{2})(/.*)?#', $segments[0])) && (count($segments) >= 1))
 		{
 			// Rewrite for language
 			$tmp[0] = 'language';
@@ -111,6 +96,22 @@ class MX_Router extends CI_Router
 				return $located;
 			}
 		}
+		
+		// If all else failed try the default controller
+		if(count($segments) == 1 AND $segments[0] !='' AND $segments[0] != 'admin')
+		{
+			
+			$tmp[0] = $this->routes['default_controller'];
+			$tmp[1] = 'index';
+			$tmp[2] = $segments[0];
+			
+			if($located = $this->locate($tmp))
+			{
+				return $located;
+			}
+			
+		}
+		
 		
 		/* use a default 404_override controller */
 		if (isset($this->routes['404_override']) AND $segments = explode('/', $this->routes['404_override'])) {

@@ -55,7 +55,7 @@
 				}
 				
 				//since we don't know if registered or not
-				$data['author'] .= " (" . __("guest", "namana") . ")";
+				$data['author'] .= " (" . __("guest", $this->template['module']) . ")";
 			}
 			else
 			{
@@ -96,7 +96,7 @@ and disable notification.
 ", "page");
 					$msg = sprintf($smsg, 
 							site_url( $page['uri']),
-							site_url('admin/page/create/' . $news['id'])
+							site_url('admin/page/create/' . $page['id'])
 						);
 						
 					$this->email->message($msg);
