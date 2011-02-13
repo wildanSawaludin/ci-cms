@@ -47,18 +47,7 @@
 					}
 				}
 				$data['contents'] = $contents;
-				
-				// Test user agent and return content type based on browser
-				// since Mozilla browser do not want to consume the proper
-				// content type. Force content type to text/xml
-				if(stripos($this->agent->agent_string(), 'Mozilla') === false)
-				{
-					header("Content-Type: application/rss+xml");
-				}
-				else
-				{
-					header("content-Type: text/xml");
-				}
+				$this->send_header();
 				
 				$this->load->view('rss', $data);
 			}
@@ -113,7 +102,7 @@
 					}
 				}
 				$data['contents'] = $contents;
-				header("Content-Type: application/rss+xml");
+				$this->send_header();
 				
 				$this->load->view('rss', $data);
 
@@ -171,7 +160,8 @@
 						}
 					}
 					$data['contents'] = $contents;
-					header("Content-Type: application/rss+xml");
+					
+					$this->send_header();
 					
 					$this->load->view('rss', $data);
 
@@ -180,5 +170,24 @@
 			
 			
 		}		
+		
+		
+		
+		/*
+		 | Test user agent and return content type based on browser
+		 | since Mozilla browser do not want to consume the proper
+		 | content type. Force content type to text/xml
+		*/
+		function send_header()
+		{
+			if(stripos($this->agent->agent_string(), 'Mozilla') === false)
+			{
+				header("Content-Type: application/rss+xml");
+			}
+			else
+			{
+				header("content-Type: text/xml");
+			}	
+		}
 	}
 
