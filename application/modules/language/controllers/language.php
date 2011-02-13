@@ -29,9 +29,14 @@
 				$this->session->set_userdata('lang', $this->locale->default);
 			}
 			
-			//echo $this->uri->uri_string();
-			//exit;
-			$redirect = str_replace("$lang/" , "", $this->uri->uri_string());
+			if($this->uri->uri_string() == $lang)
+			{
+				$redirect = str_replace();
+			}
+			else
+			{
+				$redirect = str_replace("$lang/" , "", $this->uri->uri_string());
+			}
 
 			redirect($redirect);
 		}
