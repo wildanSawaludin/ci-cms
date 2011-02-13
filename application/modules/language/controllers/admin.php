@@ -46,7 +46,9 @@
 		
 		function setdefault($id) {
 			if(isset($id)) {
+				// Unset all languages
 				$this->db->update('languages', array('default' => 0));
+				// Now set the passed language as the default
 				$data = array('default' => 1);
 				$this->db->where('id', $id);
 				$this->db->update('languages', $data);

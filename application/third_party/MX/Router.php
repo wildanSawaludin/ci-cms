@@ -63,6 +63,7 @@ class MX_Router extends CI_Router
 		
 		$tmp = $segments;
 		
+		
 		/* locate module admin controllers */
 		if($segments[0] == 'admin' AND count($segments) > 1)
 		{
@@ -74,6 +75,14 @@ class MX_Router extends CI_Router
 				return $located;
 			}
 		}
+		
+		
+		// Make sure we block access to module/admin
+		if ($located = $this->locate($segments))
+		{
+			return $located;
+		}
+		
 		
 		// If all else failed try the default controller
 		if(count($segments) == 1 AND $segments[0] !='' AND $segments[0] != 'admin')
@@ -89,12 +98,19 @@ class MX_Router extends CI_Router
 			
 		}
 		
-		// Make sure we block access to module/admin
-		if ($located = $this->locate($segments))
+		/* Check for language routes */
+		if((preg_match('#(\w{2})(/.*)?#', $segments[0])) && (count($segments) > 1))
 		{
-			return $located;
+			// Rewrite for language
+			$tmp[0] = 'language';
+			$tmp[1] = 'set';
+			$tmp[2] = $segments[0];
+			
+			if($located = $this->locate($tmp))
+			{
+				return $located;
+			}
 		}
-		
 		
 		/* use a default 404_override controller */
 		if (isset($this->routes['404_override']) AND $segments = explode('/', $this->routes['404_override'])) {

@@ -10,6 +10,11 @@
 					
 		}
 		
+		function index()
+		{
+			echo "Found!";	
+		}
+		
 		//all available blocks
 		function set () 
 		{
@@ -23,7 +28,10 @@
 			{
 				$this->session->set_userdata('lang', $this->locale->default);
 			}
-			$redirect = str_replace("/" . $lang , "", $this->uri->uri_string());
+			
+			//echo $this->uri->uri_string();
+			//exit;
+			$redirect = str_replace("$lang/" , "", $this->uri->uri_string());
 
 			redirect($redirect);
 		}

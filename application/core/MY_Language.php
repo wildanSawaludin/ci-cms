@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Matchbox Language class
+ * CI-CMS2 Language class
  *
  * This file is part of Matchbox
  *
