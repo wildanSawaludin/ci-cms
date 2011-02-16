@@ -1,4 +1,4 @@
-<h1><?php  echo __("Sign up", $this->template['module'])?></h1>
+<h1><?php  echo __("Sign up", $module)?></h1>
 
 
 
@@ -7,28 +7,28 @@
 		<?php  echo validation_errors(); ?>
 
 		<?php 
-		$msg = __("Please fill the form below and click on Register", $this->template['module']);
+		$msg = __("Please fill the form below and click on Register", $module);
 		$msg .= "<br />";
 		echo $this->plugin->apply_filters('member_signup_pre_form', $msg);
 		?>		
 		
-			<label  id="lusername" for="username"><?php  echo __("Username", $this->template['module'])?>: </label>
+			<label  id="lusername" for="username"><?php  echo __("Username", $module)?>: </label>
 			<input id="username" name="username" type='text' value='<?php  echo set_value('username');?>' class="input-text" /><br />
 			
 						
-			<label id="lemail" for="email"><?php  echo __("Email", $this->template['module'])?>:</label>
+			<label id="lemail" for="email"><?php  echo __("Email", $module)?>:</label>
 			<input type="text" name="email" value="<?php  echo set_value('email');?>" id="email" class="input-text" /><br />
 
-			<label id="lremail" for="remail"><?php  echo __("Confirm Email", $this->template['module'])?>:</label>
+			<label id="lremail" for="remail"><?php  echo __("Confirm Email", $module)?>:</label>
 			<input type="text" name="remail" value="<?php  echo set_value('remail');?>" id="remail" class="input-text" /><br />
 			
 			<?php 
 		
-			$msg = "<p>" . __("Fields marked with * are required", $this->template['module']) . "</p>";
+			$msg = "<p>" . __("Fields marked with * are required", $module) . "</p>";
 			echo $this->plugin->apply_filters('member_signup_post_form', $msg);
 			?>		
-			<input type="submit" name="submit" value="<?php  echo __("Register", $this->template['module'])?>" class="input-submit" />
-			<a href="<?php  echo site_url( $this->session->userdata("last_uri") )?>" class="input-submit"><?php  echo __("Cancel", $this->template['module'])?></a>
+			<input type="submit" name="submit" value="<?php  echo __("Register", $module)?>" class="input-submit" />
+			<a href="<?php  echo site_url( $this->session->userdata("last_uri") )?>" class="input-submit"><?php  echo __("Cancel", $module)?></a>
 
 </form>
 

@@ -1,7 +1,7 @@
 <?php  
 $qm = array(
-__("Log out", $this->template['module']) => site_url('member/logout'),
-__("Change email", $this->template['module']) => site_url('member/change_mail')
+__("Log out", $module) => site_url('member/logout'),
+__("Change email", $module) => site_url('member/change_mail')
 ); 
 $qm = $this->plugin->apply_filters('member_profile_quick_menu', $qm); ?>
 <?php  if (count($qm) > 0 ) : ?>
@@ -15,7 +15,7 @@ $qm = $this->plugin->apply_filters('member_profile_quick_menu', $qm); ?>
 </div>
 <?php  endif; ?>
 
-<h1 id="settings"><?php  echo __("Edit your profile", $this->template['module'])?></h1>
+<h1 id="settings"><?php  echo __("Edit your profile", $module)?></h1>
 
 
 
@@ -30,14 +30,14 @@ $qm = $this->plugin->apply_filters('member_profile_quick_menu', $qm); ?>
 			
 			<?php  
 			
-			$msg = __("You can change your profile here, if you want.", $this->template['module']);
+			$msg = __("You can change your profile here, if you want.", $module);
 			echo $this->plugin->apply_filters('member_profile_pre_form', $msg);
 			?>
 			<br />
-			<label for="password"><?php  echo __("Password", $this->template['module'])?>:</label>
+			<label for="password"><?php  echo __("Password", $module)?>:</label>
 			<input type="password" name="password" value="" id="password" class="input-text" /><br />
 
-			<label for="passconf"><?php  echo __("Confirm", $this->template['module'])?>:</label>
+			<label for="passconf"><?php  echo __("Confirm", $module)?>:</label>
 			<input type="password" name="passconf" value="" id="" class="input-text" /><br />			
 			
 			<?php  
@@ -45,8 +45,8 @@ $qm = $this->plugin->apply_filters('member_profile_quick_menu', $qm); ?>
 			$msg = "";
 			echo $this->plugin->apply_filters('member_profile_post_form', $msg);
 			?>
-			<input type="submit" name="submit" value="<?php  echo __("Save", $this->template['module'])?>" class="input-submit" />
-			<a href="<?php  echo site_url()?>" class="input-submit"><?php  echo __("Cancel", $this->template['module'])?></a>
+			<input type="submit" name="submit" value="<?php  echo __("Save", $module)?>" class="input-submit" />
+			<a href="<?php  echo site_url()?>" class="input-submit"><?php  echo __("Cancel", $module)?></a>
 
 </form>
 

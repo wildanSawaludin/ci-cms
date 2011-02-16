@@ -1,4 +1,5 @@
-<?php 
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+ 
 /*
  * $Id: document.php 1070 2008-11-18 06:26:42Z hery $
  *
@@ -6,16 +7,14 @@
  */
   
 
-if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Ajax extends Controller {
+class Ajax extends MX_Controller {
 
-	function Ajax()
+	function __construct()
 	{
-		parent::Controller();
-	
-
-		$this->template['module']	= 'membre';
+		parent::__construct();
+		
+		$this->template['module']	= 'member';
 	}
 
 	function login()
@@ -112,3 +111,4 @@ class Ajax extends Controller {
 	}
 
 }	
+?>

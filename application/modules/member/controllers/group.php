@@ -1,6 +1,8 @@
 <?php   if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-	class Group extends CI_Controller {
+	class Group extends MX_Controller {
+		
+		var $template = array();
 		
 		function __construct()
 		{
@@ -11,14 +13,15 @@
 			// Get the group_model from the admin module
 			$this->load->model('admin/group_model');
 			$this->load->library('form_validation');
-			$this->form_validation->CI =& $this;			
+			$this->form_validation->CI =& $this;
+						
 			$this->template['module']	= 'member';
 			$this->template['admin']		= true;
 		}
 		
 		function index()
 		{
-			
+			echo "Not Yet Implemented";
 		}
 		
 		
@@ -45,14 +48,12 @@
 		
 		function settings()
 		{
-		
+			echo "Not Yet Implemented";
 		}
 		
 		function save()
 		{
-
-
-
+			echo "Not Yet Implemented";
 		}
 		
 		function create()
