@@ -8,7 +8,9 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Category extends CI_Controller {
+class Category extends MX_Controller {
+	
+	var $template = array();
 
 	function __construct()
 	{

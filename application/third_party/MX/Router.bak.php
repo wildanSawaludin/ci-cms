@@ -177,10 +177,6 @@ class MX_Router extends CI_Router
 			
 				/* module controller exists? */			
 				if(is_file($source.$module.$ext)) {
-					echo "Source: $source <br>";
-					echo "Module: $module <br>";
-					echo "Ext: $ext <br>";
-					echo "Module Controller exists. <br>";
 					return $segments;
 				}
 				

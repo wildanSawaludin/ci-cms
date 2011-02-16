@@ -1,10 +1,10 @@
 
 <div class="leftmenu">
 
-	<h1 id="pageinfo"><?php  echo __("Information", $this->template['module'])?></h1>
+	<h1 id="pageinfo"><?php  echo __("Information", $module)?></h1>
 	
 	<ul id="tabs" class="quickmenu">
-		<li><a href="#one"><?php  echo __("Details", $this->template['module'])?></a></li>
+		<li><a href="#one"><?php  echo __("Details", $module)?></a></li>
 	</ul>
 	<div class="quickend"></div>
 
@@ -17,8 +17,8 @@
 <input type="hidden" name="id" value="<?php  echo $row['id'] ?>" />
 <h1 id="edit"><?php  echo $title ?></h1>
 		<ul>
-			<li><input type="submit" name="submit" value="<?php  echo __("Save", $this->template['module'])?>" class="input-submit" /></li>
-			<li><a href="<?php  echo site_url('admin/guestbook')?>" class="input-submit last"><?php  echo __("Cancel", $this->template['module'])?></a></li>
+			<li><input type="submit" name="submit" value="<?php  echo __("Save", $module)?>" class="input-submit" /></li>
+			<li><a href="<?php  echo site_url('admin/guestbook')?>" class="input-submit last"><?php  echo __("Cancel", $module)?></a></li>
 		</ul>
 
 <br class="clearfloat" />

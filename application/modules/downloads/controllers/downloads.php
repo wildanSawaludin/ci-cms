@@ -8,8 +8,10 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Downloads extends CI_Controller {
+class Downloads extends MX_Controller {
 
+	var $template = array();
+	
 	function __construct()
 	{
 		parent::__construct();

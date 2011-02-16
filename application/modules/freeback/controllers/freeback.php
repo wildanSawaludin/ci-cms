@@ -3,8 +3,9 @@
  * $Id
  **/
 
-class Freeback extends CI_Controller
+class Freeback extends MX_Controller
 {
+	var $template = array();
 
     function __construct()
     {
@@ -25,7 +26,7 @@ class Freeback extends CI_Controller
 			$str .= substr($pool, mt_rand(0, strlen($pool) -1), 1);
 		}
 		$word = $str;
-		$this->load->plugin('captcha');
+		$this->load->helper('captcha');
 		$vals = array(
 			'img_path'	 => './media/captcha/',
 			'img_url'	 => site_url('media/captcha'). '/',
@@ -70,6 +71,8 @@ class Freeback extends CI_Controller
 			redirect('freeback');
 		}
 		$this->load->library('form_validation');
+		$this->form_validation->CI =& $this;
+
 		$this->form_validation->set_rules('username',__('Username', $this->template['module']),"trim|required|xss_clean");
 		$this->form_validation->set_rules('email',__('Email', $this->template['module']),"trim|required|valid_email");
 		$this->form_validation->set_rules('message',__('Message', $this->template['module']),"trim|required|min_length[4]|max_length[252]|xss_clean");

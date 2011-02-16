@@ -1,10 +1,11 @@
 <?php   if (!defined('BASEPATH')) exit('No direct script access allowed');
 	
-class Settings extends CI_Controller {
-	
-	
+class Settings extends MX_Controller {
+		
 	var $fields;
 	var $_settings = array();
+	var $template = array();
+	
 	function __construct()
 	{
 
@@ -13,7 +14,8 @@ class Settings extends CI_Controller {
 		$this->fields = array(
 			'allow_comments' => 1,
 			'approve_comments' => 1,
-			'notify_admin' => 0
+			'notify_admin' => 0,
+			'use_alt_header' => 0
 			);
 		$this->load->library('administration');
 		$this->lang = $this->session->userdata('lang');

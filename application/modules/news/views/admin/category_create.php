@@ -1,11 +1,11 @@
 
 <div class="leftmenu">
 
-	<h1 id="pageinfo"><?php  echo __("Category information", $this->template['module'])?></h1>
+	<h1 id="pageinfo"><?php  echo __("Category information", $module)?></h1>
 	
 	<ul id="tabs" class="quickmenu">
-		<li><a href="#one"><?php  echo __("Details", $this->template['module'])?></a></li>
-		<li><a href="#two"><?php  echo __("Options", $this->template['module'])?></a></li>
+		<li><a href="#one"><?php  echo __("Details", $module)?></a></li>
+		<li><a href="#two"><?php  echo __("Options", $module)?></a></li>
 	</ul>
 	<div class="quickend"></div>
 
@@ -14,14 +14,14 @@
 
 <!-- [Content] start -->
 <div class="content slim">
-<h1 id="edit"><?php  echo __("Add new category", $this->template['module'])?></h1>
+<h1 id="edit"><?php  echo __("Add new category", $module)?></h1>
 
 <form  enctype="multipart/form-data" class="edit" action="<?php  echo site_url('admin/news/category/save')?>" method="post" accept-charset="utf-8">
 		<input type="hidden" name="id" value="<?php  echo $row['id']?>" />
 		<input type="hidden" name="lang" value="<?php  echo $this->user->lang ?>" />
 		<ul>
-			<li><input type="submit" name="submit" value="<?php  echo __("Save", $this->template['module'])?>" class="input-submit" /></li>
-			<li><a href="<?php  echo site_url('admin/news/category')?>" class="input-submit last"><?php  echo __("Cancel", $this->template['module'])?></a></li>
+			<li><input type="submit" name="submit" value="<?php  echo __("Save", $module)?>" class="input-submit" /></li>
+			<li><a href="<?php  echo site_url('admin/news/category')?>" class="input-submit last"><?php  echo __("Cancel", $module)?></a></li>
 		</ul>
 		
 		<br class="clearfloat" />
@@ -34,14 +34,14 @@
 		
 		<div id="one">
 		
-		<label for="title"><?php  echo __("Name", $this->template['module'])?>:</label>
+		<label for="title"><?php  echo __("Name", $module)?>:</label>
 		<input type="text" name="title" value="<?php  echo (isset($row['title'])?$row['title'] : "") ?>" id="title" class="input-text" /><br />
 
-		<label for="title"><?php  echo __("Uri", $this->template['module'])?>:</label>
+		<label for="title"><?php  echo __("Uri", $module)?>:</label>
 		<input type="text" name="uri" value="<?php  echo (isset($row['uri'])?$row['uri'] : "") ?>" id="uri" class="input-text" /><br />
 
 		
-		<label for="pid"><?php  echo __("Parent", $this->template['module'])?>:</label>
+		<label for="pid"><?php  echo __("Parent", $module)?>:</label>
 		<select name='pid' id='pid' class="input-select">
 		<option value=''></option>
 		<?php  if($parents): ?>
@@ -62,13 +62,13 @@
 		<?phpendif;?> 
 		</select><br />
 
-		<label for="status"><?php  echo __("Status", $this->template['module'])?>:</label>
+		<label for="status"><?php  echo __("Status", $module)?>:</label>
 		<select name='status' id='status' class="input-select">
-		<option value="1" <?php  echo (($row['status']==1)?"selected":"")?>><?php  echo __("Active", $this->template['module'])?></option>
-		<option value="0" <?php  echo (($row['status']==0)?"selected":"")?>><?php  echo __("Suspended", $this->template['module'])?></option>
+		<option value="1" <?php  echo (($row['status']==1)?"selected":"")?>><?php  echo __("Active", $module)?></option>
+		<option value="0" <?php  echo (($row['status']==0)?"selected":"")?>><?php  echo __("Suspended", $module)?></option>
 		</select><br />
 		
-		<label for="desc"><?php  echo __("Description", $this->template['module'])?>:</label>
+		<label for="desc"><?php  echo __("Description", $module)?>:</label>
 		<textarea name="desc" class="input-textarea"><?php  echo (isset($row['desc'])?$row['desc'] : "") ?></textarea><br />
 
 		</div>

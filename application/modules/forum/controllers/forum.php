@@ -7,7 +7,9 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Forum extends CI_Controller {
+class Forum extends MX_Controller {
+	
+	var $template = array();
 
 	function __construct()
 	{

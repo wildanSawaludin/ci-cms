@@ -1,11 +1,11 @@
 <!-- [Left menu] start -->
 <div class="leftmenu">
 
-	<h1 id="pageinfo"><?php  echo __("Quick menu", $this->template['module'])?></h1>
+	<h1 id="pageinfo"><?php  echo __("Quick menu", $module)?></h1>
 	
 	<ul id="tabs" class="quickmenu">
-		<li><a href="#one"><span><?php  echo __("General settings", $this->template['module'])?></span></a></li>
-		<li><a href="#two"><span><?php  echo __("Comments settings", $this->template['module'])?></span></a></li>
+		<li><a href="#one"><span><?php  echo __("General settings", $module)?></span></a></li>
+		<li><a href="#two"><span><?php  echo __("Comments settings", $module)?></span></a></li>
 	</ul>
 	<div class="quickend"></div>
 
@@ -19,8 +19,8 @@
 <form class="settings" action="<?php  echo site_url('admin/news/settings/save')?>" method="post" accept-charset="utf-8">
 		
 		<ul>
-			<li><input type="submit" name="submit" value="<?php  echo __("Save Settings", $this->template['module'])?>" class="input-submit" /></li>
-			<li><a href="<?php  echo site_url('admin/news')?>" class="input-submit last"><?php  echo __("Cancel", $this->template['module'])?></a></li>
+			<li><input type="submit" name="submit" value="<?php  echo __("Save Settings", $module)?>" class="input-submit" /></li>
+			<li><a href="<?php  echo site_url('admin/news')?>" class="input-submit last"><?php  echo __("Cancel", $module)?></a></li>
 		</ul>
 		
 		<br class="clearfloat" />
@@ -31,33 +31,38 @@
 		<p class="notice"><?php  echo $notice;?></p>
 		<?php  endif;?>
 		
-		<p><?php  echo __("Change the settings for the news module", $this->template['module']);?></p>
+		<p><?php  echo __("Change the settings for the news module", $module);?></p>
 		
 		<div id="one">
-		
+			
+            <label for="settings[use_alt_header]"><?php  echo __("Use Alternate RSS Header", $module)?></label>
+			<select name="settings[use_alt_header]" class="input-select">
+			<option value='1' <?php  echo (($settings['use_alt_header']==1)?"selected":"")?>><?php  echo __("Yes", $module)?></option>
+			<option value='0' <?php  echo (($settings['use_alt_header']==0)?"selected":"")?>><?php  echo __("No", $module)?></option>
+			</select>
+			
 			
 		</div>
 		<div id="two">
-			<label for="settings[allow_comments]"><?php  echo __("Allow comments", $this->template['module'])?></label>
+			<label for="settings[allow_comments]"><?php  echo __("Allow comments", $module)?></label>
 			<select name="settings[allow_comments]" class="input-select">
-			<option value='1' <?php  echo (($settings['allow_comments']==1)?"selected":"")?>><?php  echo __("Yes", $this->template['module'])?></option>
-			<option value='0' <?php  echo (($settings['allow_comments']==0)?"selected":"")?>><?php  echo __("No", $this->template['module'])?></option>
+			<option value='1' <?php  echo (($settings['allow_comments']==1)?"selected":"")?>><?php  echo __("Yes", $module)?></option>
+			<option value='0' <?php  echo (($settings['allow_comments']==0)?"selected":"")?>><?php  echo __("No", $module)?></option>
 			</select>
 			<br />
 
-			<label for="settings[approve_comments]"><?php  echo __("Approve comments", $this->template['module'])?></label>
+			<label for="settings[approve_comments]"><?php  echo __("Approve comments", $module)?></label>
 			<select name="settings[approve_comments]" class="input-select">
-			<option value='1' <?php  echo (($settings['approve_comments']==1)?"selected":"")?>><?php  echo __("Yes", $this->template['module'])?></option>
-			<option value='0' <?php  echo (($settings['approve_comments']==0)?"selected":"")?>><?php  echo __("No", $this->template['module'])?></option>
+			<option value='1' <?php  echo (($settings['approve_comments']==1)?"selected":"")?>><?php  echo __("Yes", $module)?></option>
+			<option value='0' <?php  echo (($settings['approve_comments']==0)?"selected":"")?>><?php  echo __("No", $module)?></option>
 			</select>
 			<br />
 			
-			<label for="settings[notify_admin]"><?php  echo __("Nodify admin", $this->template['module'])?></label>
+			<label for="settings[notify_admin]"><?php  echo __("Nodify admin", $module)?></label>
 			<select name="settings[notify_admin]" class="input-select">
-			<option value='1' <?php  echo (($settings['notify_admin']==1)?"selected":"")?>><?php  echo __("Yes", $this->template['module'])?></option>
-			<option value='0' <?php  echo (($settings['notify_admin']==0)?"selected":"")?>><?php  echo __("No", $this->template['module'])?></option>
-			</select>
-			
+			<option value='1' <?php  echo (($settings['notify_admin']==1)?"selected":"")?>><?php  echo __("Yes", $module)?></option>
+			<option value='0' <?php  echo (($settings['notify_admin']==0)?"selected":"")?>><?php  echo __("No", $module)?></option>
+			</select>			
 			
 		</div>
 	</form>

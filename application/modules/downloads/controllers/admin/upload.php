@@ -8,7 +8,9 @@
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Upload extends CI_Controller {
+class Upload extends MX_Controller {
+	
+	var $template = array();
 
 	function __construct()
 	{
@@ -55,7 +57,6 @@ class Upload extends CI_Controller {
 
 	function save()
 	{
-
 		$this->user->check_level($this->template['module'], LEVEL_ADD);
 	
 		if ($_FILES['file']['name'] != '')

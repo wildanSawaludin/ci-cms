@@ -1,7 +1,10 @@
 <?php   if (!defined('BASEPATH')) exit('No direct script access allowed');
 	
-	class News extends CI_Controller {
+	class News extends MX_Controller {
+		
 		var $settings = array();
+		var $template = array();
+		
 		function __construct()
 		{
 			parent::__construct();

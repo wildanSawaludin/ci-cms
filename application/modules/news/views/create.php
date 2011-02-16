@@ -1,12 +1,12 @@
 <!-- [Left menu] start -->
 <div class="leftmenu">
 
-	<h1 id="pageinfo"><?php  echo __("Quick links", $this->template['module'])?></h1>
+	<h1 id="pageinfo"><?php  echo __("Quick links", $module)?></h1>
 	
 	<ul id="tabs" class="quickmenu">
-		<li><a href="#one"><?php  echo __("Content", $this->template['module'])?></a></li>
-		<li><a href="#two"><?php  echo __("Tags", $this->template['module'])?></a></li>
-		<li><a href="#three"><?php  echo __("Options", $this->template['module'])?></a></li>
+		<li><a href="#one"><?php  echo __("Content", $module)?></a></li>
+		<li><a href="#two"><?php  echo __("Tags", $module)?></a></li>
+		<li><a href="#three"><?php  echo __("Options", $module)?></a></li>
 	</ul>
 	<div class="quickend"></div>
 
@@ -102,13 +102,13 @@ function ajaxFileUpload() {
 
 <form  enctype="multipart/form-data" class="edit" action="<?php  echo site_url('admin/news/save')?>" method="post" accept-charset="utf-8">
 
-<h1 id="edit"><?php  echo (isset($row['id'])? __("Edit news", $this->template['module']):__("Create News", $this->template['module']))?></h1>
+<h1 id="edit"><?php  echo (isset($row['id'])? __("Edit news", $module):__("Create News", $module))?></h1>
 
 		<input type="hidden" name="id" value="<?php  echo (isset($row['id'])?$row['id'] : "") ?>" />
 		<input type="hidden" name="lang" value="<?php  echo $this->user->lang ?>" />
 		<ul>
-			<li><input type="submit" name="submit" value="<?php  echo __("Save", $this->template['module'])?>" class="input-submit" /></li>
-			<li><a href="<?php  echo site_url('admin/news')?>" class="input-submit last"><?php  echo __("Cancel", $this->template['module'])?></a></li>
+			<li><input type="submit" name="submit" value="<?php  echo __("Save", $module)?>" class="input-submit" /></li>
+			<li><a href="<?php  echo site_url('admin/news')?>" class="input-submit last"><?php  echo __("Cancel", $module)?></a></li>
 		</ul>
 		
 		<br class="clearfloat" />
@@ -122,17 +122,17 @@ function ajaxFileUpload() {
 		
 		<div id="one">
 		
-		<p><?php  echo __("To create a news, just fill in your content below and click 'Save'.<br />If you want to save your progress without publishing it, Select 'Draft' status.", $this->template['module'])?></p>
+		<p><?php  echo __("To create a news, just fill in your content below and click 'Save'.<br />If you want to save your progress without publishing it, Select 'Draft' status.", $module)?></p>
 
-		<label for="title"><?php  echo __("Title", $this->template['module'])?>:</label>
+		<label for="title"><?php  echo __("Title", $module)?>:</label>
 		<input type="text" name="title" value="<?php  echo (isset($row['title'])?$row['title'] : "") ?>" id="title" class="input-text" /><br />
 
-		<label for="uri"><?php  echo __("SEF Address", $this->template['module'])?>:</label>
+		<label for="uri"><?php  echo __("SEF Address", $module)?>:</label>
 		<input type="text" name="uri" value="<?php  echo (isset($row['uri'])?$row['uri'] : "") ?>" id="uri" class="input-text" /><br />
 		<?php  _e("You can leave the SEF Address blank unless you want to specify your own") ?><br />
 
 		
-		<label for="pid"><?php  echo __("Category", $this->template['module'])?>:</label>
+		<label for="pid"><?php  echo __("Category", $module)?>:</label>
 		<select name='cat' id='cat' class="input-select">
 		<option value='0'></option>
 		<?php  if($categories): ?>
@@ -144,25 +144,25 @@ function ajaxFileUpload() {
 		
 		
 		
-		<label for="status"><?php  echo __("Status", $this->template['module'])?>:</label>
+		<label for="status"><?php  echo __("Status", $module)?>:</label>
 		<select name="status" id="status" class="input-select">
-			<option value="1" <?php  echo (isset($row['status']) && $row['status'] == 1)? "selected"  : "" ?>><?php  echo __("Published", $this->template['module'])?></option>
-			<option value="0" <?php  echo (isset($row['status']) && $row['status'] == 0)? "selected"  : "" ?>><?php  echo __("Draft", $this->template['module'])?></option>
+			<option value="1" <?php  echo (isset($row['status']) && $row['status'] == 1)? "selected"  : "" ?>><?php  echo __("Published", $module)?></option>
+			<option value="0" <?php  echo (isset($row['status']) && $row['status'] == 0)? "selected"  : "" ?>><?php  echo __("Draft", $module)?></option>
 		</select><br />
 		
-		<label for="body"><?php  echo __("Content", $this->template['module'])?>:</label>
+		<label for="body"><?php  echo __("Content", $module)?>:</label>
 		<textarea name="body" class="input-textarea"><?php  echo (isset($row['body'])?$row['body'] : "") ?></textarea><br />
 
-		<label for="image"><?php  echo __("Image", $this->template['module'])?></label>
+		<label for="image"><?php  echo __("Image", $module)?></label>
 		<input type="file" name="image" class="input-file" id="image"/><br />
 		
 		<div style="visibility: hidden">Available images:</div>
 		<table id="image_list" class="page-list">
 			<thead>
 				<tr>
-					<th><?php  echo __("Name", $this->template['module'])?></th>
-					<th><?php  echo __("Ordering", $this->template['module'])?></th>					
-					<th><?php  echo __("Action", $this->template['module'])?></th>
+					<th><?php  echo __("Name", $module)?></th>
+					<th><?php  echo __("Ordering", $module)?></th>					
+					<th><?php  echo __("Action", $module)?></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -172,7 +172,7 @@ function ajaxFileUpload() {
 		<tr>
 		<td><input type='hidden' name='image_ids[]' value='<?php  echo $image['id'] ?>' /><a href='#' onclick="tinyMCE.execCommand('mceInsertContent',false,'<a href=\'<?php  echo site_url('media/images/o')?>/<?php  echo $image['file'] ?>\'><img border=\'0\' align=\'left\' hspace=\'10\' src=\'<?php  echo site_url('media/images/m')?>/<?php  echo $image['file'] ?>\' /></a>');return false;"><?php  echo $image['file'] ?></a></td>
 		<td></td>
-		<td><a href="<?php  echo site_url('admin/news/removeimg/' . $image['id']) ?>" class="ajaxdelete" id="<?php  echo $image['id'] ?>"><?php  echo __("Delete image", $this->template['module']) ?></a></td></tr>
+		<td><a href="<?php  echo site_url('admin/news/removeimg/' . $image['id']) ?>" class="ajaxdelete" id="<?php  echo $image['id'] ?>"><?php  echo __("Delete image", $module) ?></a></td></tr>
 		<?php  endforeach; ?>
 		<?php  endif;?>
 		</tbody>
@@ -214,20 +214,20 @@ function ajaxFileUpload() {
 </div>
 <div id="three" class="content slim">
 		
-			<label for="date"><?php  echo __("Date", $this->template['module'])?> (dd/mm/yyyy):</label>
+			<label for="date"><?php  echo __("Date", $module)?> (dd/mm/yyyy):</label>
 			<input type="text" name="date" value="<?php  echo (isset($row['date'])?date("d/m/Y", $row['date']) : date("d/m/Y")) ?>" id="date" class="input-text" /><br class='clear'/>
 
 		
-			<label for="allow_comments"><?php  echo __("Allow Comments", $this->template['module'])?>:</label>
+			<label for="allow_comments"><?php  echo __("Allow Comments", $module)?>:</label>
 			<select name="allow_comments" class="input-select" id="allow_comments">
-			<option value='1' <?php  echo (($row['allow_comments']=='1')?"selected":"")?>><?php  echo __("Yes", $this->template['module'])?></option>
-			<option value='0' <?php  echo (($row['allow_comments']=='0')?"selected":"")?>><?php  echo __("No", $this->template['module'])?></option>
+			<option value='1' <?php  echo (($row['allow_comments']=='1')?"selected":"")?>><?php  echo __("Yes", $module)?></option>
+			<option value='0' <?php  echo (($row['allow_comments']=='0')?"selected":"")?>><?php  echo __("No", $module)?></option>
 			</select><br />
 
-			<label for="notify"><?php  echo __("Notify me for comments", $this->template['module'])?>:</label>
+			<label for="notify"><?php  echo __("Notify me for comments", $module)?>:</label>
 			<select name="notify" class="input-select" id="notify">
-			<option value='1' <?php  echo (($row['notify']=='1')?"selected":"")?>><?php  echo __("Yes", $this->template['module'])?></option>
-			<option value='0' <?php  echo (($row['notify']=='0')?"selected":"")?>><?php  echo __("No", $this->template['module'])?></option>
+			<option value='1' <?php  echo (($row['notify']=='1')?"selected":"")?>><?php  echo __("Yes", $module)?></option>
+			<option value='0' <?php  echo (($row['notify']=='0')?"selected":"")?>><?php  echo __("No", $module)?></option>
 			</select><br />
 
 

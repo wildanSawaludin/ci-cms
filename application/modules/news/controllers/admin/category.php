@@ -5,7 +5,9 @@
  *
  */
   
-class Category extends CI_Controller {
+class Category extends MX_Controller {
+	
+	var $template = array();
 
 	function __construct()
 	{

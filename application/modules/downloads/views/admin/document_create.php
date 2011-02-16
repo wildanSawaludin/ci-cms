@@ -43,7 +43,7 @@
 		<?php  foreach($files as $file) : ?>
 			<option value="<?php  echo $file['id']?>" <?php  echo (isset($row['file_id']) && $row['file_id'] == $file['id'])?"selected":""?>> <?php  echo $file['file'] ?> </option>
 		<?php  endforeach; ?>
-		<?phpendif;?> 
+		<?php endif;?> 
 		</select><br />
 
 		<label for="file_link"><?php  echo __("or Link", 'downloads')?>:</label>
@@ -57,7 +57,7 @@
 		<?php  $follow = null; foreach($parents as $parent) : ?>
 			<option value="<?php  echo $parent['id']?>" <?php  echo ($row['cat'] == $parent['id'] || $parent['id'] == $cat)?"selected":""?>> &nbsp;<?php  echo ($parent['level'] > 0) ? "|".str_repeat("__", $parent['level']): ""?> <?php  echo $parent['title'] ?> </option>
 		<?php  endforeach; ?>
-		<?phpendif;?> 
+		<?php endif;?> 
 		</select><br />
 
 		<label for="status"><?php  echo __("Status", 'downloads')?>:</label>
@@ -81,6 +81,7 @@
 			
 		</div>
 	</form>
+    
 <script>
 
   $(document).ready(function(){

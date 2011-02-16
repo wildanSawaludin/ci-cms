@@ -1,7 +1,9 @@
 <?php   if (!defined('BASEPATH')) exit('No direct script access allowed');
 	
-	class Rss extends CI_Controller {
+	class Rss extends MX_Controller {
+		
 		var $settings = array();
+		var $template = array();
 		
 		function __construct()
 		{
@@ -24,8 +26,11 @@
 			
 			if($rows = $this->news->get_list($params))
 			{
-				
-				$this->layout->load($this->template, 'rss');
+				/* Removed the site theme as it is being served
+				 as xml data instead of xhtml data
+				 $this->layout->load($this->template, 'rss');
+				 $this->load->view('rss', $this->template);
+				*/
 				$data['encoding'] = 'utf-8';
 				$data['feed_name'] = $this->system->site_name;
 				$data['feed_url'] = base_url();
@@ -180,14 +185,17 @@
 		*/
 		function send_header()
 		{
-			if(stripos($this->agent->agent_string(), 'Mozilla') === false)
+			$this->_settings = unserialize($this->system->news_settings);
+			
+			if((array_key_exists('use_alt_header', $this->_settings) AND $this->_settings['use_alt_header'] == 1) AND (stripos($this->agent->agent_string(), 'Mozilla') !== false))
 			{
-				header("Content-Type: application/rss+xml");
+				$this->output->set_header("content-Type: text/xml");
 			}
 			else
 			{
-				header("content-Type: text/xml");
+				$this->output->set_header("Content-Type: application/rss+xml");
 			}	
+				
 		}
 	}
 

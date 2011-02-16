@@ -15,7 +15,7 @@
 <?php  echo $pager?>
 </div>
 <?php  else : ?>
-<?php  echo __("No news found", $this->template['module'])?>
+<?php  echo __("No news found", $module)?>
 <?php  endif; ?>
 
 

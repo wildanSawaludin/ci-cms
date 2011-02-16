@@ -17,7 +17,7 @@
 <?php  endforeach; ?> 
 </select>
 <br />
-		<input type="submit" name="submit" value="<?php  echo __("Save", $this->template['module'])?>" class="input-submit" />
-		<a href="<?php  echo site_url( $this->session->userdata("last_uri") )?>" class="input-submit"><?php  echo __("Cancel", $this->template['module'])?></a>
+		<input type="submit" name="submit" value="<?php  echo __("Save", $module)?>" class="input-submit" />
+		<a href="<?php  echo site_url( $this->session->userdata("last_uri") )?>" class="input-submit"><?php  echo __("Cancel", $module)?></a>
 
 </form>

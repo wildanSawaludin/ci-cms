@@ -45,7 +45,7 @@
 		<?php if ($navs = $this->navigation->get()) :?>
 		<ul>
 		<?php foreach ($navs as $nav) : ?>
-		<li><a href="<?=$nav['uri']?>"><?=$nav['title']?></a></li>
+		<li><a href="<?php $nav['uri']?>"><?php $nav['title']?></a></li>
 		<?php endforeach; ?>
 		</ul>
 		<?php endif; ?>

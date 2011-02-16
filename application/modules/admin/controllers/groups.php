@@ -1,6 +1,8 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 	
-class Groups extends CI_Controller {
+class Groups extends MX_Controller {
+	
+	var $template = array();
 	
 	function __construct()
 	{

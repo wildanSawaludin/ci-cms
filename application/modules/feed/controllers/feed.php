@@ -3,9 +3,10 @@
  * $Id
  **/
  
-class Feed extends CI_Controller 
+class Feed extends MX_Controller 
 {
-
+	var $template = array();
+	 
     function __construct()
     {
         parent::__construct();

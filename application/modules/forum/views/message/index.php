@@ -16,7 +16,7 @@
 <td valign="top" class="message-header">
 <a name="<?php  echo $row['mid'] ?>"> </a><?php  echo $row['username'] ?> - <?php  echo date("d/m/Y H:i", $row['date']) ?>
 
-<?php  if($this->user->forum_level[ $topic['tid'] ] >= 0): ?>
+<?php  if(!empty($this->user->forum_level) AND $this->user->forum_level[ $topic['tid'] ] >= 0): ?>
 <div style="float: right">
 <?php  if($this->user->forum_level[ $topic['tid'] ] >= 0 || ($row['username'] == $this->user->username && $i == count($messages))): ?>
 <?php  echo anchor('forum/message/edit/' . $row['mid'], __("Edit", $module)) ?> | 

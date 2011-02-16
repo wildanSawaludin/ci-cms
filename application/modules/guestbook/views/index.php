@@ -25,4 +25,4 @@
 </div>
 
 <a name="sign"> </a>
-<?php  $this->load->module_view('guestbook', 'sign'); ?>
+<?php  $this->load->view('guestbook/sign'); ?>

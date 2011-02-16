@@ -38,12 +38,14 @@
 			<option value='Y' <?php  echo (($settings['notify_admin']=='Y')?"selected":"")?>><?php  echo __("Yes", $module)?></option>
 			<option value='N' <?php  echo (($settings['notify_admin']=='N')?"selected":"")?>><?php  echo __("No", $module)?></option>
 			</select>
+            <br />
 			
 			<label for="settings[style]"><?php  echo __("Theme", $module)?></label>
 			<select name="settings[notify_admin]" class="input-select">
 			<option value='none' <?php  echo (($settings['style']=='none')?"selected":"")?>><?php  echo __("None", $module)?></option>
 			<option value='blue' <?php  echo (($settings['style']=='blue')?"selected":"")?>><?php  echo __("Blue", $module)?></option>
 			</select>
+            <br />
 		</div>
 	</form>
 

@@ -62,14 +62,12 @@
 		
 		function settings()
 		{
-		
+			echo "Not Yet Implemented";
 		}
 		
 		function save()
 		{
-
-
-
+			echo "Not Yet Implemented";
 		}
 		
 		function create()

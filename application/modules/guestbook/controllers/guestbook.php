@@ -1,12 +1,13 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Guestbook extends CI_Controller {
+class Guestbook extends MX_Controller {
 
+	var $template = array();
+	
 	function __construct()
 	{
 		parent::__construct();
 	
-
 		$this->template['module']	= 'guestbook';
 		$this->load->model('guestbook_model', 'gbook');
 		$this->load->helper('smiley');
@@ -23,14 +24,60 @@ class Guestbook extends CI_Controller {
 	
 	function sign()
 	{
-		$this->load->library("captcha");
-		$this->template['captcha_image'] = $this->captcha->image();
+		echo "Guestbook -> Sign<br>";
+		exit;
+		$this->load->helper('captcha');
+		$vals = array(
+			'img_path'	 => './media/captcha/',
+			'img_url'	 => site_url('media/captcha'). '/',
+			'font_path'	 => APPPATH . 'modules/guestbook/fonts/Fatboy_Slim.ttf',
+			'img_width'	 => 150,
+			'img_height' => 30,
+			'expiration' => 1800,
+			'word' => $word
+		);
+
+		$cap = create_captcha($vals);
+		
+		$data = array(
+			'captcha_id'	=> '',
+			'captcha_time'	=> $cap['time'],
+			'ip_address'	=> $this->input->ip_address(),
+			'word'			=> $cap['word']
+		);
+		$this->db->insert('captcha', $data);
+		$this->template['captcha_image'] = $cap['image'];
+		
 		$this->template['title'] = __("Sign our guestbook", "guestbook");
 		$this->layout->load($this->template, "sign");
 	}
 	
 	function save()
 	{
+		if (!$this->input->post('captcha'))
+		{
+			$this->session->set_flashdata('notification', '<p style="color:#900">'.__('You must submit the security code that appears in the image'.'</p>', $this->template['module']));
+			redirect('freeback');
+		}
+		$expiration = time()-7200; // Two hour limit
+		$this->db->where("captcha_time <", $expiration);
+		$this->db->delete('captcha');
+		// Then see if a captcha exists:
+		$this->db->where('word', $this->input->post('captcha'));
+		$this->db->where('ip_address', $this->input->ip_address());
+		$this->db->where('captcha_time >', $expiration);
+		$query = $this->db->get('captcha');
+		$row = $query->row();
+		if ($query->num_rows() == 0)
+		{
+			$this->template['title'] = __("Error", "guestbook");
+			$this->template['message'] = __("You must submit the security code that appears in the image", $this->template['module']);
+			
+			$this->layout->load($this->template, 'error');
+			return;
+		}
+		
+		//
 		foreach($this->gbook->fields['guestbook_posts'] as $key => $val)
 		{
 			if ($this->input->post($key) === false)
@@ -41,18 +88,6 @@ class Guestbook extends CI_Controller {
 			{
 				$data[$key] = $this->input->post($key);
 			}
-		}
-		if (isset($data['id'])) unset($data['id']); //who knows
-		//verification should go here
-		$this->load->library("captcha");
-		if ($this->captcha->verify() != 200)
-		{
-			$this->template['title'] = __("Error", "guestbook");
-			$this->template['message'] = __("You must submit the security code that appears in the image", $this->template['module']);
-			
-			$this->layout->load($this->template, 'error');
-			return;
-		
 		}
 		
 		$passed = true;
@@ -100,9 +135,37 @@ class Guestbook extends CI_Controller {
 			$params = unserialize( $tmp);
 
 		}
+		
+		$pool = '0123456789';
+		$str = '';
+		for ($i = 0; $i < 6; $i++)
+		{
+			$str .= substr($pool, mt_rand(0, strlen($pool) -1), 1);
+		}
+		$word = $str;
+		
+		$this->load->helper('captcha');
+		$vals = array(
+			'img_path'	 => './media/captcha/',
+			'img_url'	 => site_url('media/captcha'). '/',
+			'font_path'	 => APPPATH . 'modules/guestbook/fonts/Fatboy_Slim.ttf',
+			'img_width'	 => 150,
+			'img_height' => 30,
+			'expiration' => 1800,
+			'word' => $word
+		);
 
-		$this->load->library("captcha");
-		$this->template['captcha_image'] = $this->captcha->image();
+		$cap = create_captcha($vals);
+		
+		$data = array(
+			'captcha_id'	=> '',
+			'captcha_time'	=> $cap['time'],
+			'ip_address'	=> $this->input->ip_address(),
+			'word'			=> $cap['word']
+		);
+		$this->db->insert('captcha', $data);
+		$this->template['captcha_image'] = $cap['image'];
+		
 		$per_page = 20;
 		$params['start'] = $start;
 

@@ -30,12 +30,12 @@
 		<div id="one">
 			<label for="title"><?php  echo __("Responder Title:", $module)?></label>
 			<input type="text" name="title" value="<?php  echo $mailto[0]['title']?>" id="title" class="input-text" /><br />
-			<label for="email"><?php  echo __("Email", $this->template['module'])?> :</label>
+			<label for="email"><?php  echo __("Email", $module)?> :</label>
 			<input type="text" name="email" value="<?php  echo (isset($mailto[0]['email'])?$mailto[0]['email'] : '') ?>" id="email" class="input-text" /><br class='clear'/>
-			<label for="status"><?php  _e("Status", $this->template['module'])?></label>
+			<label for="status"><?php  _e("Status", $module)?></label>
 			<select name="status" id="status" class="input-select">
-				<option<?php  if ($mailto[0]['status'] == 0): echo ' selected="selected"'; endif;?> value="0"><?php  _e("Draft", $this->template['module'])?></option>
-				<option<?php  if ($mailto[0]['status'] == 1): echo ' selected="selected"'; endif;?> value="1"><?php  _e("Published", $this->template['module'])?></option>
+				<option<?php  if ($mailto[0]['status'] == 0): echo ' selected="selected"'; endif;?> value="0"><?php  _e("Draft", $module)?></option>
+				<option<?php  if ($mailto[0]['status'] == 1): echo ' selected="selected"'; endif;?> value="1"><?php  _e("Published", $module)?></option>
 			</select>
 		</div>
 	</form>

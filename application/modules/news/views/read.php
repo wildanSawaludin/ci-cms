@@ -48,7 +48,7 @@
 	<?php  $i++; endforeach; ?>
 	</div>
 <?php  endif; ?>
-<?phpif ($news['allow_comments']) :?>
+<?php if ($news['allow_comments']) :?>
 <div id='comment_form' class='clear'>
 <h2><?php  echo __("Add a comment", $module)?></h2>
 <form action="<?php  echo site_url('news/comment')?>" method='post'>

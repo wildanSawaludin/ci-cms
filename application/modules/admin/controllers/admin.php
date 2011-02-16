@@ -1,8 +1,11 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 	
-	class Admin extends CI_Controller {
+	class Admin extends MX_Controller {
 		
 		var $nav;
+		var $level = 0;
+		var $template = array();
+		
 		function __construct()
 		{
 			parent::__construct();
@@ -13,6 +16,7 @@
 			$this->check_latest_version();
 			$this->template['module'] = "admin";
 			$this->template['admin'] = true;
+			$this->template['latest_version'] = $this->latest_version;
 		
 		}
 		

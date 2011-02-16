@@ -61,7 +61,8 @@
 		 **/
 		function settings()
 		{
-			
+			echo "Not Yet Implemented";
+			exit;	
 			if ($post = $this->input->post('submit') )
 			{
 				$fields = array('page_home');
