@@ -72,31 +72,31 @@
 
 <?php  if(isset($page['options']['allow_comments']) && $page['options']['allow_comments'] == 1) :?>
 <div id='comment_form' class='clear'>
-<h2><?php  echo __("Add a comment", $this->template['module'])?></h2>
+<h2><?php  echo __("Add a comment", $module)?></h2>
 <form action="<?php  echo site_url('page/comment')?>" method='post'>
 <input type='hidden' name='id' value='<?php  echo $page['id']?>' />
 <input  class="input-text" type='hidden' name='uri' value='<?php  echo $page['uri']?>' />
-<label for='author'><?php  echo __("Name:", $this->template['module'])?>[*]</label>
+<label for='author'><?php  echo __("Name:", $module)?>[*]</label>
 <?php  if($this->user->logged_in): ?>
 <?php  echo $this->user->username; ?> <br />
 <?php  else: ?>
 <input  class="input-text" type='text' name='author' value='' id='name' /><br />
 
-<label for='email'><?php  echo __("Email:", $this->template['module'])?>[*]</label>
+<label for='email'><?php  echo __("Email:", $module)?>[*]</label>
 <input  class="input-text" type='text' name='email' value='' id='email' /><br />
 
-<label for='website'><?php  echo __("Website:", $this->template['module'])?></label>
+<label for='website'><?php  echo __("Website:", $module)?></label>
 <input type='text' name='website' value='' id='website' /><br />
 <?php  endif; ?>
-<label for='body'><?php  echo __("Comment", $this->template['module'])?>[*]</label>
+<label for='body'><?php  echo __("Comment", $module)?>[*]</label>
 <textarea  class="input-textarea" name='body' id='body' rows="10" /></textarea><br />
 <?php  if(!$this->user->logged_in) : ?>
-<label><?php  echo __("Security code:", $this->template['module'])?></label><?php  echo $captcha?><br />
-<label for="captcha"><?php  echo __("Confirm security code:", $this->template['module'])?></label>
+<label><?php  echo __("Security code:", $module)?></label><?php  echo $captcha?><br />
+<label for="captcha"><?php  echo __("Confirm security code:", $module)?></label>
 <input class="input-text" type='text' name='captcha' value='' /><br />
 <?php  endif; ?>
-[*] <?php  echo __("Required", $this->template['module'])?><br />
-<input type='submit' name='submit' class="input-submit" value="<?php  echo __("Add comment", $this->template['module'])?>" /><br />
+[*] <?php  echo __("Required", $module)?><br />
+<input type='submit' name='submit' class="input-submit" value="<?php  echo __("Add comment", $module)?>" /><br />
 </form>
 </div>
 <?php  endif; ?>

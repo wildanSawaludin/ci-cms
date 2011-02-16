@@ -1,6 +1,8 @@
 <?php   if (!defined('BASEPATH')) exit('No direct script access allowed');
 	
-	class Page extends CI_Controller {
+	class Page extends MX_Controller {
+		
+		var $template = array();
 		
 		function __construct()
 		{
