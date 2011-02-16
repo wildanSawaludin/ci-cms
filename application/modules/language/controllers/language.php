@@ -1,10 +1,20 @@
 <?php   if (!defined('BASEPATH')) exit('No direct script access allowed');
+/*
+ |-----------------------------------------------------------------------
+ | Language Public Controller
+ |-----------------------------------------------------------------------
+ */
 
-	class Language extends CI_Controller {
+	class Language extends MX_Controller {
+		
+		var $template = array();
 		
 		function __construct()
 		{
 			parent::__construct();
+			
+			// Not truely required as it should be auto-loaded
+			$this->load->library('locale');
 			
 			$this->template['module'] = "language";
 					

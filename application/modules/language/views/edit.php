@@ -11,12 +11,12 @@
 <!-- [Content] start -->
 <div class="content slim">
 
-<h1 id="edit"><?php  echo __("Edit language", $this->template['module'])?></h1>
+<h1 id="edit"><?php  echo __("Edit language", $module)?></h1>
 
 <form class="edit" action="<?php  echo site_url('admin/language/edit/' . $row['id'])?>" method="post" accept-charset="utf-8">
 		
 		<ul>
-			<li><input type="submit" name="submit" value="<?php  echo __("Save", $this->template['module'])?>" class="input-submit" /></li>
+			<li><input type="submit" name="submit" value="<?php  echo __("Save", $module)?>" class="input-submit" /></li>
 			<li><a href="<?php  echo site_url('admin/language')?>" class="input-submit last">Cancel</a></li>
 		</ul>
 		
@@ -30,12 +30,12 @@
 		
 		<div id="one">
 		
-		<p><?php  echo __("Create a new language here", $this->template['module'])?></p>
+		<p><?php  echo __("Create a new language here", $module)?></p>
 
-		<label for="title"><?php  echo __("Code", $this->template['module'])?>:</label>
+		<label for="title"><?php  echo __("Code", $module)?>:</label>
 		<input type="text" name="code" value="<?php  echo $row['code']?>" id="code" class="input-text" /><br />
 		
-		<label for="menu_title"><?php  echo __("Name", $this->template['module'])?></label>
+		<label for="menu_title"><?php  echo __("Name", $module)?></label>
 		<input type="text" name="name" value="<?php  echo $row['name']?>" id="name" class="input-text" /><br />
 		
 

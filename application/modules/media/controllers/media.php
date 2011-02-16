@@ -1,15 +1,12 @@
-<?php 
+<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 /*
  * $Id$
  *
  *
  */
   
-
-if (!defined('BASEPATH')) exit('No direct script access allowed');
-
-class Media extends CI_Controller {
-
+class Media extends MX_Controller {
+	
 	function __construct()
 	{
 		parent::__construct();
