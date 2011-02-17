@@ -41,7 +41,7 @@
 			
 			if($this->uri->uri_string() == $lang)
 			{
-				$redirect = '';
+				$redirect = base_url();
 			}
 			else
 			{
