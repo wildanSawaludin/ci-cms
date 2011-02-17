@@ -1,3 +1,3 @@
 <?php
-$route['admin/page'.'(/.*)?'] = 'page/admin/$1';
+	$route['admin/page'.'(/.*)?'] = 'page/admin/$1';
 ?>

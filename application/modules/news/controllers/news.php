@@ -217,10 +217,11 @@ and set to approve comments automatically.
 			$this->layout->load($this->template, 'index');
 		}
 		
-		function cat ($uri = null, $start = 0)
+		
+		function cat ()
 		{
-			
-			
+			$uri = $this->uri->segment(3);
+			$start = $this->uri->segment(4);
 			$per_page = 20;
 			
 			$params['limit'] = $per_page;
@@ -270,10 +271,11 @@ and set to approve comments automatically.
 			
 		}
 	
-		function tag ($tag = null, $start = 0)
+		function tag ()
 		{
 			
-			
+			$tag = $this->uri->segment(3);
+			$start = $this->uri->segment(4);
 			$per_page = 20;
 			
 			
@@ -315,7 +317,6 @@ and set to approve comments automatically.
 				$this->layout->load($this->template, 'index');
 			}
 		}		
-	
 	
 	
 	}

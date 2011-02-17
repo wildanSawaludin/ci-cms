@@ -1,5 +1,5 @@
 <!-- [Content] start -->
-<h1><?php  echo __("Tags", $this->template['module']) ?></h1>
+<h1><?php  echo __("Tags", $module) ?></h1>
 <div id="tags">
 <?php  if ($tags): ?>
 <?php   $i = 1; foreach ($tags as $tag) : ?>

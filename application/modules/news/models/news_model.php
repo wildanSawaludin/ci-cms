@@ -36,7 +36,14 @@
 		
 		function get_total_published($params)
 		{
-			$this->db->where($params['where'] );
+			if(array_key_exists('where',$params))
+			{
+				foreach($params['where'] as $f => $v)
+				{
+					$this->db->where($f, $v);
+				}
+			}
+			
 			$this->db->where('status', 1 );
 			$this->db->from('news');
 					
@@ -187,6 +194,7 @@
 			{
 				$params[$key] = (isset($params[$key]))? $params[$key]: $default_params[$key];
 			}
+			
 			$hash = md5(serialize($params));
 			if(!$result = $this->cache->get('get_news_list' . $hash, 'news_list'))
 			{
@@ -198,6 +206,7 @@
 				$this->db->from('news');
 				$this->db->join('news_cat', 'news_cat.id = news.cat', 'left');
 				$query = $this->db->get();
+				
 				if ( $query->num_rows() > 0 )
 				{
 					
@@ -296,7 +305,10 @@
 	{
 		if (is_array($data))
 		{
-			$this->db->where($data);
+			foreach($data as $f => $v)
+			{
+				$this->db->where($f, $v);
+			}
 		}
 		else
 		{
@@ -304,15 +316,18 @@
 		}
 
 		$query = $this->db->get('news_cat');
+		
 		if ($query->num_rows() > 0)
 		{
-		return $query->row_array();
+			return $query->row_array();
 		}
 		else
 		{
-		return false;
+			return false;
 		}
 	}
+	
+	
 	function get_cattree($parent = 0, $level = 0)
 	{
 
@@ -520,13 +535,7 @@
 	}
 	
 	function save()
-	{
-		$this->user->check_level($this->template['module'], LEVEL_ADD);
-
-
-		
-
-		
+	{		
 		$fields = array('id', 'cat', 'title', 'body', 'status', 'allow_comments', 'lang', 'notify');
 		$data = array();
 		
@@ -568,7 +577,7 @@
 			
 			if (!$news['uri']) ($data['uri'] = $this->news->generate_uri($this->input->post('title')));
 			*/
-			$this->user->check_level($this->template['module'], LEVEL_EDIT);
+			//$this->user->check_level($this->template['module'], LEVEL_EDIT);
 		
 			//update
 			$this->db->where('id', $id);
@@ -576,7 +585,7 @@
 		}
 		else
 		{
-			$this->user->check_level($this->template['module'], LEVEL_ADD);
+			//$this->user->check_level($this->template['module'], LEVEL_ADD);
 		
 			$data['author'] = $this->user->username;
 			$data['email'] = $this->user->email;

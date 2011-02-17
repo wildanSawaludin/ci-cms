@@ -1,10 +1,7 @@
 <?php 
-
-	$route['news/list(/:any)?'] = 'news/index$1';
-	$route['news/comment(/:any)?'] = 'news/comment';
-	$route['news/cat(/:any)?'] = 'news/cat$1';
-	$route['news/tag(/:any)?'] = 'news/tag$1';
-	//$route['news/rss(/:any)?'] = 'news/rss$1';
-	//$route['(\w{2})/news/(:any)'] = 'news/read/$1';
-
+	$route['news(/tag.*)'] = "news/tag$1";
+	$route['news(/cat.*)'] = "news/cat$1";
+	$route['news(/comment.*)'] = "news/comment$1";
+	$route['news^(/admin.*)'] = "news/admin$1";
+	$route['news(/[^admin].*)'] = "news/read$1"; 
 ?>

@@ -37,10 +37,17 @@
 | in the URL cannot be matched to a valid route.
 |
 */
+//$route['(\w{2})(/.*)?'] = 'language/set/$2';
 
 $route['default_controller'] = "page";
 $route['404_override'] = '';
 
+//$route['admin'.'(/.*)?'] = 'admin$1';
+/*if (!isset($route['(.*)']))
+{
+//in case a module want to get it all
+	$route['(.*)'] = "page/index/$1";
+}*/
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

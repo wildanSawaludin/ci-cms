@@ -59,7 +59,7 @@
 		?>
 			<option value="<?php  echo $parent['id']?>" <?php  echo ($row['pid'] == $parent['id'])?"selected":""?>> &nbsp;<?php  echo ($parent['level'] > 0) ? "|".str_repeat("__", $parent['level']): ""?> <?php  echo $parent['title'] ?> </option>
 		<?php  endforeach; ?>
-		<?phpendif;?> 
+		<?php endif;?> 
 		</select><br />
 
 		<label for="status"><?php  echo __("Status", $module)?>:</label>

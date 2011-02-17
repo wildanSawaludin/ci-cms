@@ -11,7 +11,7 @@ $this->add_action('news_delete', 'tag_news_delete');
 function tag_news_save($id)
 {
 	$obj =& get_instance();
-	$obj->load->model('tags_model', 'tag');
+	$obj->load->model('tags/tags_model', 'tag');
 	if ($tagitem = $obj->input->post('tags'))
 	{
 		$news = $obj->news->get_news(array('news.id' => $id));
@@ -37,7 +37,7 @@ function tag_news_save($id)
 function tag_news_delete($id)
 {
 	$obj =& get_instance();
-	$obj->load->model('tags_model', 'tag');
+	$obj->load->model('tags/tags_model', 'tag');
 	
 	$obj->tag->delete(array('srcid' => $id, 'module' => 'news'));
 
@@ -48,7 +48,7 @@ function tag_news_delete($id)
 function tag_page_delete($id)
 {
 	$obj =& get_instance();
-	$obj->load->model('tags_model', 'tag');
+	$obj->load->model('tags/tags_model', 'tag');
 	
 	$obj->tag->delete(array('srcid' => $id, 'module' => 'page'));
 
@@ -63,7 +63,7 @@ function tag_page_fields($string, $id = null)
 		$obj =& get_instance();
 		$page = $obj->pages->get_page(array('id' => $id));
 	
-		$obj->load->model('tags_model', 'tag');
+		$obj->load->model('tags/tags_model', 'tag');
 		if($tags = $obj->tag->get_tags(array('srcid' => $page['id'], 'module' => 'page')))
 		{
 			foreach ($tags as $tag)
@@ -85,7 +85,7 @@ function tag_page_fields($string, $id = null)
 function tag_page_save($id)
 {
 	$obj =& get_instance();
-	$obj->load->model('tags_model', 'tag');
+	$obj->load->model('tags/tags_model', 'tag');
 	if ($tagitem = $obj->input->post('tags'))
 	{
 		$page = $obj->pages->get_page(array('id' => $id));

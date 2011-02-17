@@ -80,8 +80,8 @@
 		
 		function save()
 		{
-			
 			$this->load->library('form_validation');
+			$this->form_validation->CI =& get_instance();
 
 			$this->form_validation->set_rules('title', __("Title", $this->template['module']), 'required');
 
@@ -93,6 +93,7 @@
 				return;
 			}		
 
+			
 			$id = $this->news->save();
 			$this->plugin->do_action('news_save', $id);
 			$this->cache->remove('news'.$this->user->lang, 'news');
@@ -195,9 +196,12 @@
 		
 		function create($id = null)
 		{
-		
-			$this->user->check_level($this->template['module'], LEVEL_ADD);
+			
+			$this->user->check_level('news', LEVEL_ADD);
+			
 			$this->load->library('form_validation');
+			$this->form_validation->CI =& get_instance();
+
 			$this->form_validation->set_rules('title', __("Title", $this->template['module']), 'required');
 
 			$this->form_validation->set_message('required', __("The %s field can not be empty", $this->template['module']));
@@ -214,7 +218,7 @@
 
 			if (!is_null($id))
 			{
-				$this->user->check_level($this->template['module'], LEVEL_EDIT);
+				$this->user->check_level('news', LEVEL_EDIT);
 			
 				$query = $this->db->get_where('news', array('id' => $id));
 				$row = $query->row_array();

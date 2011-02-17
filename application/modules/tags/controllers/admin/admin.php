@@ -4,8 +4,9 @@
 * $Id: admin.php 274 2008-11-30 09:16:31Z heriniaina.eugene $
 **/
 	
-class Admin extends CI_Controller {
+class Admin extends MX_Controller {
 	
+	var $template = array();
 	
 	function __construct()
 	{
@@ -50,9 +51,9 @@ class Admin extends CI_Controller {
 	{
 		$this->user->check_level($this->template['module'], LEVEL_EDIT);		
 		$setting = is_array($this->input->post('settings')) ? serialize($this->input->post('settings')) : '';
-		$this->system->set('palbum_settings', $setting);
+		$this->system->set('tags_settings', $setting);
 		$this->session->set_flashdata('notification', __("Settings saved", $this->template['module']));
-		redirect('admin/palbum');
+		redirect('admin/tags');
 	}
 
 	function delete($tag, $js = 0)

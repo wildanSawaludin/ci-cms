@@ -4,11 +4,12 @@
 * $Id: settings.php 274 2008-11-30 09:16:31Z heriniaina.eugene $
 **/
 	
-class Settings extends CI_Controller {
-	
-	
+class Settings extends MX_Controller {
+		
 	var $fields;
 	var $_settings = array();
+	var $template = array();
+	
 	function __construct()
 	{
 
@@ -22,7 +23,7 @@ class Settings extends CI_Controller {
 			);
 		$this->load->library('administration');
 		$this->template['module'] = "tags";
-		$this->load->model('tag_model', 'tag');
+		$this->load->model('tags_model', 'tag');
 
 		$this->template['admin']		= true;
 	}
@@ -32,7 +33,7 @@ class Settings extends CI_Controller {
 	{
 		//fields
 		$this->user->check_level($this->template['module'], LEVEL_EDIT);		
-		$settings = isset($this->system->palbum_settings) ? unserialize($this->system->palbum_settings) : array();
+		$settings = isset($this->system->tags_settings) ? unserialize($this->system->tags_settings) : array();
 		foreach ($this->fields as $key => $value)
 		{
 			$this->_settings[$key] = isset($settings[$key])? $settings[$key] : $value;
@@ -47,7 +48,7 @@ class Settings extends CI_Controller {
 	{
 		$this->user->check_level($this->template['module'], LEVEL_EDIT);		
 		$setting = is_array($this->input->post('settings')) ? serialize($this->input->post('settings')) : '';
-		$this->system->set('palbum_settings', $setting);
+		$this->system->set('tags_settings', $setting);
 		$this->session->set_flashdata('notification', __("Settings saved", $this->template['module']));
 		redirect('admin/tags');
 	}
