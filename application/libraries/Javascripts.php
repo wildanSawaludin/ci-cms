@@ -31,8 +31,12 @@ class Javascripts
         $this->clear();
         $this->CI =& get_instance();
         $config = $this->CI->config->item('javascripts');
+		
         if ($config) $this->add($config);
-        if ($params) $this->add($params);	
+        // removed the params when loading it reloaded javascript
+		//if ($params) $this->add($params);	
+		log_message('debug', 'Javascript Library Initialized');
+
 	}
 	
     // clear all javascripts
@@ -44,6 +48,7 @@ class Javascripts
     // add a javascript
     function add($items)
     {
+		
         if (is_array($items)) {
             foreach ($items as $item) {
                 if (!in_array($item, $this->javascripts)) {
