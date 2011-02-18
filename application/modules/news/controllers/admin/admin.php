@@ -169,10 +169,10 @@
 		
 		function admin_header()
 		{
-			$output = "<script language=\"javascript\" src=\"" . base_url() . "application/views/admin/javascript/datePicker/date.js\"></script>\n";
-			$output .= "<script language=\"javascript\" src=\"" . base_url() . "application/views/admin/javascript/datePicker/datePicker.js\"></script>\n";
+			$output = "<script language=\"javascript\" src=\"" . base_url() . "application/views/" . $this->system->theme_dir . "/admin/javascript/datePicker/date.js\"></script>\n";
+			$output .= "<script language=\"javascript\" src=\"" . base_url() . "application/views/" . $this->system->theme_dir . "/admin/javascript/datePicker/datePicker.js\"></script>\n";
 
-			$output .= "<link href=\"" . base_url() . "application/views/admin/javascript/datePicker/styles.css\" rel=\"stylesheet\" type=\"text/css\" />";
+			$output .= "<link href=\"" . base_url() . "application/views/" . $this->system->theme_dir . "/admin/javascript/datePicker/styles.css\" rel=\"stylesheet\" type=\"text/css\" />";
 			
 			echo $output;
 
