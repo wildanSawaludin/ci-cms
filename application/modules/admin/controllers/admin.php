@@ -43,12 +43,13 @@
 			$this->template['cicms_news'] = $this->simplepie->get_items();
 			
 			// Get Development News
-			$this->simplepie->set_feed_url('https://bitbucket.org/hery/ci-cms/rss?token=ffaaafc0111cc8100198a44b5c263671');
-			$this->simplepie->set_cache_location('./cache');
-			$this->simplepie->init();
-			$this->simplepie->handle_content_type();
+			$this->simplepie2 = new SimplePie();
+			$this->simplepie2->set_feed_url('https://bitbucket.org/hery/ci-cms/atom?token=2ca4c9f005e57ceeb08292d1a4144745');//('http://bitbucket.org/hery/ci-cms/rss?token=ffaaafc0111cc8100198a44b5c263671');
+			$this->simplepie2->set_cache_location('./cache');
+			$this->simplepie2->init();
+			$this->simplepie2->handle_content_type();
 			
-			$this->template['cicms2_news'] = $this->simplepie->get_items();
+			$this->template['cicms2_news'] = $this->simplepie2->get_items();
 			
 			$this->layout->load($this->template, 'index');
 			

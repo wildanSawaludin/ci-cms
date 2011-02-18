@@ -61,6 +61,8 @@ class MX_Router extends CI_Router
 	
 	public function _validate_request($segments) {		
 		
+		if(count($segments) == 0) return $segments;	
+		
 		$tmp = $segments;
 		
 		
