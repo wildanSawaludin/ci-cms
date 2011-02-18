@@ -63,8 +63,8 @@
 	</div>	
     
     <br />
-    <?php $i = 0; if (!empty($cicms2)):?>
-    <div class="left">
+    <?php $i = 0; if (!empty($cicms2_news)):?>
+    <div class="right">
     	<h2><?php echo __("Development News", $module)?></h2>
         <ul>
 			<?php foreach ($cicms2_news as $news2):?>
