@@ -9,7 +9,7 @@
 	<!--[if IE]>
 		<link rel="stylesheet" href="<?php echo base_url()?>application/views/themes/admin/style/ie.css" type="text/css" media="screen" charset="utf-8" />
 	<![endif]-->
-    <!-- Begine Javascript -->
+    <!-- Begin Javascript -->
 	<?php foreach($this->javascripts->get() as $javascript): ?>
 	<script src="<?php echo base_url()?>application/views/<?php echo $this->system->theme_dir;?>admin/javascript/<?php echo $javascript?>" type="text/javascript"></script>
 	<?php endforeach; ?>

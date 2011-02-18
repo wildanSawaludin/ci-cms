@@ -37,8 +37,8 @@
 		<tr class="<?php  echo $rowClass?>">
 				<td class="center"><?php  echo $row['id']?></td>
 				<td><?php  echo $row['title']?></td>
-				<td><a href="<?php  echo site_url('admin/news/move/up/'. $row['id'])?>"><img src="<?php  echo base_url() . 'application/views/admin/images/moveup.gif'?>" width="16" height="16" title="<?php  echo __("Move up", $module)?>" alt="<?php  echo __("Move up", $module)?>"/></a>
-				<a href="<?php  echo site_url('admin/news/move/down/'. $row['id'])?>"><img src="<?php  echo base_url() . 'application/views/admin/images/movedown.gif'?>" width="16" height="16" title="<?php  echo __("Move down", $module)?>" alt="<?php  echo __("Move down", $module)?>"/></a></td>
+				<td><a href="<?php  echo site_url('admin/news/move/up/'. $row['id'])?>"><img src="<?php  echo base_url() . 'application/views/' . $this->system->theme_dir . '/admin/images/moveup.gif'?>" width="16" height="16" title="<?php  echo __("Move up", $module)?>" alt="<?php  echo __("Move up", $module)?>"/></a>
+				<a href="<?php  echo site_url('admin/news/move/down/'. $row['id'])?>"><img src="<?php  echo base_url() . 'application/views/' . $this->system->theme_dir . '/admin/images/movedown.gif'?>" width="16" height="16" title="<?php  echo __("Move down", $module)?>" alt="<?php  echo __("Move down", $module)?>"/></a></td>
 				<td><?php  if ($row['status']==1): echo __('Published'); else: echo __('Draft'); endif;?></td>
 				<td><a href="<?php  echo site_url('news/'. $row['uri'])?>" rel="external"><?php  echo __("View", $module)?></a></td>
 				<td><a href="<?php  echo site_url('admin/'.$module.'/create/'.$row['id'])?>"><?php  echo __("Edit", $module)?></a></td>

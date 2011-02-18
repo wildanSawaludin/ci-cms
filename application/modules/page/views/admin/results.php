@@ -46,9 +46,9 @@
 				<td><?php  echo $page['uri']?></td>
 				<td><?php  if ($page['active']==1): echo 'Published'; else: echo 'Draft'; endif;?></td>
 				<td>
-				<a href="<?php  echo site_url('admin/page/move/up/'. $page['id'])?>"><img src="<?php  echo site_url('application/views/admin/images/moveup.gif')?>" width="16" height="16" title="<?php  echo __("Move up", $module)?>" alt="<?php  echo __("Move up", $module)?>"/></a>
+				<a href="<?php  echo site_url('admin/page/move/up/'. $page['id'])?>"><img src="<?php  echo site_url('application/views/' . $this->system->theme_dir . '/admin/images/moveup.gif')?>" width="16" height="16" title="<?php  echo __("Move up", $module)?>" alt="<?php  echo __("Move up", $module)?>"/></a>
 				</td><td>
-				<a href="<?php  echo site_url('admin/page/move/down/'. $page['id'])?>"><img src="<?php  echo site_url('application/views/admin/images/movedown.gif')?>" width="16" height="16" title="<?php  echo __("Move down", $module)?>" alt="<?php  echo __("Move down", $module)?>"/></a></td>
+				<a href="<?php  echo site_url('admin/page/move/down/'. $page['id'])?>"><img src="<?php  echo site_url('application/views/' . $this->system->theme_dir . '/admin/images/movedown.gif')?>" width="16" height="16" title="<?php  echo __("Move down", $module)?>" alt="<?php  echo __("Move down", $module)?>"/></a></td>
 				<td><a href="<?php  echo site_url($page['uri'])?>" rel="external">View</a></td>
 				<td><a href="<?php  echo site_url('admin/'.$module.'/edit/'.$page['id'])?>">Edit</a></td>
 				<td><a href="<?php  echo site_url('admin/'.$module.'/delete/'.$page['id'])?>">Delete</a></td>
