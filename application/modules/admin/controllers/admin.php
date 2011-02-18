@@ -34,22 +34,31 @@
 			}
 			
 			// Get News
-			$this->load->library('simplepie');
-			$this->simplepie->set_feed_url('http://ci-cms.blogspot.com/feeds/posts/default/-/news');
-			$this->simplepie->set_cache_location('./cache');
-			$this->simplepie->init();
-			$this->simplepie->handle_content_type();
+			// Get News if Php version smaller than 5.3.0
+			$news = array();
+			$news2 = array();
 			
-			$this->template['cicms_news'] = $this->simplepie->get_items();
+			if(!is_php('5.3.0'))
+			{	
+			  $this->load->library('Simplepie');
+			  $this->simplepie->set_feed_url('http://ci-cms.blogspot.com/feeds/posts/default/-/news');
+			  $this->simplepie->set_cache_location('./cache');
+			  $this->simplepie->init();
+			  $this->simplepie->handle_content_type();
+			  $news = $this->simplepie->get_items();
 			
-			// Get Development News
-			$this->simplepie2 = new SimplePie();
-			$this->simplepie2->set_feed_url('https://bitbucket.org/hery/ci-cms/atom?token=2ca4c9f005e57ceeb08292d1a4144745');//('http://bitbucket.org/hery/ci-cms/rss?token=ffaaafc0111cc8100198a44b5c263671');
-			$this->simplepie2->set_cache_location('./cache');
-			$this->simplepie2->init();
-			$this->simplepie2->handle_content_type();
+			  // Get Development News
+			  $this->simplepie2 = new SimplePie();
+			  $this->simplepie2->set_feed_url('http://bitbucket.org/hery/ci-cms/rss?token=ffaaafc0111cc8100198a44b5c263671');
+			  $this->simplepie2->set_cache_location('./cache');
+			  $this->simplepie2->init();
+			  $this->simplepie2->handle_content_type();
+			  $news2 = $this->simplepie2->get_items();
+			}
 			
-			$this->template['cicms2_news'] = $this->simplepie2->get_items();
+			// Save news if avaliable
+			$this->template['cicms_news'] = $news;
+			$this->template['cicms2_news'] = $news2;
 			
 			$this->layout->load($this->template, 'index');
 			
