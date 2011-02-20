@@ -18,12 +18,12 @@ class Locale {
 	var $codes;
 	var $default;
 
-	function Locale() {
-		$this->table = ('languages');
+	function __construct() {
 		$this->obj =& get_instance();
+		$this->obj->load->model('language/language_model');
+		
 		$this->codes = $this->get_codes();
 		$this->default = $this->get_default();
-		
 		if (!$this->obj->session->userdata('lang')) {
 			$this->obj->session->set_userdata('lang', $this->default);
 		}
@@ -57,43 +57,21 @@ class Locale {
 	
 	function get_active()
 	{
-		$this->obj->db->where('active', 1);
-		$query = $this->obj->db->get($this->table);
-		
-		$languages = array();
-		
-		if ( $query->num_rows() > 0 )
-		{
-			$languages = $query->result_array();
-		}
-		
-		return $languages;
+		return $this->obj->language_model->get_list(array('active' => 1));
 	}	
 	
 	function get_list()
 	{
-		$query = $this->obj->db->get($this->table);
-		
-		$languages = array();
-		
-		if ( $query->num_rows() > 0 )
-		{
-			$languages = $query->result_array();
-		}
-		
-		return $languages;
+		return $this->obj->language_model->get_list();
 	}
 
 	function get_default()
 	{
-		$this->obj->db->select('code');
-		$this->obj->db->where('default', 1);
-		$this->obj->db->limit(1);
-		$query = $this->obj->db->get($this->table);
-		if ($query->num_rows() == 1)
+		$row = $this->obj->language_model->get(array('default' => 1));
+		
+		if ($row)
 		{
-			$row = $query->row();
-			return $row->code ;
+			return $row['code'] ;
 		}
 		elseif (strlen( $this->obj->config->item('language') ) == 2 )
 		{
@@ -107,20 +85,23 @@ class Locale {
 	}
 	function get_codes()
 	{
-		$this->obj->db->select('code');
-		$this->obj->db->where('active', 1);
-		$this->obj->db->order_by('ordering');
-		$query = $this->obj->db->get($this->table);
+		
+		$rows = $this->obj->language_model->get_list(array('active' => 1));
 		$codes = array();
 		
-		if ( $query->num_rows() > 0 )
+		if ( $rows )
 		{
-			foreach ( $query->result() as $row )
+			foreach ( $rows as $row )
 			{
-				$codes[] = $row->code;
+				$codes[] = $row['code'];
 			}
+			return $codes;
 		}
-		return $codes;
+		else
+		{
+			return false;
+		}
+		
 	}
 
 

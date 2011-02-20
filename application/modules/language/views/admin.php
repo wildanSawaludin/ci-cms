@@ -36,7 +36,8 @@
 				<td class="center"><?php  echo $i?></td>
 				<td><?php  echo $lang['code']?></td>
 				<td><?php  echo $lang['name']?></td>
-				<td><?php  echo $lang['ordering']?></td>
+				<td><a href="<?php  echo site_url('admin/language/move/up/'. $lang['id'])?>"><img src="<?php  echo base_url() . 'application/views/' . $this->system->theme_dir . '/admin/images/moveup.gif'?>" width="16" height="16" title="<?php  echo __("Move up", $module)?>" alt="<?php  echo __("Move up", $module)?>"/></a>
+				<a href="<?php  echo site_url('admin/language/move/down/'. $lang['id'])?>"><img src="<?php  echo base_url() . 'application/views/' . $this->system->theme_dir . '/admin/images/movedown.gif'?>" width="16" height="16" title="<?php  echo __("Move down", $module)?>" alt="<?php  echo __("Move down", $module)?>"/></a></td>
 				<td><?php  if ($lang['default']==1): echo __("Yes", $module); else: echo "<a href='" . site_url('admin/language/setdefault/'. $lang['id']) . "'>" . __("Make default", $module) . "</a>" ;endif;?></td>
 				<td><?php  if ($lang['active']==1): echo __("Yes", $module); else: echo __("No", $module); endif;?></td>
 				<td><?php  if ($lang['active']==1): echo "<a href='" . site_url('admin/language/active/0/'. $lang['id']) . "'>" . __("Deactivate", $module) . "</a>"; else: echo "<a href='" . site_url('admin/language/active/1/'. $lang['id']) . "'>" . __("Activate", $module) . "</a>" ;endif;?></td>

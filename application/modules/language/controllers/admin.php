@@ -9,6 +9,7 @@
 			parent::__construct();
 			
 			$this->load->library('administration');
+			$this->load->model('language_model');
 			
 			$this->template['module']	= 'language';
 			$this->template['admin']		= true;
@@ -26,9 +27,7 @@
 		{
 			
 			if(isset($active) && isset($id)) {
-				$data = array('active' => $active);
-				$this->db->where('id', $id);
-				$this->db->update('languages', $data);
+				$this->language_model->active($active, $id);
 				$this->session->set_flashdata('notification', __("Language updated", $this->template['module']));
 			}
 			redirect('admin/language');
@@ -39,53 +38,27 @@
 			
 			if(isset($id)) {
 				
-				$this->db->where('id', $id);
-				$this->db->delete('languages');
+				$this->language_model->delete($id);
 				$this->session->set_flashdata('notification', __("Language removed", $this->template['module']));
 			}
 			redirect('admin/language');
 		}		
 		
 		function setdefault($id) {
+			$this->user->check_level($this->template['module'], LEVEL_ADD);
 			if(isset($id)) {
 				// Unset all languages
-				$this->db->update('languages', array('default' => 0));
+				$this->language_model->update(array('active' => 1), array('default' => 0));
 				// Now set the passed language as the default
-				$data = array('default' => 1);
-				$this->db->where('id', $id);
-				$this->db->update('languages', $data);
+				$this->language_model->update(array('id' => $id), array('default' => 1));
 				$this->session->set_flashdata('notification', __("Language updated", $this->template['module']));
 			}
 			redirect('admin/language');		
 		}
-		/**
-		 * Dealing with page module settings
-		 **/
-		function settings()
-		{
-			echo "Not Yet Implemented";
-			exit;	
-			if ($post = $this->input->post('submit') )
-			{
-				$fields = array('page_home');
-				
-				foreach ($fields as $field)
-				{
-					if ( $this->input->post($field) !== false)
-					{
-						$this->system->set($field, $this->input->post($field));
-					}
-				}
-				$this->session->set_flashdata('notification', __("Settings updated", $this->template['module']));	
-				redirect('admin/page/settings');
-			}
-			else
-			{
-				$this->layout->load($this->template, 'settings');
-			}
-		}
+
 		function add()
 		{
+			$this->user->check_level($this->template['module'], LEVEL_ADD);
 			if ( $post = $this->input->post('submit') )
 			{
 				$data = array(
@@ -95,8 +68,8 @@
 							'active'	=> $this->input->post('active')
 						);
 						
-				$this->db->insert('languages', $data);
-				$id = $this->db->insert_id();	
+				
+				$this->language_model->add($data);
 					
 				$this->session->set_flashdata('notification', __("Language added", $this->template['module']));	
 				
@@ -111,6 +84,7 @@
 		
 		function edit($id)
 		{
+			$this->user->check_level($this->template['module'], LEVEL_EDIT);
 			if ( $post = $this->input->post('submit') )
 			{
 				$data = array(
@@ -120,20 +94,33 @@
 							'active'	=> $this->input->post('active')
 						);
 					
-				$this->db->where('id', $id);
-				$this->db->update('languages', $data);
+				$this->language_model->update(array('id' => $id), $data);
 				
 				$this->session->set_flashdata('notification', __("Language updated", $this->template['module']));
 				
 				redirect('admin/language');
 			}
-			$this->db->where('id', $id);
-			$query = $this->db->get('languages');
-			$this->template['row'] = $query->row_array();
+			
+			$this->template['row'] = $this->language_model->get($id);
 			$this->layout->load($this->template, 'edit');
 		}
 		
+		function move($direction, $id)
+		{
+			$this->user->check_level($this->template['module'], LEVEL_EDIT);
+
+			if (!isset($direction) || !isset($id))
+			{
+				redirect('admin/language');
+			}
+			
+			$this->language_model->move($direction, $id);
+			
+			redirect('admin/language');					
+			
+		}
 		
 	}
 
-?>
+
+	
