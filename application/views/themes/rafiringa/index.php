@@ -1,4 +1,4 @@
-<?php $this->load->view($this->system->theme . '/header'); ?>
+<?php $this->load->view($this->system->theme_dir . $this->system->theme . '/header'); ?>
 <div id="page">
 
 	<?php if ($this->uri->uri_string() == '' || $this->uri->uri_string() == '/' . $this->system->page_home) : ?>
@@ -103,4 +103,4 @@ GA_googleFillSlot("rvg_interne_120x600");
 	
 	</div>
 </div>
-<?php $this->load->view($this->system->theme . '/footer'); ?>
+<?php $this->load->view($this->system->theme_dir . $this->system->theme . '/footer'); ?>

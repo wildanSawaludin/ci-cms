@@ -1,4 +1,4 @@
-<?php $this->load->view($this->system->theme . '/header'); ?>
+<?php $this->load->view($this->system->theme_dir . $this->system->theme . '/header'); ?>
 		<table id="maincol1"  width="100%" >
 			<tbody>
 			<tr>
@@ -41,4 +41,4 @@
 		</td>
 <?php endif; ?>
 
-<?php $this->load->view($this->system->theme . '/footer'); ?>
+<?php $this->load->view($this->system->theme_dir . $this->system->theme . '/footer'); ?>
