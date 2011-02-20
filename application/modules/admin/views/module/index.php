@@ -30,34 +30,34 @@
 		</tr>
 	</thead>
 	<tbody>
-<?php $i = 1; foreach ($modules as $module): ?>
+<?php $i = 1; foreach ($modules as $row): ?>
 <?php if ($i % 2 != 0): $rowClass = 'odd'; else: $rowClass = 'even'; endif;?>
 		<tr class="<?php echo $rowClass?>">
 				<td class="center"><?php echo $i?></td>
-				<td><?php echo $module['name']?></td>
-				<td><?php echo $module['description']?></td>
-				<td><?php echo $module['version']?></td>
+				<td><?php echo $row['name']?></td>
+				<td><?php echo $row['description']?></td>
+				<td><?php echo $row['version']?></td>
 				<td>
-				<?php if ($module['status'] == 1 && $module['ordering'] >= 100): ?>
-				<a href="<?php echo site_url('admin/module/move/up/'. $module['name'])?>"><img src="<?php echo site_url('application/views/admin/images/moveup.gif')?>" width="16" height="16" title="<?php echo __("Move up", $module)?>"/></a>
-				<a href="<?php echo site_url('admin/module/move/down/'. $module['name'])?>"><img src="<?php echo site_url('application/views/admin/images/movedown.gif')?>" width="16" height="16" title="<?php echo __("Move down", $module)?>"/></a>
+				<?php if ($row['status'] == 1 && $row['ordering'] >= 100): ?>
+				<a href="<?php echo site_url('admin/module/move/up/'. $row['name'])?>"><img src="<?php echo site_url('application/views/' . $this->system->theme_dir  . 'admin/images/moveup.gif')?>" width="16" height="16" title="<?php echo __("Move up", $module)?>"/></a>
+				<a href="<?php echo site_url('admin/module/move/down/'. $row['name'])?>"><img src="<?php echo site_url('application/views/' . $this->system->theme_dir  . 'admin/images/movedown.gif')?>" width="16" height="16" title="<?php echo __("Move down", $module)?>"/></a>
 				</td>
 				<?php endif; ?>
 				<td>
-				<?php if ($module['status'] == 1 && $module['ordering'] >= 100): ?>
-				<a href="<?php echo site_url('admin/module/deactivate/'. $module['name'])?>"><?php echo __("Deactivate", $module)?></a>
-				<?php elseif ($module['status'] == 0) : ?>
-				<a href="<?php echo site_url('admin/module/activate/'. $module['name'])?>"><?php echo __("Activate", $module)?></a>
+				<?php if ($row['status'] == 1 && $row['ordering'] >= 100): ?>
+				<a href="<?php echo site_url('admin/module/deactivate/'. $row['name'])?>"><?php echo __("Deactivate", $module)?></a>
+				<?php elseif ($row['status'] == 0) : ?>
+				<a href="<?php echo site_url('admin/module/activate/'. $row['name'])?>"><?php echo __("Activate", $module)?></a>
 				<?php endif; ?>
 				</td>
 				<td>
-				<?php if ($module['status'] == 0  && $module['ordering'] >= 100): ?>
-				<a href="<?php echo site_url('admin/module/uninstall/'. $module['name'])?>"><?php echo __("Uninstall", $module)?></a>
-				<?php elseif ($module['status'] == -1): ?>
-				<a href="<?php echo site_url('admin/module/install/'. $module['name'])?>"><?php echo __("Install", $module)?></a>
+				<?php if ($row['status'] == 0  && $row['ordering'] >= 100): ?>
+				<a href="<?php echo site_url('admin/module/uninstall/'. $row['name'])?>"><?php echo __("Uninstall", $module)?></a>
+				<?php elseif ($row['status'] == -1): ?>
+				<a href="<?php echo site_url('admin/module/install/'. $row['name'])?>"><?php echo __("Install", $module)?></a>
 				<?php else: ?>
-					<?php if (isset($module['nversion']) && $module['nversion'] > $module['version']) : ?>
-					<a href="<?php echo site_url('admin/module/update/'. $module['name'])?>"><span style='color: #FF0000'><?php echo __("Update", $module)?></span></a>
+					<?php if (isset($row['nversion']) && $row['nversion'] > $row['version']) : ?>
+					<a href="<?php echo site_url('admin/module/update/'. $row['name'])?>"><span style='color: #FF0000'><?php echo __("Update", $module)?></span></a>
 					<?php endif; ?>
 				<?php endif; ?>
 				</td>
