@@ -283,7 +283,7 @@ and set to approve comments automatically.
 							$word = $str;
 				
 				
-							$this->load->plugin('captcha');
+							$this->load->helper('captcha');
 							$vals = array(
 								'img_path'	 => './media/captcha/',
 								'img_url'	 => site_url('media/captcha'). '/',
