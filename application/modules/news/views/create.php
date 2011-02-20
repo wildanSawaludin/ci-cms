@@ -26,7 +26,7 @@ $(document).ready(function ()
 
 $(document).ready(function(){
 	$("#image")
-	.after("<img src='<?php  echo site_url('application/views/admin/images/ajax_circle.gif')?>' id='loading'/><input type='button' id='upload_now' value='  <?php  echo __('Upload') ?>  ' />");
+	.after("<img src='<?php  echo site_url('application/views/' . $this->system->theme_dir . 'admin/images/ajax_circle.gif')?>' id='loading'/><input type='button' id='upload_now' value='  <?php  echo __('Upload') ?>  ' />");
 	$("#loading").hide();
 	$("#upload_now").click(function(){
 		ajaxFileUpload();
