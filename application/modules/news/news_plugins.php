@@ -59,7 +59,7 @@ function news_news_comment_form($msg)
 	$word = $str;
 
 
-	$obj->load->plugin('captcha');
+	$obj->load->helper('captcha');
 	$vals = array(
 		'img_path'	 => './media/captcha/',
 		'img_url'	 => base_url() .'media/captcha/',
