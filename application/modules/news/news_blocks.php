@@ -8,7 +8,7 @@ $this->set('get_news_list', 'news_get_news');
 function news_get_cat($pid = 0)
 {
 	$obj =& get_instance();
-	$obj->load->model('news_model');
+	$obj->load->model('news/news_model');
 	return $obj->news_model->get_catlist_by_pid($pid);
 	
 }
@@ -17,7 +17,7 @@ function news_get_news_by_cat($cat = 0)
 {
 	$params = array();
 	$obj =& get_instance();
-	$obj->load->model('news_model');
+	$obj->load->model('news/news_model');
 	$params['where'] = array('cat' => $cat);
 	return $obj->news_model->get_list($params);
 	
@@ -28,7 +28,7 @@ function news_get_news($params)
 {
 	$rows = array();
 	$obj =& get_instance();
-	$obj->load->model('news_model');
+	$obj->load->model('news/news_model');
 
 	$rows = $obj->news_model->get_list($params);
 	
@@ -48,7 +48,7 @@ function news_latest_news($limit = 5)
 	'order_by' => 'news.id DESC',
 	'where' => array('news.lang' => $obj->user->lang)
 	);
-	$obj->load->model('news_model');
+	$obj->load->model('news/news_model');
 
 	$rows = $obj->news_model->get_list($params);
 	
