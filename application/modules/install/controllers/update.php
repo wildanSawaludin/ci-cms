@@ -17,6 +17,10 @@ class Update extends CI_Controller
 		parent::__construct();
 		$this->load->database();
 		$this->_get_settings();
+		$this->config->set_item('cache_path', './cache/');
+		$dir = $this->config->item('cache_path');
+		$this->load->library('cache', array('dir' => $dir));
+		
 	}
 	
 	function _get_settings()
@@ -32,13 +36,13 @@ class Update extends CI_Controller
 	function _set($name, $value)
 	{	
 		//update only if changed
-		if (!isset($this->$name)) {
-			$this->$name = $value;
+		if (!isset($this->_settings[$name])) {
+			$this->_settings[$name] = $value;
 			$this->db->insert('settings', array('name' => $name, 'value' => $value));
 		}
-		elseif ($this->$name != $value) 
+		elseif ($this->_settings[$name] != $value) 
 		{
-			$this->$name = $value;
+			$this->_settings[$name] = $value;
 			$this->db->update('settings', array('value' => $value), "name = '$name'");
 		}
 	}
@@ -102,6 +106,18 @@ class Update extends CI_Controller
 			
 			$this->_set('version', $to_version);
 		}
+		
+		$to_version = "2.0.0.0";
+		//using ci-cms 2
+		if($old_version < $to_version)
+		{
+			$this->_set('theme_dir', 'themes/');
+			echo "<p>2.0.0.0: All themes in this version is Themes directory</p>";
+			
+			$this->_set('version', $to_version);
+			$this->cache->remove('settings', 'settings');
+		}
+		
 	}
 
 }
