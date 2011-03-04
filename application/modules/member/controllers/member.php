@@ -187,13 +187,13 @@ class Member extends MX_Controller {
 		//check if email belongs to someone else
 		if ($this->member_model->exists(array('username' => $username)))
 		{
-			$this->validation->set_message('_verify_username', __("The username is already in use", $this->template['module']));
+			$this->form_validation->set_message('_verify_username', __("The username is already in use", $this->template['module']));
 			return FALSE;
 		}
 		
 		if ( !ereg("^[a-zA-Z0-9._-]+$", $username))
 		{
-			$this->validation->set_message('_verify_username', __("The username format is not valid, please use alphanumeric characters.", $this->template['module']));
+			$this->form_validation->set_message('_verify_username', __("The username format is not valid, please use alphanumeric characters.", $this->template['module']));
 			return FALSE;
 		}
 		
@@ -379,7 +379,7 @@ class Member extends MX_Controller {
 		//check if email belongs to someone else
 		if (!$this->member_model->exists(array('email' => $email)))
 		{
-			$this->validation->set_message('_email_not_found', __('The address %s is not found in our database. Try another address.', $this->template['module']));
+			$this->form_validation->set_message('_email_not_found', __('The address %s is not found in our database. Try another address.', $this->template['module']));
 			
 			return FALSE;
 		}
