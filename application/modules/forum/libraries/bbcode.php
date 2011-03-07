@@ -1,9 +1,10 @@
-<?php 
+<?php
 /**
  * BBCode Library
  *
  */
 /**
+ * http://svn.php.net/viewvc/pecl/bbcode/trunk/bbcode.php?view=markup
  * A complex BBCode Tags Parser
  *
  * The BBCode Array Arguments
@@ -207,51 +208,6 @@ Class BBCode{
 			$this->tagList=$tag_init;
 			$this->tagListCache=null;
 		}
-		$smileys_init = array(
-	':-)'			=>	'<img src="http://static.serasera.org/smileys/grin.gif" />',
-	':lol:'			=>	'<img src="http://static.serasera.org/smileys/lol.gif" />',
-	':cheese:'		=>	'<img src="http://static.serasera.org/smileys/cheese.gif" />',
-	':)'			=>	'<img src="http://static.serasera.org/smileys/smile.gif" />',
-	';-)'			=>	'<img src="http://static.serasera.org/smileys/wink.gif" />',
-	';)'			=>	'<img src="http://static.serasera.org/smileys/wink.gif" />',
-	':smirk:'		=>	'<img src="http://static.serasera.org/smileys/smirk.gif" />',
-	':roll:'		=>	'<img src="http://static.serasera.org/smileys/rolleyes.gif" />',
-	':-S'			=>	'<img src="http://static.serasera.org/smileys/confused.gif" />',
-	':wow:'			=>	'<img src="http://static.serasera.org/smileys/surprise.gif" />',
-	':bug:'			=>	'<img src="http://static.serasera.org/smileys/bigsurprise.gif" />',
-	':-P'			=>	'<img src="http://static.serasera.org/smileys/tongue_laugh.gif" />',
-	'%-P'			=>	'<img src="http://static.serasera.org/smileys/tongue_rolleye.gif" />',
-	';-P'			=>	'<img src="http://static.serasera.org/smileys/tongue_wink.gif" />',
-	':P'			=>	'<img src="http://static.serasera.org/smileys/rasberry.gif" />',
-	':blank:'		=>	'<img src="http://static.serasera.org/smileys/blank.gif" />',
-	':long:'		=>	'<img src="http://static.serasera.org/smileys/longface.gif" />',
-	':ohh:'			=>	'<img src="http://static.serasera.org/smileys/ohh.gif" />',
-	':grrr:'		=>	'<img src="http://static.serasera.org/smileys/grrr.gif" />',
-	':gulp:'		=>	'<img src="http://static.serasera.org/smileys/gulp.gif" />',
-	'8-/'			=>	'<img src="http://static.serasera.org/smileys/ohoh.gif" />',
-	':down:'		=>	'<img src="http://static.serasera.org/smileys/downer.gif" />',
-	':red:'			=>	'<img src="http://static.serasera.org/smileys/embarrassed.gif" />',
-	':sick:'		=>	'<img src="http://static.serasera.org/smileys/sick.gif" />',
-	':shut:'		=>	'<img src="http://static.serasera.org/smileys/shuteye.gif" />',
-	':-/'			=>	'<img src="http://static.serasera.org/smileys/hmm.gif" />',
-	'>:('			=>	'<img src="http://static.serasera.org/smileys/mad.gif" />',
-	':mad:'			=>	'<img src="http://static.serasera.org/smileys/mad.gif" />',
-	'>:-('			=>	'<img src="http://static.serasera.org/smileys/angry.gif" />',
-	':angry:'		=>	'<img src="http://static.serasera.org/smileys/angry.gif" />',
-	':zip:'			=>	'<img src="http://static.serasera.org/smileys/zip.gif" />',
-	':kiss:'		=>	'<img src="http://static.serasera.org/smileys/kiss.gif" />',
-	':ahhh:'		=>	'<img src="http://static.serasera.org/smileys/shock.gif" />',
-	':coolsmile:'	=>	'<img src="http://static.serasera.org/smileys/shade_smile.gif" />',
-	':coolsmirk:'	=>	'<img src="http://static.serasera.org/smileys/shade_smirk.gif" />',
-	':coolgrin:'	=>	'<img src="http://static.serasera.org/smileys/shade_grin.gif" />',
-	':coolhmm:'		=>	'<img src="http://static.serasera.org/smileys/shade_hmm.gif" />',
-	':coolmad:'		=>	'<img src="http://static.serasera.org/smileys/shade_mad.gif" />',
-	':coolcheese:'	=>	'<img src="http://static.serasera.org/smileys/shade_cheese.gif" />',
-	':vampire:'		=>	'<img src="http://static.serasera.org/smileys/vampire.gif" />',
-	':snake:'		=>	'<img src="http://static.serasera.org/smileys/snake.gif" />',
-	':exclaim:'		=>	'<img src="http://static.serasera.org/smileys/exclaim.gif" />',
-	':question:'	=>	'<img src="http://static.serasera.org/smileys/question.gif" />'
-	);
 
 		if (is_array($smileys_init)){
 			$this->smileys=$smileys_init;
@@ -281,13 +237,21 @@ Class BBCode{
 		$this->tagListCache=null;
 	}
 	/**
-	 * Adds an individual smiley to the list
+	 * Adds an array smiley or an individual smiley to the list
 	 *
 	 * @param string $smiley
 	 * @param string $replacement
 	 */
-	public function attach_smileys($smiley, $replacement){
-		$this->smileys[$smiley]=$replacement;
+	public function attach_smileys($smiley, $replacement = null){
+		if(!is_array($smiley))
+		{
+			$this->smileys[$smiley] = $replacement;
+		}
+		else
+		{
+			$this->smileys = array_merge($this->smileys, $smiley);
+		}
+		
 	}
 
 	/**
@@ -355,16 +319,17 @@ Class BBCode{
 			$start=isset($tag_datas['open_tag'])?$tag_datas['open_tag']:'';
 			$end=isset($tag_datas['close_tag'])?$tag_datas['close_tag']:'';
 			$flags=isset($tag_datas['flags'])?$tag_datas['flags']:0;
-			$this->tagListCache[$i]=array($type,
+			$this->tagListCache[$i]=array(
+			$type,
 			$start,
 			$end,
 			isset($tag_datas['default_arg'])?$tag_datas['default_arg']:'',
 			$flags,
 			isset($tag_datas['parents'])?$tag_datas['parents']:'all',
 			isset($tag_datas['childs'])?$tag_datas['childs']:'all',
-			isset($tag_datas['content_handling'])?$tag['content_handling']:'',
+			isset($tag_datas['content_handling'])?$tag_datas['content_handling']:'',
 			null,
-			isset($tag_datas['param_handling'])?$tag['param_handling']:'',
+			isset($tag_datas['param_handling'])?$tag_datas['param_handling']:'',
 			null,
 			(bool)($type==BBCode::TYPE_ARG || $type==BBCode::TYPE_OPTARG),
 			(bool)($type==BBCode::TYPE_NOARG || $type==BBCode::TYPE_OPTARG || $type==BBCode::TYPE_SINGLE),
@@ -372,8 +337,11 @@ Class BBCode{
 			(bool)(strpos($end,"{")),
 			((($flags&(BBCode::FLAGS_SMILEYS_OFF|BBCode::FLAGS_SMILEYS_ON))==0)&& $this->default_smileys ) || $flags&(BBCode::FLAGS_SMILEYS_ON),
 			);
+			
+			
 			++$i;
 		}
+		
 		// 2. Parse Child / Parents List
 		foreach($this->tagListCache as $i=>$val){
 			// Childs
@@ -898,6 +866,7 @@ Class BBCode{
 				}
 			}
 			/* Search For CallBacks */
+			
 			if ($cb=$this->get_callback($tree['i'],true)){
 				$arg=$cb($string,$arg);
 			}
@@ -929,6 +898,7 @@ Class BBCode{
 	 */
 	private function get_callback($tagid,$is_arg){
 		$tag = $this->tagListCache[$tagid];
+		
 		if ($is_arg){
 			if ($tag[10]===null){
 				$this->tagListCache[$tagid][10]=is_callable($tag[9])?$tag[9]:false;
@@ -1039,3 +1009,13 @@ $val[]=microtime(true)-$time;
 echo (microtime(true)-$time)."\n";
 echo array_sum($val);
 */
+
+function namana_bbcode_root_function($ret)
+{
+	$ret = preg_replace("#(^|[\n ])([\w]+?://[\w]+[^ \"\n\r\t< ]*)#", "\\1<a href=\"\\2\" target=\"_blank\">\\2</a>", $ret);
+	$ret = preg_replace("#(^|[\n ])((www|ftp)\.[^ \"\t\n\r< ]*)#", "\\1<a href=\"http://\\2\" target=\"_blank\">\\2</a>", $ret);
+	$ret = preg_replace("/([a-zA-Z0-9-_]+)@([a-zA-Z0-9-_]+)/", "\\1-at-\\2", $ret);
+	$ret = preg_replace("/@(\w+)/", "<a href=\"http://namana.serasera.org/profile/\\1\" target=\"_blank\">@\\1</a>", $ret);
+	$ret = preg_replace("/#(\w+)/", "<a href=\"http://search.twitter.com/search?q=\\1\" target=\"_blank\">#\\1</a>", $ret);
+	return $ret;
+}

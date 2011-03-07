@@ -1,6 +1,5 @@
 table.forum-list, table.forum-message {
-	width: 100%;
-	border: 1px solid #3B68D1;
+	border: 1px solid #B88100;
 }
 
 .forum-list tbody{
@@ -10,7 +9,7 @@ table.forum-list, table.forum-message {
 
 .forum-list th {
 	font-weight: bold;
-	background-color: #3B68D1;
+	background-color: #B88100;
 	text-align: center;
 	color: #FFFFFF;
 }
@@ -32,21 +31,22 @@ tr.even {
 	background-color: #FFFFFF; 
 }
 
+
 td.one-hour{
-	background-color: #4268FF;
+	background-color: #E09F07;
 	color: #FFFFFF;
 }
 
 td.five-hours {
-	background-color: #7791FC; 
+	background-color: #F7BE39; 
 }
 
 td.one-day {
-	background-color: #B1C0FC; 
+	background-color: #FCD16A; 
 }
 
 td.five-days {
-	background-color: #D9E0FC; 
+	background-color: #FFE196; 
 }
 
 td.more-days {

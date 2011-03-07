@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
  * $Id$
  *
@@ -11,11 +11,9 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Message_model extends CI_Model {
 
 	var $fields = array();
-	
 	function __construct()
 	{
 		parent::__construct();
-		
 		$this->fields = array(
 			'forum_messages' => array(
 				'mid'  => '',
@@ -53,7 +51,7 @@ class Message_model extends CI_Model {
 			$params[$key] = (isset($params[$key]))? $params[$key]: $default_params[$key];
 		}
 		$hash = md5(serialize($params));
-		if(!$result = $this->cache->get('get' . $hash, 'messages'))
+		if(!$result = $this->cache->get('get' . $hash, 'forum_messages'))
 		{
 			if (!is_null($params['like']))
 			{
@@ -79,7 +77,7 @@ class Message_model extends CI_Model {
 				$result = $query->row_array();
 			}
 
-			$this->cache->save('get' . $hash, $result, 'messages', 0);
+			$this->cache->save('get' . $hash, $result, 'forum_messages', 0);
 		}
 
 		return $result;
@@ -103,7 +101,7 @@ class Message_model extends CI_Model {
 			$params[$key] = (isset($params[$key]))? $params[$key]: $default_params[$key];
 		}
 		$hash = md5(serialize($params));
-		if(!$result = $this->cache->get('get_list' . $hash, 'messages'))
+		if(!$result = $this->cache->get('get_list' . $hash, 'forum_messages'))
 		{
 			if (!is_null($params['like']))
 			{
@@ -129,7 +127,7 @@ class Message_model extends CI_Model {
 				$result = $query->result_array();
 			}
 
-			$this->cache->save('get_list' . $hash, $result, 'messages', 0);
+			$this->cache->save('get_list' . $hash, $result, 'forum_messages', 0);
 		}
 
 		return $result;
@@ -153,7 +151,7 @@ class Message_model extends CI_Model {
 			$params[$key] = (isset($params[$key]))? $params[$key]: $default_params[$key];
 		}
 		$hash = md5(serialize($params));
-		if(!$result = $this->cache->get('get_total' . $hash, 'messages'))
+		if(!$result = $this->cache->get('get_total' . $hash, 'forum_messages'))
 		{
 			if (!is_null($params['like']))
 			{
@@ -174,7 +172,7 @@ class Message_model extends CI_Model {
 
 			$result = $row['cnt'];
 
-			$this->cache->save('get_total' . $hash, $result, 'messages', 0);
+			$this->cache->save('get_total' . $hash, $result, 'forum_messages', 0);
 		}
 
 		return $result;
@@ -185,14 +183,14 @@ class Message_model extends CI_Model {
 	{
 		$this->db->where($params['where']);
 		$this->db->delete('forum_messages');
-		$this->cache->remove_group('messages');
+		$this->cache->remove_group('forum_messages');
 	}
 
 	function save($data = array())
 	{
 		$this->db->set($data);
 		$this->db->insert('forum_messages');
-		$this->cache->remove_group('messages');
+		$this->cache->remove_group('forum_messages');
 	}
 
 	function update($where = array(), $data = array(), $escape = true)
@@ -200,7 +198,7 @@ class Message_model extends CI_Model {
 		$this->db->where($where);
 		$this->db->set($data, null, $escape);
 		$this->db->update('forum_messages');
-		$this->cache->remove_group('messages');
+		$this->cache->remove_group('forum_messages');
 	}
 
 	function get_message($mid)

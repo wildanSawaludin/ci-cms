@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
  * $Id$
  *
@@ -8,7 +8,6 @@
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Forum extends MX_Controller {
-	
 	var $template = array();
 
 	function __construct()
@@ -21,6 +20,7 @@ class Forum extends MX_Controller {
 		$this->load->model('message_model', 'message');
 		$this->load->library("bbcode");
 		$this->forum->get_user_level();
+		$this->forum->load_bbcode();
 		
 		$this->plugin->add_action('header', array(&$this, '_write_header'));
 	}
@@ -243,14 +243,15 @@ class Forum extends MX_Controller {
 	function _write_header()
 	{
 		echo "
-		<link rel='stylesheet' href='http://static.serasera.org/js/jquery/jquery-bbcode-editor/style.css' />
-		<script type='text/javascript' src='http://static.serasera.org/js/jquery/jquery-bbcode-editor/jquery.bbcodeeditor-1.0.min.js'></script>
+		<link rel='stylesheet' href='http://static.serasera.org/js/jquery/jquery-bbcode-editor-3/style.css' />
+		<script type='text/javascript' src='http://static.serasera.org/js/jquery/jquery-bbcode-editor-3/jquery.bbcodeeditor-1.0.min.js'></script>
 		<script type=\"text/javascript\">
 		$(document).ready(function(){
 				$('textarea.bbcode').bbcodeeditor(
 				{
-					bold:$('.bold'),italic:$('.italic'),underline:$('.underline'),link:$('.link'),quote:$('.quote'),code:$('.code'),image:$('.image'),
-					usize:$('.usize'),dsize:$('.dsize'),nlist:$('.nlist'),blist:$('.blist'),litem:$('.item'),
+					bold:$('.bold'),italic:$('.italic'),
+					underline:$('.underline'),link:$('.link'), quote:$('.quote'),code:$('.code'),image:$('.image'),
+					usize:$('.usize'),dsize:$('.dsize'),nlist:$('.nlist'),blist:$('.blist'),litem:$('.item'),youtube:$('.youtube'),dailymotion:$('.dailymotion'),
 					back:$('.back'),forward:$('.forward'),back_disable:'btn back_disable',forward_disable:'btn forward_disable',
 					exit_warning:true
 				});
@@ -261,14 +262,95 @@ class Forum extends MX_Controller {
 		</script>
 
 		";
-		echo '<link rel="stylesheet" href="' . site_url() . '/application/modules/forum/css/blue.css" type="text/css" media="screen" charset="utf-8" />';
+		echo '<link rel="stylesheet" href="' . site_url() . '/application/modules/forum/css/' . $this->forum->settings['style'] . '.css" type="text/css" media="screen" charset="utf-8" />';
 	}
 
-
+	
 	function message($action = 'list', $start = 0, $confirm = 0)
 	{
 		switch($action)
 		{
+			case "move":
+				$this->user->require_login();
+				$this->template['title'] = __("Move a message", "forum");
+				$mid = $start;
+				if($mid === 0)
+				{
+					$this->template['title'] = __("Error", "forum");
+					$this->template['message'] = __("You did not choose a message", "forum");
+					$this->layout->load($this->template, 'error');
+					return;
+				}
+				$params = array(
+					'where' => "mid = '" . $mid . "'"
+				);
+				$message = $this->message->get($params);
+				$params = array(
+					'where' => "tid = '" . $message['tid'] . "'"
+				);
+				
+				$topic = $this->topic->get($params);
+				
+				if($this->user->level['forum'] < LEVEL_EDIT && !isset($this->user->forum_level[ $topic['tid'] ]))
+				{
+					$this->template['title'] = __("Error", "forum");
+					$this->template['message'] = __("You cannot move this message", "forum");
+					$this->layout->load($this->template, 'error');
+					return;
+				}
+				
+				if($message['pid'] != '')
+				{
+					$this->template['title'] = __("Error", "forum");
+					$this->template['message'] = __("You cannot move this message", "forum");
+					$this->layout->load($this->template, 'error');
+					return;
+				
+				}
+				
+				if(!$this->input->post('submit'))
+				{
+					$this->template['message'] = $message;
+					$params = array(
+						'where' => "(username = '" . $this->user->username . "' OR gid IN ('" . implode("', '", $this->user->groups) . "')) ",
+						'order_by' => 'title'
+						);
+					$topics = $this->topic->get_list($params);
+					$this->template['topics'] = $topics;
+					$this->layout->load($this->template, 'message/move');
+				}
+				else
+				{
+					$tid = $this->input->post('tid');
+					$this->message->update(array('mid' => $mid), array('tid' => $tid));
+					$this->session->set_flashdata('notification', __("Message is now moved", "forum"));
+					
+					redirect('forum/message/' . $mid);
+					return;
+				}
+				
+			break;
+			case "user":
+				//user's message
+				$username = $start;
+				if($username === 0)
+				{
+					$this->user->require_login();
+					$username = $this->user->username;
+				}
+				$params = array();
+				
+				$params['where'] = array('username' => $username, 'pid' => '');
+				$params['order_by'] = 'id DESC';
+				$params['title'] = sprintf(__("%s's messages", "forum"), $username);
+
+				$search_id = $this->message->save_params(serialize($params));
+				
+
+				$this->results($search_id);
+			
+				
+			break;
 			case "reply":
 
 				$this->user->require_login();
@@ -293,7 +375,7 @@ class Forum extends MX_Controller {
 
 			    if ($quote !== 0 && $tmp = $this->message->get_message($quote))
 			    {
-				$reply['message'] = "\n\n[quote]\n" . $tmp['message'] . "\n[/quote]";
+				$reply['message'] = "\n\n[quote=" . $tmp['username'] . "]\n" . $tmp['message'] . "\n[/quote]";
 			    }
 			    $reply['pid'] = $message['mid'];
 			    $reply['title'] = "Re: " . $message['title'];
@@ -360,7 +442,8 @@ class Forum extends MX_Controller {
 
 			break;
 			case "edit":
-
+				$this->user->require_login();
+				$this->template['title'] = __("Modify message", "forum");
 				$mid = $start;
 				if($mid === 0)
 				{
@@ -379,7 +462,7 @@ class Forum extends MX_Controller {
 				
 				$topic = $this->topic->get($params);
 				
-				if($this->user->level['forum'] < LEVEL_EDIT && !isset($this->user->forum_level[ $topic['tid'] ]) && ($message['username'] != $this->user->username))
+				if($this->user->level['forum'] < LEVEL_EDIT && !isset($this->user->forum_level[ $topic['tid'] ]) && ($message['username'] != $this->user->username || $message['messages'] > 0))
 				{
 					$this->template['title'] = __("Error", "forum");
 					$this->template['message'] = __("You cannot edit this message", "forum");
@@ -387,22 +470,46 @@ class Forum extends MX_Controller {
 					return;
 				}
 				
+				$params = array(
+					'where' => "(username = '" . $this->user->username . "' OR gid IN ('" . implode("', '", $this->user->groups) . "')) ",
+					'order_by' => 'title'
+					);
+				$topics = $this->topic->get_list($params);
+
+				if($topics === false)
+				{
+				    $this->template['title'] = __("Posting error", "forum");
+				    $this->template['message'] = __("There is no topic available", "forum");
+				    $this->layout->load($this->template, "error");
+				    return;
+				}
+
+
 				$this->template['topic'] = $topic;
+				$this->template['topics'] = $topics;
 				$this->template['message'] = $message;
 
-				$this->layout->load($this->template, 'message_create');
+				$this->layout->load($this->template, 'message/create');
 				return;
 			break;
 			case "save":
 				$this->user->require_login();
 				$title = strip_tags($this->input->post('title'));
 				$message = strip_tags($this->input->post('message'));
+				
+
 				$tid = $this->input->post('tid');
-
-
+				if($tid === false)
+				{
+					$this->template['title'] = __("Topic missing", "forum");
+					$this->template['message'] = __("Please go back and choose a topic", "forum");
+					$this->layout->load($this->template,'error');
+					return;
+				}
+				
 				if(trim($message) == '' )
 				{
-					$this->template['title'] = __("Message required found", "forum");
+					$this->template['title'] = __("Message required", "forum");
 					$this->template['message'] = __("You forgot to write the message", "forum");
 					$this->layout->load($this->template,'error');
 					return;
@@ -415,20 +522,44 @@ class Forum extends MX_Controller {
 				}
 
 				$data = array(
-				'tid' => $tid,
 				'pid' => $this->input->post('pid'),
 				'date' => mktime(),
 				'title' => $title,
 				'message' => $message
 				);
+				
+				if($this->input->post('preview'))
+				{
+					$data['tid'] = $this->input->post('tid');
+					$data['mid'] = $this->input->post('mid');
+					$data['notify'] = $this->input->post('notify');
+					
+					$params = array(
+					'where' => "(username = '" . $this->user->username . "' OR gid IN ('" . implode("', '", $this->user->groups) . "')) ",
+					'order_by' => 'title'
+					);
+					
+					$topics = $this->topic->get_list($params);
+					
+					
+					$this->template['topics'] = $topics;
+					$this->template['data'] = $data;
+					$this->template['title'] = __("Preview message", "forum");
+					$this->layout->load($this->template, 'message/preview');
+					return;
+				}
 				if($this->input->post('mid'))
 				{
+					if(!$this->input->post('pid') || $this->input->post('pid') == '')
+					{
+						$data['tid'] = $this->input->post('tid');
+					}
 					$data['mid'] = $this->input->post('mid');
 					$this->message->update_message($data['mid'], $data);
 				}
 				else
 				{
-				
+					$data['tid'] = $this->input->post('tid');
 					$data['mid'] = uniqid('m');
 					$data['username'] = $this->user->username;
 					$data['email'] = $this->user->email;
@@ -436,9 +567,9 @@ class Forum extends MX_Controller {
 					$data['last_username'] = $this->user->username;
 					$data['last_mid'] = ($data['pid'])? $data['pid'] . '#' . $data['mid']: $data['mid'];
 					$data['notify'] = $this->input->post('notify');
-
+				
 					$this->message->save($data);
-					$this->topic->update_topic($tid, array('last_mid' => $this->db->escape($data['last_mid']), 'last_username' => $this->db->escape($this->user->username), 'last_date' => $data['date'], 'messages' => 'messages+1'), false);
+					$this->topic->update_topic($data['tid'], array('last_mid' => $this->db->escape($data['last_mid']), 'last_username' => $this->db->escape($this->user->username), 'last_date' => $data['date'], 'messages' => 'messages+1'), false);
 					if($data['pid'])
 					{
 						$this->message->update_message($data['pid'],  array('last_mid' => $this->db->escape($data['last_mid']), 'last_username' => $this->db->escape($this->user->username), 'last_date' => $data['date'], 'replies' => ' replies + 1'), false);
@@ -446,6 +577,7 @@ class Forum extends MX_Controller {
 					
 					if($data['pid']) $this->message->notify($data['pid']);
 				}
+				$this->session->set_flashdata("notification", __("Message saved succesfully", "forum"));
 
 				redirect('forum/topic/' . $tid);
 			break;
@@ -475,14 +607,14 @@ class Forum extends MX_Controller {
 				
 				$topic = $this->topic->get($params);
 				
-				if($this->user->level['forum'] < LEVEL_DEL && !isset($this->user->forum_level[ $topic['tid'] ]))
+				
+				if($this->user->level['forum'] < LEVEL_DEL &&  !isset( $this->user->forum_level[ $topic['tid'] ])  && $this->user->forum_level[ $topic['tid'] ] < LEVEL_DEL && $message['username'] != $this->user->username)
 				{
 					$this->template['title'] = __("Error", "forum");
 					$this->template['message'] = __("You cannot delete this message", "forum");
 					$this->layout->load($this->template, 'error');
 					return;
 				}
-				//
 
 				if ( $confirm > 0 )
 				{
@@ -635,10 +767,11 @@ class Forum extends MX_Controller {
 					$this->template['messages'] = $messages;
 					$this->template['title'] = $message['title'];
 					$this->template['start'] = $start;
+					$this->template['pid'] = $message['mid'];
 					$this->template['pager'] = $this->pagination->create_links();
+					$this->message->update("mid = '" . $message['mid'] . "' OR pid = '" . $message['mid'] . "' ", array('hits' => 'hits+1'), false);
 					$this->layout->load($this->template, 'message/index');
 					
-					$this->message->update("mid = '" . $message['mid'] . "' OR pid = '" . $message['mid'] . "' ", array('hits' => 'hits+1'), false);
 
 				}
 				else
@@ -673,8 +806,10 @@ class Forum extends MX_Controller {
 
 		$this->template['rows'] = $this->message->get_list($params);
 		//echo $this->db->last_query();
+		
+		if(isset($params['title'])) $this->template['title'] = $params['title'];
 
-		$this->template['title'] = __("Search result", "forum");
+		if(!isset($this->template['title'])) $this->template['title'] = __("Search result", "forum");
 		$config['first_link'] = __('First', 'forum');
 		$config['last_link'] = __('Last', 'forum');
 		$config['total_rows'] = $this->message->get_total($params);
@@ -698,7 +833,7 @@ class Forum extends MX_Controller {
 
 	function search()
 	{
-		$this->title = __("Search messages", "forum");
+		$this->template['title'] = __("Search messages", "forum");
 		$this->layout->load($this->template, "search");
 
 		return;
@@ -707,7 +842,7 @@ class Forum extends MX_Controller {
 	function unsubscribe($mid)
 	{
 		$this->user->require_login();
-		$where = " `notify` = 'Y' AND `username` = '" . $this->user->username . "' AND ( `mid` = '" . $mid . "' OR `pid` = '" . $mid . "') ";
+		$where = "notify = 'Y' AND `username` = '" . $this->user->username . "' AND ( `mid` = '" . $mid . "' OR `pid` = '" . $mid . "') ";
 		$data = array('notify' => 'N');
 		$this->message->update($where, $data);
 		
