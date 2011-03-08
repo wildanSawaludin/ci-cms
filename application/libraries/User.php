@@ -14,6 +14,8 @@
 |
 */
 
+
+
 	class User {
 		
 		var $id = 0;
@@ -23,10 +25,13 @@
 		var $level = array();
 		var $groups = array();
 		
-		function User()
+		function __construct()
 		{
 			$this->obj =& get_instance();
 			$this->obj->load->library('encrypt');
+			
+			//this filter allows us to use another type of auth (LDAP etc)
+			$this->obj->plugin->add_filter('user_auth', array(&$this, '_user_auth'), 30, 2);
 			
 			$this->_session_to_library();
 			$this->_get_levels();
@@ -112,13 +117,17 @@
 					exit;
 				}
 			}
-			else
-			{
-				return true;	
-			}
 		}
 
 		function _prep_password($password)
+		{
+			// Salt up the hash pipe
+			// Encryption key as suffix.
+			
+			return $this->obj->encrypt->sha1($password.$this->obj->config->item('encryption_key'));
+		}
+		
+		function prep_password($password)
 		{
 			// Salt up the hash pipe
 			// Encryption key as suffix.
@@ -137,16 +146,17 @@
 			$this->email			= $this->obj->session->userdata('email');
 		}
 		
-		function _start_session($user)
+		function _start_session()
 		{
 			// $user is an object sent from function login();
 			// Let's build an array of data to put in the session.
 			
 			$data = array(
-						'id' 			=> $user->id,
-						'username' 		=> $user->username,
-						'email'		=> $user->email, 
-						'logged_in'		=> true
+						'id' 			=> $this->id,
+						'username' 		=> $this->username,
+						'email'		=> $this->email, 
+						'logged_in'		=> $this->logged_in,
+						'lang'	=> $this->lang
 					);
 					
 			$this->obj->session->set_userdata($data);
@@ -158,6 +168,7 @@
 			$data = array(
 						'id' 			=> 0,
 						'username' 		=> '',
+						'email' 		=> '',
 						'logged_in'		=> false
 					);
 					
@@ -169,54 +180,53 @@
 			}
 		}
 		
+		
 		function login($username, $password)
 		{
 			
 			//destroy previous sesson
 			$this->_destroy_session();
 			//First check from the table
+			
+			$result['username'] = $username;
+			$result['password'] = $password;
+			
+			$result = $this->obj->plugin->apply_filters('user_auth', $result);
 		
-			// First up, let's query the DB.
-			// Prep the password to make sure we get a match.
-			// And only allow active members.
-			
-			$this->obj->db->where('username', $username);
-			$this->obj->db->where('password', $this->_prep_password($password));
-			$this->obj->db->where('status', 'active');
-			
-			$query = $this->obj->db->get($this->table, 1);
-			
-			if ( $query->num_rows() == 1 )
+
+			if(isset($result['logged_in']) && $result['logged_in'] !== false)
 			{
 				// We found a user!
 				// Let's save some data in their session/cookie/pocket whatever.
 				
-				$user = $query->row();
-
-				
-				$this->_start_session($user);
-				
+				$this->id 				= $result['id'];
+				$this->username			= $result['username'];
+				$this->logged_in 		= true;
+				$this->lang 			= $this->obj->session->userdata('lang');
+				$this->email			= $result['email'];
+				$this->_start_session();
 				$this->obj->session->set_flashdata('notification', 'Login successful...');
-				
 				return true;
 			}
 			else
 			{
-				// Login from database failed...
-				//check from other plugins
-				// to be done
-				
-				// Couldn't find the user,
-				// Let's destroy everything just to make sure.
-					
 				$this->_destroy_session();
 				
-				$this->obj->session->set_flashdata('notification', 'Login failed...');
+				if (isset($result['error_message']))
+				{
+					$this->obj->session->set_flashdata('notification', $result['error_message']);
+				}
+				else
+				{
+					$this->obj->session->set_flashdata('notification', 'Login failed...');
+				}
 				
 				return false;
-			}
 			
+			}
 		}
+		
+	
 		
 		function logout()
 		{
@@ -267,7 +277,7 @@
 				//save _POST and uri
 				$data = array(
 				"last_post" => $_POST,
-				"redirect" => substr($this->obj->uri->uri_string(), 0)
+				"redirect" => substr($this->obj->uri->uri_string(), 1)
 				);
 				$this->obj->session->set_userdata($data);
 				
@@ -450,4 +460,39 @@
 			
 		}
 
+		function _user_auth($result)
+		{
+			// this is the authentication from database
+			//used only if no plugin were used before
+			if(isset($result['logged_in'])) return $result;
+			
+			$result['logged_in'] = false;
+
+			$this->obj->db->where('username', $result['username']);
+			$this->obj->db->where('password', $this->_prep_password($result['password']));
+			$this->obj->db->where('status', 'active');
+			
+			$query = $this->obj->db->get('users', 1);
+			
+			if ( $query->num_rows() == 1 )
+			{
+				
+				$userdata = $query->row_array();
+				
+				$result['logged_in'] = true;
+				$result['email'] = $userdata['email'];
+				$result['id'] = $userdata['id'];
+				
+				return $result;
+			}
+			else
+			{
+				$result['logged_in'] = false;
+				return $result;
+			}
+			
+		
+		}
+		
+		
 	}	
