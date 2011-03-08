@@ -4,18 +4,19 @@ $this->set('forum_get_messages', 'forum_get_messages');
 function forum_get_messages($params)
 {
 	$obj =& get_instance();
-	$obj->load->module_model('forum', 'message_model', 'message');
+	log_message('error', 'teto');
+	$obj->load->model('forum/message_model');
 
-	return $obj->message->get_list($params);
+	return $obj->message_model->get_list($params);
 }
 
 $this->set('forum_get_topics', 'forum_get_topics');
 function forum_get_topics($params)
 {
 	$obj =& get_instance();
-	$obj->load->module_model('forum', 'topic_model', 'topic');
+	$obj->load->model('forum/topic_model');
 
-	return $obj->topic->get_list($params);
+	return $obj->topic_model->get_list($params);
 }
 
 $this->set('forum_menu', 'forum_menu');
