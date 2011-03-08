@@ -8,7 +8,7 @@ class Block {
 	var $_blocks = array();
 	var $obj;
 
-	function Block() {
+	function __construct() {
 		//get blocks for activated modules
 		$this->obj =& get_instance();
 		if (is_array($this->obj->system->modules))
@@ -35,8 +35,6 @@ class Block {
 	
 	function get($block_name)
 	{	
-		//echo "Block Get<br>";
-		return;
 		
 		$params = array();
 		for ( $a = 1; $a < func_num_args(); $a++ )
