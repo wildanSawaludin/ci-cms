@@ -37,14 +37,9 @@
 	<tbody>
 <?php  $i = 1; foreach ($rows as $row): ?>
 <?php  
-if($page_break_pos = strpos($row['desc'], "<!-- page break -->"))
-{
-	$row['summary'] = substr($row['desc'], 0, $page_break_pos);
-}
-else
-{
-	$row['summary'] = $row['desc'];
-}
+
+	$row['summary'] = substr(strip_tags($row['desc']), 0, 100);
+
 ?>		
 
 <?php  if ($i % 2 != 0): $rowClass = 'odd'; else: $rowClass = 'even'; endif;?>

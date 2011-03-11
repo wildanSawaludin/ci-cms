@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
  * $Id$
  *
@@ -9,7 +9,12 @@
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Download_model extends CI_Model {
-	
+
+	var $settings;
+	var $default_settings = array(
+		'allowed_file_types' => 'gif|jpg|png|bmp|doc|docx|xls|mp3|swf|exe|pdf|wav',
+		'upload_path' => './media/files/'
+	);
 	var $cat_fields = array(
 			'id' => '',
 			'pid' => '',
@@ -42,12 +47,11 @@ class Download_model extends CI_Model {
 			'icon'   => '',
 			'status' => '1'
 		);
-	
 	var $_cats;
-	
 	function __construct()
 	{
 		parent::__construct();
+		$this->get_settings();
 	}
 	
 	
@@ -429,7 +433,7 @@ class Download_model extends CI_Model {
 		$this->db->order_by($order);
 		$query = $this->db->get('download_files', $limit, $start);
 		
-		return $query->result_array();
+		return $this->template['rows'] = $query->result_array();
 	
 	}
 	
@@ -447,4 +451,38 @@ class Download_model extends CI_Model {
 		
 		$this->db->update('download_doc', $data, $where);
 	}
+	
+	function get_settings()
+	{
+		if(!isset($this->settings))
+		{
+			$query = $this->db->get('download_settings');
+			if ($query->num_rows() > 0)
+			{
+			   foreach ($query->result() as $row)
+			   {
+				  $this->settings[ $row->name ] = $row->value;
+			   }
+			}
+			else
+			{
+				$this->settings = $this->default_settings;
+			}
+		}
+
+	}
+	function set($name, $value)
+	{	
+		//update only if changed
+		if (!isset($this->settings[$name])) {
+			$this->settings[$name] = $value;
+			$this->db->insert('download_settings', array('name' => $name, 'value' => $value));
+		}
+		elseif ($this->settings[$name] != $value) 
+		{
+			$this->settings[$name] = $value;
+			$this->db->update('download_settings', array('value' => $value), "name = '$name'");
+		}
+	}
+	
 }
