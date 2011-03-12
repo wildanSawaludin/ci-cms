@@ -120,9 +120,6 @@ class Admin extends MX_Controller {
 			//there is an image attached
 			$config['upload_path'] = './media/images/o/';
 			$config['allowed_types'] = 'gif|jpg|png';
-			$config['max_size']	= '500';
-			$config['max_width']  = '1024';
-			$config['max_height']  = '768';
 			
 			//var_dump($config['upload_path']);
 			$this->load->library('upload', $config);
@@ -361,9 +358,6 @@ class Admin extends MX_Controller {
 		
 			$config['upload_path'] = './media/images/o/';
 			$config['allowed_types'] = 'gif|jpg|png';
-			$config['max_size']	= '500';
-			$config['max_width']  = '1024';
-			$config['max_height']  = '768';
 			
 			//var_dump($config['upload_path']);
 			$this->load->library('upload', $config);	
