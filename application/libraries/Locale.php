@@ -17,6 +17,8 @@ class Locale {
 	var $table;
 	var $codes;
 	var $default;
+	var $_actives;
+	var $_list;
 
 	function __construct() {
 		$this->obj =& get_instance();
@@ -57,50 +59,65 @@ class Locale {
 	
 	function get_active()
 	{
-		return $this->obj->language_model->get_list(array('active' => 1));
+		if (!isset($this->_active))
+		{
+			$this->_active = $this->obj->language_model->get_list(array('active' => 1));
+		}
+		return $this->_active;
 	}	
 	
 	function get_list()
 	{
-		return $this->obj->language_model->get_list();
+		if (!isset($this->_list))
+		{
+			$this->_list =  $this->obj->language_model->get_list();
+		}
+		return $this->_list;
 	}
 
 	function get_default()
 	{
-		$row = $this->obj->language_model->get(array('default' => 1));
+		if(!isset($this->default))
+		{
+			$row = $this->obj->language_model->get(array('default' => 1));
+			
+			if ($row)
+			{
+				$this->default = $row['code'] ;
+			}
+			elseif (strlen( $this->obj->config->item('language') ) == 2 )
+			{
+				$this->default = $this->obj->config->item('language');
+			}
+			else
+			{
+				$this->default = 'en';
+			}
+		}
 		
-		if ($row)
-		{
-			return $row['code'] ;
-		}
-		elseif (strlen( $this->obj->config->item('language') ) == 2 )
-		{
-			return $this->obj->config->item('language');
-		}
-		else
-		{
-			return 'en';
-		}
-		
+		return $this->default;
 	}
 	function get_codes()
 	{
-		
-		$rows = $this->obj->language_model->get_list(array('active' => 1));
-		$codes = array();
-		
-		if ( $rows )
+		if(!isset($this->codes))
 		{
-			foreach ( $rows as $row )
+			$rows = $this->obj->language_model->get_list(array('active' => 1));
+			$codes = array();
+			
+			if ( $rows )
 			{
-				$codes[] = $row['code'];
+				foreach ( $rows as $row )
+				{
+					$codes[] = $row['code'];
+				}
+				$this->codes = $codes;
 			}
-			return $codes;
+			else
+			{
+				$this->codes = false;
+			}
 		}
-		else
-		{
-			return false;
-		}
+		return $this->codes;
 		
 	}
 

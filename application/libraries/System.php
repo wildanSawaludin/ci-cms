@@ -45,10 +45,14 @@
 			$this->obj->load->library('locale');
 			//$this->obj->locale->load_textdomain(APPPATH . 'locale/' . $this->obj->session->userdata('lang') . '.mo');
 			
+			$available_langs = $this->obj->locale->codes;
+			$lang = $this->obj->session->userdata('lang');
+			//if lang is deactivated, get the default and do not load .mo files
+			if(!in_array($lang, $available_langs)) $lang = $this->obj->locale->default;
 			
 			foreach ($this->modules as $module)
 			{
-				$mofile = APPPATH . 'modules/'.$module['name'].'/locale/' . $this->obj->session->userdata('lang') . '.mo' ;
+				$mofile = APPPATH . 'modules/'.$module['name'].'/locale/' . $lang . '.mo' ;
 				if ( file_exists($mofile)) 
 				{
 					$this->obj->locale->load_textdomain($mofile, $module['name']);
