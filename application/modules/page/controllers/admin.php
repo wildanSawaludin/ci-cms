@@ -203,7 +203,7 @@ class Admin extends MX_Controller {
 		$this->template['page'] = $this->pages->fields['pages'];
 		//get pending images
 		
-		$this->template['images'] = $this->pages->get_images(array('where' => array('src_id' => 0)));
+		$this->template['images'] = $this->pages->get_images(array('where' => array('src_id' => '0')));
 		$this->template['parent_id'] = $parent_id;
 		$this->template['uri'] = $uri;
 		$this->layout->load($this->template, 'create');
@@ -225,7 +225,9 @@ class Admin extends MX_Controller {
 		
 		$this->template['images'] = $this->pages->get_images(array('where' => array('src_id' => 0)));
 		
-		$this->template['page'] = $this->pages->get_page( array('id' => $this->page_id) );
+		$page = $this->pages->get_page( array('id' => $this->page_id) );
+		$this->template['images'] = $this->pages->get_images(array('where' => 'src_id = 0 OR src_id = ' . $page['id'] ));
+		$this->template['page'] = $page;
 		$this->layout->load($this->template, 'create');
 	}
 	

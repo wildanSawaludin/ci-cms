@@ -1,3 +1,3 @@
-<h1><?php  echo __("Access Forbidden!", $module) ?></h1>
+<h1><?php echo __("Access Forbidden!", $module) ?></h1>
 
-<?php  echo $message ?>
+<?php echo $message ?>

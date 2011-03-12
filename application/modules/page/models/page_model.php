@@ -303,7 +303,7 @@ class Page_Model extends CI_Model {
 		
 	}
 	
-	function get_images($page_id)
+	function get_images($params)
 	{
 		$default_params = array
 		(
