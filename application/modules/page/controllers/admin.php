@@ -232,7 +232,7 @@ class Admin extends MX_Controller {
 	}
 	
 	
-	function move($direction, $id)
+	function move($direction, $id, $search_id = 0, $start = 0)
 	{
 
 		if (!isset($direction) || !isset($id))
@@ -242,7 +242,7 @@ class Admin extends MX_Controller {
 		
 		$this->pages->move($direction, $id);
 		
-		redirect('admin/page');					
+		$this->results($search_id, $start);					
 		
 				
 	}
@@ -462,6 +462,7 @@ class Admin extends MX_Controller {
 		$this->template['total'] = $config['total_rows'];
 		$this->template['per_page'] = $config['per_page'];
 		$this->template['total_rows'] = $config['total_rows'];
+		$this->template['search_id'] = $search_id;
 
 		$this->layout->load($this->template, 'admin/results');
 	
