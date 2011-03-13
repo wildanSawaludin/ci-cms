@@ -1,0 +1,4 @@
+applications/config/config.php
+applications/config/database.php
+cache/*
+user_guide/*
