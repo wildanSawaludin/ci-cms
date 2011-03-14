@@ -433,7 +433,7 @@ class Download_model extends CI_Model {
 		$this->db->order_by($order);
 		$query = $this->db->get('download_files', $limit, $start);
 		
-		return $this->template['rows'] = $query->result_array();
+		return $query->result_array();
 	
 	}
 	
