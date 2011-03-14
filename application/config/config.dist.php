@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/ci-cms2/';
+$config['base_url']	= 'http://ci-cms2/';
 
 /*
 javascripts files
