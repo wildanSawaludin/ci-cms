@@ -106,7 +106,7 @@ function deleteFile(obj) {
 		<label for="file"><?php  echo __("File", 'downloads')?>: </label>
 		
 		<input type="file" name="file" class="input-file" id="file"/>
-<img src='<?php  echo site_url('application/views/admin/images/ajax_circle.gif')?>' id='loading'/><input type='submit' id='upload_now' value='  <?php  echo __('Upload') ?>  ' />
+<img src='<?php  echo site_url('application/views/' . $this->system->theme_dir . 'admin/images/ajax_circle.gif')?>' id='loading'/><input type='submit' id='upload_now' value='  <?php  echo __('Upload') ?>  ' />
 
 </form>
 		<table id="file_list" class="page-list">
