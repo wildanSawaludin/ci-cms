@@ -43,7 +43,7 @@ class Member extends MX_Controller {
 	function login()
 	{
 
-		if ( $this->user->logged_in )
+		if ( $this->user->logged_in)
 		{
 			$this->session->set_flashdata('notification', __("You are now logged in", $this->template['module']));
 			$redirect = $this->input->post('redirect');
@@ -84,9 +84,16 @@ class Member extends MX_Controller {
 					$this->session->set_flashdata('notification', __("Please enter your password", $this->template['module']));
 					redirect('member/login', 'refresh');
 				}
-			
 				
-				if ($this->user->login($username, $password))
+				if(!$remember = $this->input->post('remember'))
+				{
+					$remember = false;
+				}
+			
+				//exit("Remember: $remember");
+				
+				
+				if ($this->user->login($username, $password, $remember))
 				{
 					$redirect = $this->input->post('redirect');
 					if ($redirect && (strpos($redirect, 'member/login') === false))

@@ -18,7 +18,9 @@
 		<label for="username"><?php  echo __("Username", $module)?>:</label>
 		<input type='text' name='username' id='username' class="input-text" /><br />
 		<label for="password"><?php  echo __("Password", $module)?>:</label>
-		<input type="password" name="password" value="" id="password" class="input-text" />
+		<input type="password" name="password" value="" id="password" class="input-text" /><br />
+        <label for="remember"><?php  echo __("Remember Me on this computer", $module)?>:</label>
+        <input type="checkbox" name="remember" value="1" id="remember" class="input-checkbox" />
 		<br class="clearfloat" />
 		<p><input type="submit" name="submit" value="Login &raquo;" id="submit" class="input-submit" /></p>
 	<?php 

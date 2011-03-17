@@ -14,71 +14,31 @@
 |
 */
 
+
+
 	class User {
 		
 		var $id = 0;
 		var $logged_in = false;
+		var $auto_login = false;
 		var $username = '';
 		var $table = 'users';
 		var $level = array();
 		var $groups = array();
-		var $obj = null;
 		
-		function User()
+		function __construct()
 		{
 			$this->obj =& get_instance();
 			$this->obj->load->library('encrypt');
+			
+			
+			//this filter allows us to use another type of auth (LDAP etc)
+			$this->obj->plugin->add_filter('user_auth', array(&$this, '_user_auth'), 30, 2);
 			
 			$this->_session_to_library();
 			$this->_get_levels();
 			$this->_get_groups();
 			$this->_update_fields();
-		}
-		
-		
-		function remember_me()
-		{
-			$sec_in_day = 86500;
-			$recall_days = 15;
-			$rrecall_seconds = $recall_days * 86500;
-			$security_code = $this->_prep_password($this->password);
-			
-			if (!$this->obj->input->get_cookie('rbmr_recall')) {
-				// cookie not set, first visit
-				// create cookie to avoid hitting this case again
-				$cookie = array(
-					'name'   => 'recall',
-					'value'  => serialize(array('login' => $this->username, 'sec_code' => $security_code)),
-					'expire' => $recall_seconds,
-					'domain' => '.'.base_url(),
-					'path'   => '/',
-					'prefix' => 'rbmr_',
-				);
-				
-				$this->obj->input->set_cookie($cookie);
-			}
- 
-		}
-		
-		
-		function auto_login()
-		{
-			if(isSet($cookie_name))
-			{
-    			// Check if the cookie exists
-				if(isSet($_COOKIE[$cookie_name]))
-    			{
-    				parse_str($_COOKIE[$cookie_name]);
- 
-				    // Make a verification
-    				if(($usr == $config_username) && ($hash == md5($config_password)))
-        			{
-        				// Register the session
-        				$_SESSION['username'] = $config_username;
-        			}
-    			}
-			}	
-			
 		}
 		
 		
@@ -159,13 +119,17 @@
 					exit;
 				}
 			}
-			else
-			{
-				return true;	
-			}
 		}
 
 		function _prep_password($password)
+		{
+			// Salt up the hash pipe
+			// Encryption key as suffix.
+			
+			return $this->obj->encrypt->sha1($password.$this->obj->config->item('encryption_key'));
+		}
+		
+		function prep_password($password)
 		{
 			// Salt up the hash pipe
 			// Encryption key as suffix.
@@ -180,20 +144,23 @@
 			$this->id 				= $this->obj->session->userdata('id');
 			$this->username			= $this->obj->session->userdata('username');
 			$this->logged_in 		= $this->obj->session->userdata('logged_in');
+			$this->auto_login		= $this->obj->session->userdata('auto_login');
 			$this->lang 			= $this->obj->session->userdata('lang');
 			$this->email			= $this->obj->session->userdata('email');
 		}
 		
-		function _start_session($user)
+		function _start_session()
 		{
 			// $user is an object sent from function login();
 			// Let's build an array of data to put in the session.
 			
 			$data = array(
-						'id' 			=> $user->id,
-						'username' 		=> $user->username,
-						'email'		=> $user->email, 
-						'logged_in'		=> true
+						'id' 			=> $this->id,
+						'username' 		=> $this->username,
+						'email'			=> $this->email, 
+						'logged_in'		=> $this->logged_in,
+						'auto_login' 	=> $this->auto_login,
+						'lang'			=> $this->lang
 					);
 					
 			$this->obj->session->set_userdata($data);
@@ -205,7 +172,9 @@
 			$data = array(
 						'id' 			=> 0,
 						'username' 		=> '',
-						'logged_in'		=> false
+						'email' 		=> '',
+						'logged_in'		=> false,
+						'auto_login' 	=> false
 					);
 					
 			$this->obj->session->set_userdata($data);
@@ -216,57 +185,66 @@
 			}
 		}
 		
-		function login($username, $password)
+		
+		function login($username, $password, $remember=false)
 		{
 			
 			//destroy previous sesson
 			$this->_destroy_session();
 			//First check from the table
+			
+			$result['username'] = $username;
+			$result['password'] = $password;
+			
+			$result = $this->obj->plugin->apply_filters('user_auth', $result);
+			
+			if($remember !== false)
+			{
+				$this->obj->load->library('user_persistence');
+				$this->obj->user_persistence->remember();
+			}
 		
-			// First up, let's query the DB.
-			// Prep the password to make sure we get a match.
-			// And only allow active members.
-			
-			$this->obj->db->where('username', $username);
-			$this->obj->db->where('password', $this->_prep_password($password));
-			$this->obj->db->where('status', 'active');
-			
-			$query = $this->obj->db->get($this->table, 1);
-			
-			if ( $query->num_rows() == 1 )
+
+			if(isset($result['logged_in']) && $result['logged_in'] !== false)
 			{
 				// We found a user!
 				// Let's save some data in their session/cookie/pocket whatever.
 				
-				$user = $query->row();
-
-				
-				$this->_start_session($user);
-				
+				$this->id 				= $result['id'];
+				$this->username			= $result['username'];
+				$this->logged_in 		= true;
+				$this->lang 			= $this->obj->session->userdata('lang');
+				$this->email			= $result['email'];
+				$this->_start_session();
 				$this->obj->session->set_flashdata('notification', 'Login successful...');
-				
 				return true;
 			}
 			else
 			{
-				// Login from database failed...
-				//check from other plugins
-				// to be done
-				
-				// Couldn't find the user,
-				// Let's destroy everything just to make sure.
-					
 				$this->_destroy_session();
 				
-				$this->obj->session->set_flashdata('notification', 'Login failed...');
+				if (isset($result['error_message']))
+				{
+					$this->obj->session->set_flashdata('notification', $result['error_message']);
+				}
+				else
+				{
+					$this->obj->session->set_flashdata('notification', 'Login failed...');
+				}
 				
 				return false;
-			}
 			
+			}
 		}
+		
+	
 		
 		function logout()
 		{
+			// If the user is logging out destroy thier persistant data
+			$this->obj->load->library('user_persistence');
+			$this->obj->user_persistence->forget();
+			
 			//keep last_uri
 			$this->update($this->username, array('online' => 0));
 			$last_uri = $this->obj->session->userdata("last_uri");
@@ -308,25 +286,20 @@
 		}
 
 		function require_login()
-		{	
+		{
+			$this->obj->load->library('user_persistence');
+			
 			if (!$this->logged_in)
 			{
 				//save _POST and uri
 				$data = array(
 				"last_post" => $_POST,
-				"redirect" => substr($this->obj->uri->uri_string(), 0)
+				"redirect" => substr($this->obj->uri->uri_string(), 1)
 				);
 				$this->obj->session->set_userdata($data);
 				
-				// Now check if we have auto login cookie
-				if($recall = $this->obj->input->get_cookie('rbmr_'.$this->obj->system->site_name))
-				{
-						
-				}
-				else
-				{
-					redirect("member/login");
-				}
+				
+				redirect("member/login");
 			}
 		}
 		
@@ -503,7 +476,46 @@
 			}
 			
 		}
-		
-		
 
+		function _user_auth($result)
+		{
+			// this is the authentication from database
+			//used only if no plugin were used before
+			if(isset($result['logged_in'])) return $result;
+			
+			$result['logged_in'] = false;
+
+			$this->obj->db->where('username', $result['username']);
+			$this->obj->db->where('password', $this->_prep_password($result['password']));
+			$this->obj->db->where('status', 'active');
+			
+			$query = $this->obj->db->get('users', 1);
+			
+			if ( $query->num_rows() == 1 )
+			{
+				
+				$userdata = $query->row_array();
+				
+				$result['logged_in'] = true;
+				$result['email'] = $userdata['email'];
+				$result['id'] = $userdata['id'];
+				
+				return $result;
+			}
+			else
+			{
+				$result['logged_in'] = false;
+				return $result;
+			}
+			
+		
+		}
+		
+		
+		function remember()
+		{
+			$this->obj->load->library('user_persistence');	
+		}
+		
+		
 	}	

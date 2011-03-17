@@ -32,142 +32,83 @@ class Test extends MX_Controller {
 		
 	}
 	
-	
 	function test5()
 	{
+		$this->load->library('autologon');
 		
+		// Create new token  0.
+		if($this->autologon->new_token('tom'))
+			echo "Token Created";
+		else
+			echo "Token cannot be created!";
 		
-		$primes = array(2,5,7,11,13,17,19,23,29,31,37,41,43,47);
-		print_r($primes);
-		
-		for($n=1; $n < 200; $n++)
-		{
-		  if($n)
-		  {
-			  for($i=0; $i < count($primes); $i++)
-			  {
-				  if($primes[$i] > sqrt($n))
-				  {
-					  if($i > 0)
-					  {
-					  	$msg = "N: ". ($n += $primes[$i-1])."<br>";
-					  }
-					  else
-					  {
-						  $msg = "N: ". ($n += $primes[$i])."<br>";
-					  }
-					  
-					  break;
-				  }
-			  }
-			  
-			  if(empty($msg))
-			  {
-				  $msg = "N: $n, ".($n += 1)."<br>";	
-			  }
-			  
-		  }
-		  else
-		  {
-			  $msg =  "Error: Number not valid";
-		  }
-		  
-		  echo $msg;
-		}
 	}
 	
-	
-	function makePrimes()
+	function test6()
 	{
-		$primes = array();
+		$this->load->library('autologon');
 		
-		$count = 0 ;  
-		$number = 2 ;  
-		while ($count < 2500 )  
-		{  
-			$div_count=0;  
-			for ( $i=1;$i<=$number;$i++)  
-			{  
-				if (($number%$i)==0)  
-				{  
-					$div_count++;  
-				}  
-			}  
-			
-			if ($div_count< 3)  
-			{  
-				$primes[] = $number;  
-				$count=$count+1;  
-			}  
-			
-			$number=$number+1;  
-		}  	
-	
-		$idx = 0;
-		while($idx < count($primes))
-		{
-			echo $primes[$idx].", ";
-			if(($idx%20)==0)
-			{
-				echo "<br />";
-			}
-			$idx++;
-		}
-		
+		// Get token
+		if($token = $this->autologon->get())
+			print_r($token);
+		else
+			echo "Cannot get token";	
 	}
 	
-	
-	function fibonacci()
+	function test7()
 	{
-		//$rnd = rand(100);
-		//$len = rand(100);
-		$n = 500;
-		$last = 1;
-		$slast = 0;
-		$numbers = array();
-		
-		$numbers[0] = 1;
-		
-		for($i = 1; $i < $n; $i++)
-		{
-			$numbers[$i] = $last + $slast;
-			$slast = $last;
-			$last = $numbers[$i];
-		}
-		
-		foreach($numbers as $idx => $val)
-		{
-			echo $val.', ';
-			if($idx AND ($idx % 20)==0)
-			{
-				echo "<br />";	
-			}
-		}
-	}
-	
+		$this->load->library('autologon');
 
-	function series()
-	{
-		$this->load->library('seriesgen');
-		
-		$param[] = $this->seriesgen->newToken();
-		
-		for($i=1; $i <= 5000; $i++)
+		if($this->autologon->validate())
 		{
-			$param[] = $this->seriesgen->updateToken($param[$i-1]);
+			echo "Autologon Valid";
 		}
-		 	
-		foreach($param as $tok)
+		else
 		{
-			if($this->seriesgen->validateToken($tok))
-			{
-				echo "Valid token: ";
-			}
-			print_r($tok);
-			echo "<br>";
-			
+			echo "Autologon Invalid!!!";
 		}
+		
+		if($token = $this->autologon->get())
+			print_r($token);
+		
 	}
+	
+	function test8()
+	{
+		if($this->autologon->has_autologon())
+		{
+			echo "Has autologon ";
+		}
+		else
+		{
+			echo "Autologon not found!";
+		}	
+	}
+	
+	
+	function test9()
+	{
+		$this->user->require_login();
+		
+		echo "Logged in<br>";
+		echo $this->user->is_autologin?"Auto Login":"Manual Login";
+		echo "<br>";
+		echo "Logged_in: ".$this->user->logged_in." <br>";
+			
+	}
+	
+	function test10()
+	{
+		$this->user->require_manual_login();
+		
+		echo "Manually Logged in <br>";
+		echo $this->user->is_autologin?"Auto Login":"Manual Login";
+		echo "<br>";
+		echo "Logged_in: ".$this->user->logged_in." <br>";
+		
+			
+	}
+	
 }
 
 ?>
