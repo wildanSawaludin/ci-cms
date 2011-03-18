@@ -100,7 +100,7 @@ class MX_Router extends CI_Router
 		}
 		
 		// If all else failed try the default controller
-		if(count($segments) == 1 AND $segments[0] !='' AND $segments[0] != 'admin')
+		if(count($segments) > 0  AND $segments[0] != 'admin')
 		{
 			
 			$tmp[0] = $this->routes['default_controller'];
@@ -125,6 +125,7 @@ class MX_Router extends CI_Router
 		
 		
 		/* no controller found */
+		
 		show_404();
 	}
 	

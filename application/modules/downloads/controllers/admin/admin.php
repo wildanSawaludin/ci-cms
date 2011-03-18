@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
  * $Id$
  *
@@ -9,8 +9,7 @@
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Admin extends MX_Controller {
-	
-	var $template = array();
+	var $template;
 
 	function __construct()
 	{
@@ -78,5 +77,34 @@ class Admin extends MX_Controller {
 	
 	}
 	
+	function settings()
+	{
+		if ($post = $this->input->post('submit') )
+		{
+			
+			foreach ($this->downloads->default_settings as $key => $val)
+			{
+			
+				if ( $this->input->post($key) !== false)
+				{
+					$this->downloads->set($key, $this->input->post($key));
+					
+				}
+				else
+				{
+					$this->downloads->set($key, $val);
+				}
+			}
+			$this->session->set_flashdata('notification', __("Settings updated", $this->template['module']));	
+			redirect('admin/downloads/settings');
+		}
+		else
+		{
+		
+			$this->layout->load($this->template, 'admin/settings');
+		
+		}
+		
+	}
 }	
 	

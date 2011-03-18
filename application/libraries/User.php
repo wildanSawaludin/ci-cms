@@ -98,7 +98,6 @@
 				}
 			}
 
-
 			$this->level = $admin;
 		}
 		
@@ -197,13 +196,6 @@
 			$result['password'] = $password;
 			
 			$result = $this->obj->plugin->apply_filters('user_auth', $result);
-			
-			if($remember !== false)
-			{
-				$this->obj->load->library('user_persistence');
-				$this->obj->user_persistence->remember();
-			}
-		
 
 			if(isset($result['logged_in']) && $result['logged_in'] !== false)
 			{
@@ -217,6 +209,13 @@
 				$this->email			= $result['email'];
 				$this->_start_session();
 				$this->obj->session->set_flashdata('notification', 'Login successful...');
+				
+				if($remember !== false)
+				{
+					$this->obj->load->library('user_persistence');
+					$this->obj->user_persistence->remember();
+				}
+							
 				return true;
 			}
 			else
@@ -307,10 +306,17 @@
 		{
 			if (!is_array($where))
 			{
-				$where = array('id', $where);
+				$this->obj->db->where('id', $where);
 			}
-		
-			$query = $this->obj->db->get_where('users', $where);
+			elseif(is_array($where))
+			{
+				foreach($where as $field => $val)
+				{
+					$this->obj->db->where($field, $val);
+				}
+			}
+			
+			$query = $this->obj->db->get('users');
 			if ($query->num_rows() > 0 )
 			{
 				return $query->row_array();
@@ -507,7 +513,6 @@
 				$result['logged_in'] = false;
 				return $result;
 			}
-			
 		
 		}
 		
@@ -516,6 +521,5 @@
 		{
 			$this->obj->load->library('user_persistence');	
 		}
-		
 		
 	}	

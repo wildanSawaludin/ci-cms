@@ -1,5 +1,5 @@
-<h1><?php  echo $row['title']?></h1>
-<?php 
+<h1><?php echo $row['title']?></h1>
+<?php
 	if($page_break_pos = strpos($row['desc'], "<!-- page break -->"))
 	{
 		$row['desc'] = substr($row['desc'], $page_break_pos + 19);
@@ -17,5 +17,5 @@
 		$row['link'] = site_url('downloads/document/get/' . $row['file']);
 	}	
 ?>
-<?php  echo $row['desc']?>
-<a href="<?php  echo $row['link']?>"><?php  echo __("Download", 'downloads')?></a>
+<?php echo $row['desc']?>
+<a href="<?php echo $row['link']?>"><?php echo __("Download", 'downloads')?></a>

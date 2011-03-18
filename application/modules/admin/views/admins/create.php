@@ -1,4 +1,4 @@
-<!-- [Left menu] start -->
+	<!-- [Left menu] start -->
 <div class="leftmenu">
 
 	<h1 id="pageinfo"><?php echo __("Navigation", $module)?></h1>
@@ -34,8 +34,8 @@
 			
 			<label for="module"><?php echo __("Module", $module)?>: </label>
 			<select name="module" class="input-select" />
-			<?php foreach ($this->system->modules as $module) : ?>
-			<option value='<?php echo $module['name']?>'/><?php echo ucfirst($module['name'])?></option>
+			<?php foreach ($this->system->modules as $mod) : ?>
+			<option value='<?php echo $mod['name']?>'/><?php echo ucfirst($mod['name'])?></option>
 			<?php endforeach; ?>
 			</select>
 			<br />

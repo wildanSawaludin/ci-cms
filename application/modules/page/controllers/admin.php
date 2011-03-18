@@ -120,9 +120,6 @@ class Admin extends MX_Controller {
 			//there is an image attached
 			$config['upload_path'] = './media/images/o/';
 			$config['allowed_types'] = 'gif|jpg|png';
-			$config['max_size']	= '500';
-			$config['max_width']  = '1024';
-			$config['max_height']  = '768';
 			
 			//var_dump($config['upload_path']);
 			$this->load->library('upload', $config);
@@ -203,7 +200,7 @@ class Admin extends MX_Controller {
 		$this->template['page'] = $this->pages->fields['pages'];
 		//get pending images
 		
-		$this->template['images'] = $this->pages->get_images(array('where' => array('src_id' => 0)));
+		$this->template['images'] = $this->pages->get_images(array('where' => array('src_id' => '0')));
 		$this->template['parent_id'] = $parent_id;
 		$this->template['uri'] = $uri;
 		$this->layout->load($this->template, 'create');
@@ -225,12 +222,14 @@ class Admin extends MX_Controller {
 		
 		$this->template['images'] = $this->pages->get_images(array('where' => array('src_id' => 0)));
 		
-		$this->template['page'] = $this->pages->get_page( array('id' => $this->page_id) );
+		$page = $this->pages->get_page( array('id' => $this->page_id) );
+		$this->template['images'] = $this->pages->get_images(array('where' => 'src_id = 0 OR src_id = ' . $page['id'] ));
+		$this->template['page'] = $page;
 		$this->layout->load($this->template, 'create');
 	}
 	
 	
-	function move($direction, $id)
+	function move($direction, $id, $search_id = 0, $start = 0)
 	{
 
 		if (!isset($direction) || !isset($id))
@@ -240,7 +239,7 @@ class Admin extends MX_Controller {
 		
 		$this->pages->move($direction, $id);
 		
-		redirect('admin/page');					
+		$this->results($search_id, $start);					
 		
 				
 	}
@@ -359,9 +358,6 @@ class Admin extends MX_Controller {
 		
 			$config['upload_path'] = './media/images/o/';
 			$config['allowed_types'] = 'gif|jpg|png';
-			$config['max_size']	= '500';
-			$config['max_width']  = '1024';
-			$config['max_height']  = '768';
 			
 			//var_dump($config['upload_path']);
 			$this->load->library('upload', $config);	
@@ -460,6 +456,7 @@ class Admin extends MX_Controller {
 		$this->template['total'] = $config['total_rows'];
 		$this->template['per_page'] = $config['per_page'];
 		$this->template['total_rows'] = $config['total_rows'];
+		$this->template['search_id'] = $search_id;
 
 		$this->layout->load($this->template, 'admin/results');
 	

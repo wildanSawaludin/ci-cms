@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
  * $Id$
  *
@@ -9,13 +9,13 @@
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Document extends MX_Controller {
-	
-	var $template = array();
+	var $template;
 
 	function __construct()
 	{
 		parent::__construct();
-		
+	
+
 		$this->template['module']	= 'downloads';
 		$this->load->model('download_model', 'downloads');
 
@@ -34,7 +34,7 @@ class Document extends MX_Controller {
 		if ($row = $this->downloads->get_doc(array('download_files.file' => $file)))
 		{
 
-			$fn = 'media/files/' . $file;
+			$fn = $this->downloads->settings['upload_path'] . $file;
 			if(file_exists($fn))
 			{
 			

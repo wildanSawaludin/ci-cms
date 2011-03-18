@@ -1,4 +1,4 @@
-<?php   if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 $query =
 "CREATE TABLE IF NOT EXISTS " . $this->db->dbprefix('forum_topics')  . " (
@@ -40,7 +40,10 @@ $query =
 `hits` INT( 11 ) NOT NULL ,
 `notify` CHAR(1) NOT NULL DEFAULT 'N',
 PRIMARY KEY ( `id` ) ,
-INDEX ( `mid`, `pid`, `tid`, `title`, `username` )
+KEY `username` (`username`),
+KEY `mid` (`mid`),
+KEY `pid` (`pid`),
+KEY `tid` (`tid`)
 );";
 
 $this->db->query($query);
@@ -58,3 +61,18 @@ INDEX ( `tid`, `username` )
 );";
 
 $this->db->query($query);
+
+$query = 
+"CREATE TABLE IF NOT EXISTS " . $this->db->dbprefix('forum_settings')  . " (
+`id` INT NOT NULL  AUTO_INCREMENT,
+`name` VARCHAR( 100 ) NOT NULL ,
+`value` TEXT NOT NULL ,
+PRIMARY KEY ( `id` ) ,
+INDEX ( `name` )
+);";
+
+$this->db->query($query);
+
+$query = "INSERT INTO " . $this->db->dbprefix('form_settings') . " (`name`, `value`) VALUES ('style', 'blue')"; 
+$this->db->query($query);
+

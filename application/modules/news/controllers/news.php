@@ -176,6 +176,7 @@ and set to approve comments automatically.
 					
 					$this->template['title'] = $news['title'];
 					$this->template['news'] = $news;
+					$this->template['settings'] = $this->settings;
 					$this->layout->load($this->template, 'read');
 				
 				}

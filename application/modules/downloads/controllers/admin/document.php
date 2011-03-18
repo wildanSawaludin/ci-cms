@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
  * $Id$
  *
@@ -9,8 +9,7 @@
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Document extends MX_Controller {
-	
-	var $template = array();
+	var $template;
 
 	function __construct()
 	{

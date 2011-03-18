@@ -86,8 +86,8 @@ class Layout {
 		$data['view'] = $view;
 
 		//load language for template
-		$mofile = APPPATH . $this->theme_dir. $this->theme.'/locale/' . $this->obj->session->userdata('lang') . '.mo' ;
-
+		$mofile = APPPATH . 'views/' . $this->theme_dir. $this->theme.'/locale/' . $this->obj->session->userdata('lang') . '.mo' ;
+		
 		if ( file_exists($mofile)) 
 		{
 			$this->obj->locale->load_textdomain($mofile, $this->theme);

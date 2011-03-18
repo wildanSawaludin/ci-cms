@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
  * $Id$
  *
@@ -9,9 +9,8 @@
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Downloads extends MX_Controller {
+	var $template;
 
-	var $template = array();
-	
 	function __construct()
 	{
 		parent::__construct();

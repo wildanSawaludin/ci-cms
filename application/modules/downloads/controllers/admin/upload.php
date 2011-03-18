@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
  * $Id$
  *
@@ -9,8 +9,7 @@
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Upload extends MX_Controller {
-	
-	var $template = array();
+	var $template;
 
 	function __construct()
 	{
@@ -57,6 +56,7 @@ class Upload extends MX_Controller {
 
 	function save()
 	{
+
 		$this->user->check_level($this->template['module'], LEVEL_ADD);
 	
 		if ($_FILES['file']['name'] != '')
@@ -152,8 +152,8 @@ class Upload extends MX_Controller {
 		{
 		
 		
-			$config['upload_path'] = './media/files/';
-			$config['allowed_types'] = isset($this->settings->allowed_file_type) ? $this->settings->allowed_file_type : 'gif|jpg|png|bmp|doc|docx|xls|mp3|swf|exe|pdf|wav';
+			$config['upload_path'] = $this->downloads->settings['upload_path'];
+			$config['allowed_types'] = $this->downloads->settings['allowed_file_types'];
 			$config['max_size']	= '2000';
 			
 			//var_dump($config['upload_path']);

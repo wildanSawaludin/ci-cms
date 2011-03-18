@@ -177,6 +177,7 @@ class Modules
 			$modules[array_shift($segments)] = ltrim(implode('/', $segments).'/','/');
 		}	
 
+		//var_dump($modules);
 		foreach (Modules::$locations as $location => $offset) {					
 			foreach($modules as $module => $subpath) {			
 				$fullpath = $location.$module.'/'.$base.$subpath;
@@ -197,29 +198,50 @@ class Modules
 		return array(FALSE, $file);	
 	}
 	
-	/** Parse module routes **/
+	/** Parse module routes
+         *
+         * modified by heriniaina.eugene@gmail.com 
+         * to parse all routes in modules
+         * 
+         * @param <type> $module
+         * @param <type> $uri
+         * @return array  
+         */
+
 	public static function parse_routes($module, $uri) {
 		
-		/* load the route file */
-		if ( ! isset(self::$routes[$module])) {
-			if (list($path) = self::find('routes', $module, 'config/') AND $path)
-				self::$routes[$module] = self::load_file('routes', $path, 'route');
-		}
+		//load all routes
+		$handle = opendir(APPPATH.'modules/');
 
-		if ( ! isset(self::$routes[$module])) return;
-			
-		/* parse module routes */
-		foreach (self::$routes[$module] as $key => $val) {						
-					
-			$key = str_replace(':any', '.+', str_replace(':num', '[0-9]+', $key));
-			
-			if (preg_match('#^'.$key.'$#', $uri)) {							
-				if (strpos($val, '$') !== FALSE AND strpos($key, '(') !== FALSE) {
-					$val = preg_replace('#^'.$key.'$#', $val, $uri);
-				}
+		if ($handle)
+		{
+			while ( false !== ($amodule = readdir($handle)) )
+			{
+                            if ( ! isset(self::$routes[$amodule]))
+                            {
+                                if (list($path) = self::find('routes', $amodule, 'config/') AND $path)
+                                        self::$routes[$amodule] = self::load_file('routes', $path, 'route');
+                                if(isset(self::$routes[$amodule]))
+                                {
+                                    foreach (self::$routes[$amodule] as $key => $val)
+                                    {
+                                        $key = str_replace(':any', '.+', str_replace(':num', '[0-9]+', $key));
+                                        //var_dump($key);
+                                        if (preg_match('#^'.$key.'$#', $uri)) {
 
-				return explode('/', $module.'/'.$val);
+                                                if (strpos($val, '$') !== FALSE AND strpos($key, '(') !== FALSE) {
+                                                        $val = preg_replace('#^'.$key.'$#', $val, $uri);
+                                                }
+                                                return explode('/', $val);
+                                        }
+                                    }
+                                }
+                            }
 			}
 		}
+
+                
+		return;
+
 	}
 }

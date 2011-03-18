@@ -37,14 +37,9 @@
 	<tbody>
 <?php  $i = 1; foreach ($rows as $row): ?>
 <?php  
-if($page_break_pos = strpos($row['desc'], "<!-- page break -->"))
-{
-	$row['summary'] = substr($row['desc'], 0, $page_break_pos);
-}
-else
-{
-	$row['summary'] = $row['desc'];
-}
+
+	$row['summary'] = substr(strip_tags($row['desc']), 0, 100);
+
 ?>		
 
 <?php  if ($i % 2 != 0): $rowClass = 'odd'; else: $rowClass = 'even'; endif;?>
@@ -54,8 +49,8 @@ else
 				<td><?php  echo $row['summary']?></td>
 				<td><?php  if ($row['status']==1): echo 'Active'; else: echo 'Suspended'; endif;?></td>
 				<td>
-				<a href="<?php  echo site_url('admin/downloads/category/move/up/'. $row['id'])?>"><img src="<?php  echo site_url('application/views/admin/images/moveup.gif')?>" width="16" height="16" title="<?php  echo __("Move up", 'downloads')?>" alt="<?php  echo __("Move up", 'downloads')?>"/></a>
-				<a href="<?php  echo site_url('admin/downloads/category/move/down/'. $row['id'])?>"><img src="<?php  echo site_url('application/views/admin/images/movedown.gif')?>" width="16" height="16" title="<?php  echo __("Move down", 'downloads')?>" alt="<?php  echo __("Move down", 'downloads')?>"/></a></td>
+				<a href="<?php  echo site_url('admin/downloads/category/move/up/'. $row['id'])?>"><img src="<?php  echo site_url('application/views/' . $this->system->theme_dir . 'admin/images/moveup.gif')?>" width="16" height="16" title="<?php  echo __("Move up", 'downloads')?>" alt="<?php  echo __("Move up", 'downloads')?>"/></a>
+				<a href="<?php  echo site_url('admin/downloads/category/move/down/'. $row['id'])?>"><img src="<?php  echo site_url('application/views/' . $this->system->theme_dir . 'admin/images/movedown.gif')?>" width="16" height="16" title="<?php  echo __("Move down", 'downloads')?>" alt="<?php  echo __("Move down", 'downloads')?>"/></a></td>
 				<td><a href="<?php  echo site_url('admin/downloads/category/create/'. $cat['id'] . '/'.$row['id'])?>">Edit</a></td>
 				<td><a href="<?php  echo site_url('admin/downloads/category/delete/'.$cat['id'] . '/' . $row['id'])?>">Delete</a></td>
 				<td class="center"><?php  echo $row['id']?></td>
@@ -105,8 +100,8 @@ else
 				<td><a href='<?php  echo $row['link']?>'><?php  echo $row['file']?></a></td>
 				<td><?php  if ($row['status']==1): echo 'Active'; else: echo 'Suspended'; endif;?></td>
 				<td>
-				<a href="<?php  echo site_url('admin/downloads/document/move/up/'. $row['id']. '/' . $row['cat'])?>"><img src="<?php  echo site_url('application/views/admin/images/moveup.gif')?>" width="16" height="16" title="<?php  echo __("Move up", 'downloads')?>" alt="<?php  echo __("Move up", 'downloads')?>"/></a>
-				<a href="<?php  echo site_url('admin/downloads/document/move/down/'. $row['id']. '/' . $row['cat'])?>"><img src="<?php  echo site_url('application/views/admin/images/movedown.gif')?>" width="16" height="16" title="<?php  echo __("Move down", 'downloads')?>" alt="<?php  echo __("Move down", 'downloads')?>"/></a></td>
+				<a href="<?php  echo site_url('admin/downloads/document/move/up/'. $row['id']. '/' . $row['cat'])?>"><img src="<?php  echo site_url('application/views/' . $this->system->theme_dir . 'admin/images/moveup.gif')?>" width="16" height="16" title="<?php  echo __("Move up", 'downloads')?>" alt="<?php  echo __("Move up", 'downloads')?>"/></a>
+				<a href="<?php  echo site_url('admin/downloads/document/move/down/'. $row['id']. '/' . $row['cat'])?>"><img src="<?php  echo site_url('application/views/' . $this->system->theme_dir . ' admin/images/movedown.gif')?>" width="16" height="16" title="<?php  echo __("Move down", 'downloads')?>" alt="<?php  echo __("Move down", 'downloads')?>"/></a></td>
 				<td><a href="<?php  echo site_url('admin/downloads/document/create/'. $cat['id'] .'/'.$row['id'])?>">Edit</a></td>
 				<td><a href="<?php  echo site_url('admin/downloads/document/delete/'. $cat['id'] .'/'.$row['id'])?>">Delete</a></td>
 				<td class="center"><?php  echo $row['hit']?></td>
