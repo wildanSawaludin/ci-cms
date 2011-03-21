@@ -461,5 +461,26 @@ class Admin extends MX_Controller {
 		$this->layout->load($this->template, 'admin/results');
 	
 	}
+
+
 	
+	function search()
+	{
+		$tosearch = $this->input->post("tosearch");
+		if($tosearch === false)
+		{
+			$this->results();
+		}
+		
+		$params = array(
+		"where" => "title LIKE '%" . join("%' AND title LIKE '%", explode(' ', $tosearch)) . "%' AND lang='" . $this->user->lang . "'"
+		);
+		
+		$params['order_by'] = 'weight';
+		$search_id = $this->pages->save_params(serialize($params));
+		$this->template['tosearch'] = $tosearch;
+		$this->results($search_id);
+
+		
+	}	
 }
