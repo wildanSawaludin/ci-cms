@@ -38,7 +38,7 @@
 			
 <div id="left">
 	<?php if ($rows = $this->block->get('latest_news', 10)) :?>
-    <?php print_r($rows);?>
+    
 	<div id='newsbox' class="box-gris">
 		<h1><?php echo __("News", 'default')?></h1>
 		<?php foreach($rows as $row):?>
