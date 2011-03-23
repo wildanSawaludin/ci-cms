@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+        <name>welcome</name>
+        <date>12/02/2011</date>
+        <author>rmorgan</author>
+        <email>rmorgan@bitterrootwebdesign.com</email>
+        <url>http://www.bitterrootwebdesign.com</url>
+        <copyright>GNU/GPL License</copyright>
+        <version>1.0.0</version>
+        <description>Module for testing installation</description>
+</module>
+

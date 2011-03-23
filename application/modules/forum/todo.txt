@@ -1,0 +1,29 @@
+- lien: alaharo araka izay nisy  namaly farany
+
+sql update 
+ALTER TABLE `ci_forum_messages` ADD UNIQUE ( `mid`) 
+ALTER TABLE `ci_forum_messages` ADD INDEX ( `pid` )  
+ALTER TABLE `ci_forum_messages` ADD INDEX ( `tid` )  
+ALTER TABLE `ci_forum_messages` ADD INDEX ( `username` )  
+
+- colours to see what is last updated
+- Preview first
+- smiley buttons
++ Other rss feed
++ Now the user needs to choose a topic
++ Who is online box
+- Show archives forum/archives
+- When deleting a message, the message numbers in topic and in parent doesn't decrease
+* When editing a post, possibility to change topic
++ rss
+! Ny admin rehefa ampidirina @ ajax dia tsy misy daty sy email
+* forum level tokony ho 1 ho an'ny admin
+* avatar
+! some messages show error http://forum2.serasera.org/forum/message/m4be5c0cf40875
++ pager @ lisitry ny message
++ atambatra ny titre sy description @ lisitry ny topic
+
+
+- Ny url
+- admin links
+- Admin mamafa sy manitsy hafatra
