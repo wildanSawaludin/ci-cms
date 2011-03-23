@@ -6,7 +6,7 @@ function page_latest_pages($limit = 5)
 {
 	$obj =& get_instance();
 	
-	$obj->load->model('page_model');
+	$obj->load->model('page/page_model');
 	$data['pages'] = $obj->page_model->new_pages($limit);
 	return $obj->load->view('blocks/newpages', $data, true);
 }
@@ -18,7 +18,7 @@ function page_subpages($where, $limit = 5)
 
 	$obj =& get_instance();
 	
-	$obj->load->model('page_model');
+	$obj->load->model('page/page_model');
 	if (is_array($where))
 	{
 		$page = $obj->page_model->get_page($where);
@@ -37,7 +37,7 @@ function page_item($where = array())
 	$hash = md5(serialize($where));
 	if(!$result = $obj->cache->get('page_item_' . $hash, 'page_list'))
 	{
-		$obj->load->model('page_model');
+		$obj->load->model('page/page_model');
 		$result = $obj->page_model->get_page($where);
 		$obj->cache->save('page_item_' . $hash, $result, 'page_list', 0);
 	}
@@ -47,7 +47,7 @@ function page_item($where = array())
 function page_images($page_id)
 {
 	$obj =& get_instance();
-	$obj->load->model('page_model');
+	$obj->load->model('page/page_model');
 	return $obj->page_model->get_images(array('where' => array('src_id' => $page_id)));
 }
 
@@ -56,7 +56,7 @@ $this->set('page_list', 'page_list');
 function page_list($params = array())
 {
 	$obj =& get_instance();
-	$obj->load->model('page_model');
+	$obj->load->model('page/page_model');
 	return $obj->page_model->get_page_list($params);
 }
 ?>
