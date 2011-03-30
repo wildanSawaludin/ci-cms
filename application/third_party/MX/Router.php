@@ -137,7 +137,8 @@ class MX_Router extends CI_Router
 		$ext = $this->config->item('controller_suffix').EXT;
 		
 		/* use module route if available */
-		if (isset($segments[0]) AND $segments[1] != 'admin' AND $routes = Modules::parse_routes($segments[0], implode('/', $segments))) 
+        /* but only if we are not in back-end admin */
+		if (isset($segments[0]) AND (isset($segments[1]) AND $segments[1] != 'admin') AND $routes = Modules::parse_routes($segments[0], implode('/', $segments))) 
 		{
 				$segments = $routes;
 		}
