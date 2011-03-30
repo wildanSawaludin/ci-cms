@@ -25,26 +25,96 @@ class Update extends CI_Controller
 	
 	function _get_settings()
 	{
-		$query = $this->db->get("settings");
-		$rows = $query->result_array();
-		foreach($rows as $row)
-		{
-			$this->_settings[ $row['name'] ] = $row['value'];
-		}
+            /*
+             * if version is bigger than 2.1.0.0 then get settings with the base_url field
+             */
+            $query = $this->db->query("SHOW COLUMNS FROM " . $this->db->dbprefix('settings') . " WHERE Field = 'base_url'");
+            if($query->num_rows == 0)
+            {
+                
+                //version < 2.1.0.0
+                $query = $this->db->get("settings");
+                $rows = $query->result_array();
+                foreach($rows as $row)
+                {
+                    $this->_settings[ $row['name'] ] = $row['value'];
+                }
+            }
+            else
+            {
+                $base_url = $this->config->item('base_url');
+                $this->db->where('base_url', $base_url);
+                $query = $this->db->get("settings");
+                if($query->num_rows > 0)
+                {
+                    $rows = $query->result_array();
+                    if($rows)
+                    {
+                        foreach($rows as $row)
+                        {
+                            $this->_settings[ $row['name'] ] = $row['value'];
+                        }    
+                    }
+                }
+                else
+                {
+                    /*
+                     * set a new base_url setting 
+                     * get from a valid setting and just change the base_url
+                     */
+                    
+                    $query= $this->db->get("settings");
+                    $rows = $query->result_array();
+                    
+                    foreach($rows as $row)
+                    {
+                        if(!isset($this->_settings[ $row['name']]))
+                        {
+                            $this->_settings[ $row['name'] ] = $row['value'];
+                        }
+                        $data = array('name' => $row['name'], 'value' => $row['value'], 'base_url' => $base_url);
+                        $this->db->insert("settings", $data);
+                    }
+                    
+                }
+                    
+            }
+
 	}
 
 	function _set($name, $value)
 	{	
 		//update only if changed
-		if (!isset($this->_settings[$name])) {
-			$this->_settings[$name] = $value;
-			$this->db->insert('settings', array('name' => $name, 'value' => $value));
-		}
-		elseif ($this->_settings[$name] != $value) 
-		{
-			$this->_settings[$name] = $value;
-			$this->db->update('settings', array('value' => $value), "name = '$name'");
-		}
+        $query = $this->db->query("SHOW COLUMNS FROM " . $this->db->dbprefix('settings') . " WHERE Field = 'base_url'");
+        if($query->num_rows == 0)
+        {
+
+            if (!isset($this->_settings[$name])) {
+                $this->_settings[$name] = $value;
+                $this->db->insert('settings', array('name' => $name, 'value' => $value));
+            }
+            elseif ($this->_settings[$name] != $value) 
+            {
+                $this->_settings[$name] = $value;
+                $this->db->update('settings', array('value' => $value), "name = '$name'");
+            }            
+        }
+        else
+        {
+            
+            $base_url = $this->config->item('base_url');
+
+            if (!isset($this->_settings[$name])) {
+                $this->_settings[$name] = $value;
+                $this->db->insert('settings', array('name' => $name, 'value' => $value, 'base_url' => $base_url));
+            }
+            elseif ($this->_settings[$name] != $value) 
+            {
+                $this->_settings[$name] = $value;
+                $this->db->update('settings', array('value' => $value), "name = '$name' AND base_url='$base_url' ");
+            }           
+        }
+
 	}
 	
 	
@@ -117,7 +187,22 @@ class Update extends CI_Controller
 			$this->_set('version', $to_version);
 			$this->cache->remove('settings', 'settings');
 		}
-		
+        
+        $to_version = "2.1.0.0";
+		if($old_version < $to_version)
+		{
+            $base_url = $this->config->item('base_url');
+            $query = $this->db->query("SHOW COLUMNS FROM " . $this->db->dbprefix('settings') . " WHERE Field = 'base_url'");
+            if($query->num_rows == 0)
+            {
+                $this->db->query("ALTER TABLE " . $this->db->dbprefix('settings') . " ADD  `base_url` VARCHAR( 100 ) NOT NULL DEFAULT  '" . $base_url . "'") ;
+			
+            }
+			echo "<p>2.1.0.0: Can use another base_url</p>";
+			
+			$this->_set('version', $to_version);
+			$this->cache->remove('settings', 'settings');
+		}
 	}
 
 }

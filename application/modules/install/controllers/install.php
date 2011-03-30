@@ -20,6 +20,7 @@ class Install extends CI_Controller
 	
 	function index()
 	{
+        $base_url = $this->config->item('base_url');
 		$query = $this->db->query("SHOW TABLE STATUS WHERE Name = '" . $this->db->dbprefix('settings') . "' ");
 		if($query->num_rows() > 0)
 		{
@@ -27,7 +28,7 @@ class Install extends CI_Controller
 			exit();
 		}
 
-		echo "<p>You are about to install CI-CMS</p>";
+		echo "<p>You are about to install CI-CMS in " . $base_url . "</p>";
 		echo "<p>Before you continue, <ol><li>check that you have a file config.php and database.php in your configuration folder and all values are ok.</li><li>make writable the <b>media</b> folder</li></p>";
 		echo "<p>If you get a database error in the next step then your database.php file is not ok</p>";
 		echo "<p>" . anchor('install/step1', 'Click here to continue') . "</p>";
@@ -525,11 +526,17 @@ class Install extends CI_Controller
 			 'value' => array(
 				'type' => 'TEXT',
 				'default' => ''
-			 )
+			 ),
+                         'base_url' => array(
+                                'type' => 'VARCHAR',
+                                'constraint' => 100,
+                                'default' => $this->config->item('base_url')
+                         )
 		);
 		$this->dbforge->add_field($fields); 
 		$this->dbforge->add_key('id', TRUE);
 		$this->dbforge->add_key('name');
+                $this->dbforge->add_key('base_url');
 		$this->dbforge->create_table('settings', TRUE);
 		
 		$query = $this->db->get('settings');
@@ -557,7 +564,7 @@ class Install extends CI_Controller
 		$this->db->insert('settings', $data);
 		$data = array('name' => 'debug', 'value' => '0');
 		$this->db->insert('settings', $data);
-		$data = array('name' => 'version', 'value' => '0.9.2.1');
+		$data = array('name' => 'version', 'value' => '2.1.0.0');
 		$this->db->insert('settings', $data);
 		$data = array('name' => 'page_approve_comments', 'value' => '1');
 		$this->db->insert('settings', $data);

@@ -120,11 +120,13 @@
 		
 		function get_settings()
 		{
-			if(!$settings = $this->obj->cache->get('settings', 'settings'))
+            $base_url = $this->obj->config->item('base_url');
+			if(!$settings = $this->obj->cache->get('settings', $base_url))
 			{
-				$query = $this->obj->db->get('settings');
-				$settings = $query->result();
-				$this->obj->cache->save('settings', $settings, 'settings', 0);
+                $this->obj->db->where('base_url' ,  $base_url);
+                $query = $this->obj->db->get('settings');
+                $settings = $query->result();
+                $this->obj->cache->save('settings', $settings, $base_url, 0);
 			}
 			
 			if (!empty($settings))
@@ -137,18 +139,19 @@
 		}
 		
 		function set($name, $value)
-		{	
+		{
+            $base_url = $this->obj->config->item('base_url');
 			//update only if changed
 			if (!isset($this->$name)) {
 				$this->$name = $value;
-				$this->obj->db->insert('settings', array('name' => $name, 'value' => $value));
-				$this->obj->cache->remove('settings', 'settings');
+				$this->obj->db->insert('settings', array('name' => $name, 'value' => $value, 'base_url' => $base_url));
+				$this->obj->cache->remove('settings', $base_url);
 			}
 			elseif ($this->$name != $value) 
 			{
 				$this->$name = $value;
-				$this->obj->db->update('settings', array('value' => $value), "name = '$name'");
-				$this->obj->cache->remove('settings', 'settings');
+				$this->obj->db->update('settings', array('value' => $value), "name = '$name' AND base_url = '" . $base_url . "'");
+				$this->obj->cache->remove('settings', $base_url);
 			}
 		}
 		
