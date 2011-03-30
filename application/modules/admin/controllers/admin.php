@@ -64,6 +64,14 @@
 			
 		}
 
+        function clear_cache()
+        {
+            $this->system->clear_cache();
+            redirect('admin');
+        
+        }
+        
+        
 		function check_latest_version()
 		{
 
