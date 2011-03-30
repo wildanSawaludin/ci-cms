@@ -8,8 +8,6 @@
 class Layout {
 
 	var $obj = null;
-	var $theme_dir = 'themes/';
-	var $theme = '';
 	var $view = '';
 	
 	function __construct()
@@ -19,12 +17,6 @@ class Layout {
 			$this->obj =& get_instance();
 		}
 
-		if(isset($this->obj->system->theme_dir))
-		{
-			$this->theme_dir = $this->obj->system->theme_dir;
-		}
-		
-		$this->theme = $this->obj->system->theme;
 		$this->template = $this->obj->system->template;
 		//$this->_login_action();
 	}
@@ -85,24 +77,15 @@ class Layout {
 		
 		$data['view'] = $view;
 
-		//load language for template
-		$mofile = APPPATH . 'views/' . $this->theme_dir. $this->theme.'/locale/' . $this->obj->session->userdata('lang') . '.mo' ;
-		
-		if ( file_exists($mofile)) 
-		{
-			$this->obj->locale->load_textdomain($mofile, $this->theme);
-		}
-		
-		//$this->obj->locale->load_textdomain(APPPATH . 'locale/' . $this->obj->session->userdata('lang') . '.mo');
-							
+					
 		// Handle admin module
 		if ( (isset($data['admin']) && $data['admin']) || $data['module'] == 'admin')
 		{
-			$template_path = $this->theme_dir. 'admin/index';
+			$template_path = $this->obj->system->theme_dir. 'admin/index';
 		}
 		else
 		{
-			$template_path =  $this->theme_dir. $this->theme. '/index';
+			$template_path =  $this->obj->system->theme_dir. $this->obj->system->theme. '/index';
 		}
 		
 		$this->obj->load->view($template_path, $data);
@@ -124,7 +107,7 @@ class Layout {
 
 	function get_themes()
 	{
-		$handle = opendir(APPPATH.'views/'.$this->theme_dir);
+		$handle = opendir(APPPATH.'views/'.$this->obj->system->theme_dir);
 
 		if ($handle)
 		{
