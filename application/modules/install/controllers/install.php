@@ -230,6 +230,10 @@ class Install extends CI_Controller
 		$this->dbforge->create_table('users', TRUE);
 		
 		
+		//creating user_persistence table
+		$this->db->query("CREATE TABLE " . $this->db->dbprefix("user_persistence") . " ( `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY , `user_id` INT NOT NULL , 
+		`token` VARCHAR( 255 ) NOT NULL , `series` VARCHAR( 255 ) NOT NULL , `date` INT NOT NULL , INDEX ( `user_id` , `token` ) )"); 
+		
 		echo "<p>Step 2 completed.</p>";
 		
 		$query = $this->db->get('users');
@@ -564,7 +568,7 @@ class Install extends CI_Controller
 		$this->db->insert('settings', $data);
 		$data = array('name' => 'debug', 'value' => '0');
 		$this->db->insert('settings', $data);
-		$data = array('name' => 'version', 'value' => '2.1.0.0');
+		$data = array('name' => 'version', 'value' => '2.1.0.1');
 		$this->db->insert('settings', $data);
 		$data = array('name' => 'page_approve_comments', 'value' => '1');
 		$this->db->insert('settings', $data);

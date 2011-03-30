@@ -185,7 +185,7 @@ class Update extends CI_Controller
 			echo "<p>2.0.0.0: All themes in this version is Themes directory</p>";
 			
 			$this->_set('version', $to_version);
-			$this->cache->remove('settings', 'settings');
+			$this->cache->remove_group('settings');
 		}
         
         $to_version = "2.1.0.0";
@@ -201,7 +201,23 @@ class Update extends CI_Controller
 			echo "<p>2.1.0.0: Can use another base_url</p>";
 			
 			$this->_set('version', $to_version);
-			$this->cache->remove('settings', 'settings');
+			$this->cache->remove_group('settings');
+		}
+		
+        $to_version = "2.1.0.1";
+		if($old_version < $to_version)
+		{
+		//user_persistence table
+		
+            $base_url = $this->config->item('base_url');
+			$this->db->query("CREATE TABLE " . $this->db->dbprefix("user_persistence") . " ( `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY , `user_id` INT NOT NULL , 
+			`token` VARCHAR( 255 ) NOT NULL , `series` VARCHAR( 255 ) NOT NULL , `date` INT NOT NULL , INDEX ( `user_id` , `token` ) )");
+
+			
+			echo "<p>2.1.0.1: Using persistence table</p>";
+			
+			$this->_set('version', $to_version);
+			$this->cache->remove_group('settings');
 		}
 	}
 
