@@ -46,7 +46,7 @@
 		{	
 			if ($this->logged_in)
 			{
-				$this->update($this->username, array('activation' => '', 'lastvisit' => mktime(), 'online' => 1));
+				$this->update($this->username, array('activation' => '', 'lastvisit' => time(), 'online' => 1));
 			}
 		}
 
@@ -58,8 +58,8 @@
 				$this->groups[] = '1';
 				$this->obj->db->select('g_id');
 				$this->obj->db->where('g_user', $this->username);
-				$this->obj->db->where("(g_from <= '" . mktime() . "' OR g_from=0)");
-				$this->obj->db->where("(g_to >= '" . mktime() . "' OR g_to=0)");
+				$this->obj->db->where("(g_from <= '" . time() . "' OR g_from=0)");
+				$this->obj->db->where("(g_to >= '" . time() . "' OR g_to=0)");
 				$query = $this->obj->db->get("group_members");
 				
 				if($rows = $query->result_array()){
@@ -276,7 +276,7 @@
 							'password'	=> $this->_prep_password($password),
 							'email'		=> $email,
 							'status'	=> 'active',
-							'registered'=> mktime()
+							'registered'=> time()
 						);
 			
 			$query = $this->obj->db->insert($this->table, $data);
@@ -454,7 +454,7 @@
 		
 		function is_online($username)
 		{
-			$this->obj->db->where(array('username' => $username, 'lastvisit >' => mktime() - 600, 'online' => 1 ));
+			$this->obj->db->where(array('username' => $username, 'lastvisit >' => time() - 600, 'online' => 1 ));
 			$this->obj->db->order_by('lastvisit DESC');
 			$query = $this->obj->db->get('users');
 			if($query->num_rows() > 0)
@@ -469,7 +469,7 @@
 		
 		function get_online()
 		{
-			$this->obj->db->where(array('lastvisit >' => mktime() - 600, 'online' => 1 ));
+			$this->obj->db->where(array('lastvisit >' => time() - 600, 'online' => 1 ));
 			$this->obj->db->order_by('lastvisit DESC');
 			$query = $this->obj->db->get('users');
 			if($query->num_rows() > 0)
