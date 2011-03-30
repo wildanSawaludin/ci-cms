@@ -41,7 +41,7 @@ $(document).ready(function(){
 		<a href="<?php echo base_url()?>"><?php echo $this->system->site_name?></a>
 		</div>
 		<div id="langbar">
-			<?php if ($languages = $this->locale->get_active()) :?>
+			<?php if ($languages = $this->cms_locale->get_active()) :?>
 			<ul>
 			<?php foreach ($languages as $language): ?>
 				<li><a href='<?php echo site_url( $language['code']) ?>' <?php echo ($this->session->userdata('lang') == $language['code']) ? "class='active'" : ""?> ><img src="<?php echo base_url()?>application/views/admin/images/flags/<?php echo $language['code']?>.gif" alt="<?php echo $language['name'] ?>" border="0" width="20" height="14"></a></li>

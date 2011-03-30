@@ -18,7 +18,7 @@
 		function index()
 		{
 			
-			$this->template['langs'] = $this->locale->get_list();
+			$this->template['langs'] = $this->cms_locale->get_list();
 			
 			$this->layout->load($this->template, 'admin');
 		}

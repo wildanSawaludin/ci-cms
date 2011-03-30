@@ -22,8 +22,10 @@
 		var $revision;
 		var $modules;
 		var $obj;
+        var $theme_dir = 'themes/';
+        var $theme;
 		
-		function System()
+		function __construct()
 		{
 			$this->obj =& get_instance();
 			if ($this->obj->uri->segment(1) == "install")
@@ -39,25 +41,43 @@
 			$this->find_modules();
 			$this->load_locales();
 			$this->start();
+            
 		}
 		
 		function load_locales()
 		{
-			//overall locale
-			$this->obj->load->library('locale');
-			//$this->obj->locale->load_textdomain(APPPATH . 'locale/' . $this->obj->session->userdata('lang') . '.mo');
+            
+			$this->obj->load->library('cms_locale');
+            
+            
+            // backward comptatibility
+            
+            $this->obj->locale = $this->obj->cms_locale;
+            
+            
+            //load language for template
+			$mofile = APPPATH . 'views/' . $this->theme_dir. $this->theme.'/locale/' . $this->obj->session->userdata('lang') . '.mo' ;
 			
-			$available_langs = $this->obj->locale->codes;
+			if ( file_exists($mofile)) 
+			{
+				$this->obj->cms_locale->load_textdomain($mofile, $this->theme);
+			}	
+            
+
+
+			//$this->obj->cms_locale->load_textdomain(APPPATH . 'locale/' . $this->obj->session->userdata('lang') . '.mo');
+			
+			$available_langs = $this->obj->cms_locale->codes;
 			$lang = $this->obj->session->userdata('lang');
 			//if lang is deactivated, get the default and do not load .mo files
-			if(!in_array($lang, $available_langs)) $lang = $this->obj->locale->default;
+			if(!in_array($lang, $available_langs)) $lang = $this->obj->cms_locale->default;
 			
 			foreach ($this->modules as $module)
 			{
 				$mofile = APPPATH . 'modules/'.$module['name'].'/locale/' . $lang . '.mo' ;
 				if ( file_exists($mofile)) 
 				{
-					$this->obj->locale->load_textdomain($mofile, $module['name']);
+					$this->obj->cms_locale->load_textdomain($mofile, $module['name']);
 				}
 			}
 		}
@@ -140,13 +160,15 @@
 
 			if ($handle)
 			{
-				while ( false !== ($cache_file = readdir($handle)) )
+				
+                while ( false !== ($cache_file = readdir($handle)) )
 				{
 					// make sure we don't delete silly dirs like .svn, or . or ..
 					
-					if ($cache_file != 'index.html' && substr($cache_file, 0, 1) != "." && !is_dir($dir.$cache_file))
+					if ($cache_file != 'index.html' && substr($cache_file, 0, 1) != ".")
 					{
-						@unlink($dir.'/'.$cache_file);
+                        
+						@unlink($dir.$cache_file);
 					}
 				}
 			}

@@ -1,13 +1,13 @@
 <!-- [Left menu] start -->
 <div class="leftmenu">
 
-	<h1 id="quicklaunch"><?php echo $this->locale->__("Settings", $module)?></h1>
+	<h1 id="quicklaunch"><?php echo __("Settings", $module)?></h1>
 	
 	<ul class="quickmenu">
-		<li><a href="<?php echo site_url('admin/settings')?>"><?php echo $this->locale->__("General settings", $module)?></a></li>
-		<li><a href="<?php echo site_url('admin/module')?>"><?php echo $this->locale->__("Modules settings", $module)?></a></li>		
-		<li><a href="<?php echo site_url('admin/admins')?>"><?php echo $this->locale->__("Administrators", $module)?></a></li>		
-		<li><a href="<?php echo site_url('admin/groups')?>"><?php echo $this->locale->__("Group management", $module)?></a></li>
+		<li><a href="<?php echo site_url('admin/settings')?>"><?php echo __("General settings", $module)?></a></li>
+		<li><a href="<?php echo site_url('admin/module')?>"><?php echo __("Modules settings", $module)?></a></li>		
+		<li><a href="<?php echo site_url('admin/admins')?>"><?php echo __("Administrators", $module)?></a></li>		
+		<li><a href="<?php echo site_url('admin/groups')?>"><?php echo __("Group management", $module)?></a></li>
 	</ul>
 	<div class="quickend"></div>
 
@@ -17,7 +17,7 @@
 <!-- [Content] start -->
 <div class="content slim">
 
-<h1 id="dashboard"><?php echo $this->locale->__("Dashboard", $module)?></h1>
+<h1 id="dashboard"><?php echo __("Dashboard", $module)?></h1>
 
 <hr />
 
@@ -46,7 +46,7 @@
 			<dd><?php echo $this->administration->no_active_users()?></dd>
 			<dt><?php echo __("Database size:", $module)?></dt>
 			<dd><?php echo formatfilesize($this->administration->db_size())?></dd>
-			<dt>C<?php echo __("ache size:", $module)?></dt>
+			<dt>C<?php echo __("Cache size:", $module)?> <?php  echo anchor('admin/clear_cache', __("Clear", $module)) ?></dt>
 			<dd><?php echo recursive_directory_size($this->config->item('cache_path'), TRUE);?></dd>
 		</dl>
 	</div>

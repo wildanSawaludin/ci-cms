@@ -9,8 +9,8 @@
 
 function __($text, $domain = 'default') {
 	$CI =& get_instance();
-	$CI->load->library('Locale');
-	return $CI->locale->tr($text, $domain);
+	$CI->load->library('cms_locale');
+	return $CI->cms_locale->tr($text, $domain);
 }
 
 function _e($text, $domain = 'default') {

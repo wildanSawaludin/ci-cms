@@ -91,14 +91,14 @@
 	</ul>
 
 	<div id="langbar">
-	<?php if ($languages = $this->locale->get_active()) :?>
+	<?php if ($languages = $this->cms_locale->get_active()) :?>
 	<ul>
 	<?php foreach ($languages as $language): ?>
 		<li><a href='<?php echo site_url( $language['code'] .'/'.$this->uri->uri_string()) ?>' <?php echo ($this->session->userdata('lang') == $language['code']) ? "class='active'" : ""?> ><img src="<?php echo base_url()?>application/views/<?php echo $this->system->theme_dir;?>/admin/images/flags/<?php echo $language['code']?>.gif" alt="<?php echo $language['name'] ?>" width="20" height="14"></a></li>
 	<?php endforeach;?>
 	</ul>
 	<?php else : ?>
-	<span style="color: white; font-weight: bold"><?php echo $this->locale->__("Please fix, no active language")?></span>
+	<span style="color: white; font-weight: bold"><?php echo __("Please fix, no active language")?></span>
 	<?php endif; ?>
 	</div>
 	
