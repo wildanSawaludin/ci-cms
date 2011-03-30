@@ -9,7 +9,7 @@
 
 
 
-class CMS_Locale {
+class Cms_locale {
 	//initializing
 	var $_data;
 	var $locale;
