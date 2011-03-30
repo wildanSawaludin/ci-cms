@@ -69,7 +69,14 @@
 		<label for="keywords"><?php  echo __("Keywords", 'downloads')?>:</label>
 		<input type="text" name="keywords" value="<?php  echo (isset($row['keywords'])?$row['keywords'] : "") ?>" id="keywords" class="input-text" /><br />
 
-		
+		<label for="acces"><?php _e("Group access:", $module)?></label><br />
+		<select name="acces" id="acces" class="select">
+		<?php foreach ($this->user->get_group_list() as $group): ?>
+			<option value="<?php echo $group['g_id'] ?>" <?php if ($group['g_id'] == $row['acces']) echo "selected" ?> ><?php echo __($group['g_name'], $module) ?></option>
+		<?php endforeach; ?> 
+		</select>
+		<br />
+					
 		<label for="desc"><?php  echo __("Description", 'downloads')?>:</label>
 		<textarea name="desc" class="input-textarea"><?php  echo (isset($row['desc'])?$row['desc'] : "") ?></textarea><br />
 

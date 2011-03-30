@@ -31,13 +31,37 @@ class Document extends MX_Controller {
 	
 	function get($file)
 	{
-		if ($row = $this->downloads->get_doc(array('download_files.file' => $file)))
+        
+        $row = $this->downloads->get_doc(array('download_files.file' => $file));
+        
+		if ($row)
 		{
+            /**
+             * @since 2.1.0
+             * is allowed?
+             */
+            if(!in_array($row['acces'], $this->user->groups))
+            {
+                if(!$this->user->logged_in)
+                {
+                    $this->user->require_login();
+                }
+                else
+                {
+                    $this->template['title'] = __("Forbidden", 'downloads');
+                    $this->layout->load($this->template, '403');
+                    return;
+
+                }
+                
+            }
 
 			$fn = $this->downloads->settings['upload_path'] . $file;
 			if(file_exists($fn))
 			{
-			
+                
+                
+                
 				//counter hit
 				if ($this->session->userdata('download_file'.$row['id']) != $row['id'])
 				{
@@ -51,6 +75,7 @@ class Document extends MX_Controller {
 				}
 
 			    // Checking if the client is validating his cache and if it is current.
+                /*
 			    if (isset($headers['If-Modified-Since']) && (strtotime($headers['If-Modified-Since']) == filemtime($fn))) 
 				{
 			        // Client's cache IS current, so we just respond '304 Not Modified'.
@@ -59,7 +84,7 @@ class Document extends MX_Controller {
 				else 
 				{
 					$this->load->helper('file');
-			        // Image not cached or cache outdated, we respond '200 OK' and output the image.
+			        
 			        header('Last-Modified: '.gmdate('D, d M Y H:i:s', filemtime($fn)).' GMT', true, 200);
 			        header('Content-Length: '.filesize($fn));
 					header('Content-Type: ' . get_mime_by_extension($file));
@@ -67,7 +92,11 @@ class Document extends MX_Controller {
 					
 			        print file_get_contents($fn);
 			    }
-				
+                 * 
+                 */
+				$this->load->helper('download');
+                force_download($file, $fn);
+                
 			}
 			else
 			{
@@ -77,7 +106,7 @@ class Document extends MX_Controller {
 		}
 		else
 		{
-			$this->output->set_header("HTTP/1.0 404 Not Found");
+			//$this->output->set_header("HTTP/1.0 404 Not Found");
 			$this->layout->load($this->template, '404');
 		}
 	}

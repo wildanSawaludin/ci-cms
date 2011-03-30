@@ -371,7 +371,7 @@ class Download_model extends CI_Model {
 	{
 		foreach ($this->doc_fields as $key=>$val)
 		{
-			if ($this->input->post($key))
+			if ($this->input->post($key) !== false)
 			{
 				$data[$key] = $this->input->post($key);
 			}
