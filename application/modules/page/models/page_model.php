@@ -461,6 +461,24 @@ class Page_Model extends CI_Model {
 						$row =  $query->row_array();
 						$aresult['children'] = $row['cnt'];
 					}
+                    
+                    $this->db->order_by('id DESC');
+                    $this->db->limit(1);
+                    $this->db->where(array('src_id' => $aresult['id'], 'module' => 'pages'));
+                    $query2 = $this->db->get('images');
+                    $aresult['image'] = $query2->row_array();
+                    
+                    //summary
+                    if($page_break_pos = strpos($aresult['body'], "<!-- page break -->"))
+                    {
+                        $aresult['summary'] = substr($aresult['body'], 0, $page_break_pos);
+                    }
+                    else
+                    {
+                        $aresult['summary'] = character_limiter(strip_tags($aresult['body']), 200);
+                    }
+
+
 					$result[] = $aresult;
 				}
 			}
