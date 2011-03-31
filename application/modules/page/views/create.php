@@ -125,7 +125,7 @@ function ajaxFileUpload() {
 		
 	
 		<label for="uri"><?php echo __("SEF address", $module)?>:</label>
-			<input type="text" name="uri" value="<?php echo $page['uri']?>" id="uri" class="input-text" /><br />
+			<input type="text" name="uri" value="<?php echo $uri ; ?>" id="uri" class="input-text" /><br />
 		
 		
 		
@@ -148,7 +148,7 @@ function ajaxFileUpload() {
 					$follow = null;
 					}
 			?>
-			<option value="<?php echo $parent['id']?>" <?php echo ($page['parent_id'] == $parent['id'])?"selected":""?>><?php echo ($parent['level'] > 0) ? "|".str_repeat("__", $parent['level']): ""?> <?php echo (strlen($parent['title']) > 50 )? substr($parent['title'], 0, 50) . '...': $parent['title']?> </option>
+			<option value="<?php echo $parent['id']?>" <?php echo ($page['parent_id'] == $parent['id']|| $parent['id'] == $parent_id)?"selected":""?>><?php echo ($parent['level'] > 0) ? "|".str_repeat("__", $parent['level']): ""?> <?php echo (strlen($parent['title']) > 50 )? substr($parent['title'], 0, 50) . '...': $parent['title']?> </option>
 			
 			<?php endforeach;
 			endif;?>
