@@ -314,7 +314,7 @@ and set to approve comments automatically.
 				}
 				else
 				{
-					$this->output->set_header("HTTP/1.0 403 Forbidden");
+					
 					$this->template['message'] = __("The page you're looking for is not active!", "page");
 					$view = '403';
 				}
@@ -323,7 +323,7 @@ and set to approve comments automatically.
 			{
 				// Make sure we send a 404 header
 				
-				$this->output->set_header("HTTP/1.0 404 Not Found");
+				
 				$view = '404';
 			}
 	
