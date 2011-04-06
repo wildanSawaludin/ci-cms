@@ -95,7 +95,7 @@ class Document extends MX_Controller {
                  * 
                  */
 				$this->load->helper('download');
-                force_download($file, $fn);
+                force_download($file, file_get_contents($fn));
                 
 			}
 			else
