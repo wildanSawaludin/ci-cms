@@ -14,7 +14,7 @@
 			parent::__construct();
 			
 			// Not truely required as it should be auto-loaded
-			$this->load->library('locale');
+			$this->load->library('cms_locale');
 			
 			$this->template['module'] = "language";
 					
@@ -30,13 +30,13 @@
 		{
 
 			$lang = $this->uri->segment(1);
-			if (in_array($lang, $this->locale->codes)) 
+			if (in_array($lang, $this->cms_locale->codes)) 
 			{
 				$this->session->set_userdata('lang', $lang);
 			} 
 			else
 			{
-				$this->session->set_userdata('lang', $this->locale->default);
+				$this->session->set_userdata('lang', $this->cms_locale->default);
 			}
 			
 			if($this->uri->uri_string() == $lang)
