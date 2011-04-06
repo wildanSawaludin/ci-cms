@@ -342,6 +342,72 @@ and set to approve comments automatically.
 			}
 		}
 		
+        function children($parent_id = 0, $start = 0)
+        {
+            
+            $params['where'] = array('parent_id' => $parent_id);		
+            $params['order_by'] = 'weight';
+            $search_id = $this->pages->save_params(serialize($params));
+
+            $this->results($search_id, $start);
+            return;            
+        }
+        function results($search_id = 0, $start = 0)
+        {
+            $params = array();
+
+            //sorting
+            if ($search_id != '0' && $tmp = $this->pages->get_params($search_id))
+            {
+                $params = unserialize( $tmp);
+            }
+            if(isset($params['where']['parent_id']))
+            {
+                $parent_id = $params['where']['parent_id'];
+            }            
+            $params['where']['active'] = 1;
+            $params['where']['lang'] = $this->user->lang;
+            $wheres = array();
+            foreach($params['where'] as $key => $val)
+            {
+                $wheres[] = $key . " = " . $this->db->escape($val) . " ";
+            }
+            
+            $where = join(' AND ', $wheres);
+            $where .= " AND g_id IN " . "('"  . join("', '", $this->user->groups) . "') ";
+            $params['where'] = $where ;
+
+            $per_page = 20;
+            $params['start'] = $start;
+
+            $params['limit'] = $per_page;
+
+
+            $this->template['rows'] = $this->pages->get_page_list($params);
+
+            $this->template['title'] = __("Page list", "page");
+            $config['first_link'] = __('First', 'page');
+            $config['last_link'] = __('Last', 'page');
+            $config['total_rows'] = $this->pages->get_total($params);
+            $config['per_page'] = $per_page;
+            $config['base_url'] = base_url() . 'page/results/' . $search_id;
+            $config['uri_segment'] = 4;
+            $config['num_links'] = 20;
+            $this->load->library('pagination');
+
+            $this->pagination->initialize($config);
+
+            $this->template['pager'] = $this->pagination->create_links();
+            $this->template['start'] = $start;
+            $this->template['total'] = $config['total_rows'];
+            $this->template['per_page'] = $config['per_page'];
+            $this->template['total_rows'] = $config['total_rows'];
+            $this->template['search_id'] = $search_id;
+
+            $this->layout->load($this->template, 'results');
+
+        }
+
 		
 	}
 
