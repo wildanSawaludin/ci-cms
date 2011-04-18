@@ -1,0 +1,879 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Solaitra:Downloads\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-05-28 01:13+0100\n"
+"PO-Revision-Date: 2010-05-28 01:23+0100\n"
+"Last-Translator: Hery <hery@serasera.org>\n"
+"Language-Team: Hery serasera.org <hery@serasera.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../forum_blocks.php:33
+#: ../forum_blocks.php:34
+#: ../forum_blocks.php:35
+#: ../forum_blocks.php:39
+#: ../forum_blocks.php:40
+msgid "User menu"
+msgstr "Menu utilisateur"
+
+#: ../forum_blocks.php:33
+msgid "Change password"
+msgstr "Changer mot de passe"
+
+#: ../forum_blocks.php:34
+msgid "My posts"
+msgstr "Mes articles"
+
+#: ../forum_blocks.php:35
+msgid "Sign out"
+msgstr "Déconnecter"
+
+#: ../forum_blocks.php:39
+msgid "Forgot password"
+msgstr "Mot de passe perdu?"
+
+#: ../forum_blocks.php:40
+msgid "Sign in"
+msgstr "Connecter"
+
+#: ../forum_blocks.php:44
+msgid "Forum"
+msgstr "Forum"
+
+#: ../forum_blocks.php:46
+msgid "Post a new message"
+msgstr "Cr&eacute;er un nouvel article"
+
+#: ../forum_blocks.php:47
+#: ../controllers/forum.php:40
+#: ../controllers/admin/admin.php:43
+msgid "Topic list"
+msgstr "Liste des sujets"
+
+#: ../forum_blocks.php:48
+msgid "Search message"
+msgstr "Recherche"
+
+#: ../forum_update.php:16
+#: ../forum_update.php:33
+#: ../forum_update.php:60
+#, fuzzy, php-format
+msgid "Forum module updated to %s"
+msgstr "Namana module mis à jour à %s"
+
+#: ../controllers/forum.php:61
+#: ../controllers/forum.php:192
+#: ../controllers/forum.php:625
+#, fuzzy
+msgid "Not authorized"
+msgstr "Texte non trouv&eacute;"
+
+#: ../controllers/forum.php:62
+#, fuzzy
+msgid "You cannot add a new topic."
+msgstr "Vous ne pouvez pas ajouter de photo dans cet album"
+
+#: ../controllers/forum.php:66
+#: ../controllers/admin/admin.php:65
+#, fuzzy
+msgid "Create a new topic"
+msgstr "Créer un nouvel avatar"
+
+#: ../controllers/forum.php:110
+#: ../controllers/admin/admin.php:116
+#, fuzzy
+msgid "Topic saved succesfully"
+msgstr "Commentaire non enregistré"
+
+#: ../controllers/forum.php:115
+#: ../controllers/admin/admin.php:120
+#, fuzzy
+msgid "Delete topic"
+msgstr "Supprimer l'album"
+
+#: ../controllers/forum.php:119
+#: ../controllers/forum.php:152
+#: ../controllers/admin/admin.php:124
+#: ../controllers/admin/admin.php:158
+#, fuzzy
+msgid "Please specify a topic"
+msgstr "Choisir un album"
+
+#: ../controllers/forum.php:129
+#: ../controllers/admin/admin.php:133
+msgid "The topic is not empty. Delete all messages in it then try again."
+msgstr ""
+
+#: ../controllers/forum.php:137
+#: ../controllers/admin/admin.php:141
+#, fuzzy
+msgid "Topic deleted successfully"
+msgstr "Message ajout&eacute;e"
+
+#: ../controllers/forum.php:164
+#: ../controllers/admin/admin.php:171
+#, fuzzy
+msgid "Topic not found"
+msgstr "Album non trouvable"
+
+#: ../controllers/forum.php:193
+msgid "You cannot view this topic or the topic does not exist."
+msgstr ""
+
+#: ../controllers/forum.php:211
+#: ../controllers/forum.php:646
+#: ../controllers/forum.php:699
+#: ../controllers/admin/admin.php:218
+#: ../controllers/admin/admin.php:459
+msgid "First"
+msgstr "Premier"
+
+#: ../controllers/forum.php:212
+#: ../controllers/forum.php:647
+#: ../controllers/forum.php:700
+#: ../controllers/admin/admin.php:219
+#: ../controllers/admin/admin.php:460
+msgid "Last"
+msgstr "Dernier"
+
+#: ../controllers/forum.php:228
+#: ../controllers/forum.php:477
+#: ../controllers/forum.php:485
+#: ../controllers/forum.php:665
+#: ../controllers/admin/admin.php:235
+#: ../controllers/admin/admin.php:333
+#: ../views/results.php:44
+msgid "No message found"
+msgstr "Message non trouvé"
+
+#: ../controllers/forum.php:229
+#: ../controllers/forum.php:666
+#: ../controllers/admin/admin.php:236
+msgid "There is no message available in this topic"
+msgstr ""
+
+#: ../controllers/forum.php:230
+#: ../controllers/admin/admin.php:237
+msgid "Add a new message"
+msgstr "Ajouter un article"
+
+#: ../controllers/forum.php:282
+#, php-format
+msgid "%s's messages"
+msgstr "Les articles de %s"
+
+#: ../controllers/forum.php:298
+#: ../controllers/forum.php:306
+#, fuzzy
+msgid "Reply error"
+msgstr "Erreur d'accès"
+
+#: ../controllers/forum.php:299
+msgid "You did not choose a message to reply to"
+msgstr "Vous n'avez pas choisi un message à répondre"
+
+#: ../controllers/forum.php:307
+msgid "Message not found"
+msgstr "Message non trouvé"
+
+#: ../controllers/forum.php:329
+#: ../controllers/forum.php:368
+#, fuzzy
+msgid "Posting error"
+msgstr "Erreur d'accès"
+
+#: ../controllers/forum.php:330
+msgid "You are not allowed to reply the message"
+msgstr "Vous n'êtes pas autorisé à répondre"
+
+#: ../controllers/forum.php:345
+#: ../views/results.php:8
+msgid "Create a new message"
+msgstr "Créer un nouveau message"
+
+#: ../controllers/forum.php:369
+#, fuzzy
+msgid "There is no topic available"
+msgstr "Il n'y a pas d'article"
+
+#: ../controllers/forum.php:382
+#, fuzzy
+msgid "Modify message"
+msgstr "Message de %s"
+
+#: ../controllers/forum.php:386
+#: ../controllers/forum.php:403
+#: ../controllers/forum.php:499
+#: ../controllers/forum.php:571
+#: ../controllers/admin/admin.php:199
+#: ../controllers/admin/admin.php:258
+#: ../controllers/admin/admin.php:376
+#: ../controllers/admin/admin.php:399
+#, fuzzy
+msgid "Error"
+msgstr "Erreur"
+
+#: ../controllers/forum.php:387
+#: ../controllers/admin/admin.php:259
+msgid "You did not choose a message"
+msgstr "Vous n'avez pas choisi aucun message"
+
+#: ../controllers/forum.php:404
+msgid "You cannot edit this message"
+msgstr "Vous ne pouvez pas modifier cet article"
+
+#: ../controllers/forum.php:424
+#: ../controllers/admin/admin.php:286
+#, fuzzy
+msgid "Message required found"
+msgstr "Message non trouvé"
+
+#: ../controllers/forum.php:425
+#: ../controllers/admin/admin.php:287
+msgid "You forgot to write the message"
+msgstr "Vous avez oublié le message"
+
+#: ../controllers/forum.php:478
+#: ../controllers/forum.php:486
+#: ../controllers/admin/admin.php:334
+msgid "There is no message to delete"
+msgstr ""
+
+#: ../controllers/forum.php:500
+msgid "You cannot delete this message"
+msgstr "Vous ne pouvez pas supprimer ce message"
+
+#: ../controllers/forum.php:510
+#: ../controllers/admin/admin.php:346
+msgid "The message  has been deleted."
+msgstr "Le message a été supprimé"
+
+#: ../controllers/forum.php:524
+#: ../controllers/admin/admin.php:353
+msgid "Delete message?"
+msgstr "Supprimer le message ?"
+
+#: ../controllers/forum.php:549
+#: ../views/search.php:21
+msgid "Search"
+msgstr "Chercher"
+
+#: ../controllers/forum.php:572
+#: ../controllers/admin/admin.php:400
+#, fuzzy
+msgid "No valid field"
+msgstr "Le champ %s est obligatoire"
+
+#: ../controllers/forum.php:626
+msgid "You cannot view this message or the message does not exist."
+msgstr ""
+
+#: ../controllers/forum.php:698
+#: ../controllers/admin/admin.php:458
+msgid "Search result"
+msgstr "R&eacute;sultat de la recherche"
+
+#: ../controllers/forum.php:722
+#: ../controllers/admin/admin.php:482
+msgid "Search messages"
+msgstr "Rechercher messages"
+
+#: ../controllers/forum.php:735
+msgid "Unsubscribed"
+msgstr ""
+
+#: ../controllers/forum.php:736
+msgid "You will no longer receive notification about that message"
+msgstr ""
+
+#: ../controllers/admin/admin.php:155
+#, fuzzy
+msgid "Modify a topic"
+msgstr "Modifier l'album"
+
+#: ../controllers/admin/admin.php:200
+#, fuzzy
+msgid "The topic does not exist."
+msgstr "Le champ %s est différent de %s"
+
+#: ../controllers/admin/admin.php:377
+#, fuzzy
+msgid "Nothing to search"
+msgstr "Paroles &agrave; chercher"
+
+#: ../controllers/admin/settings.php:26
+#, fuzzy
+msgid " settings"
+msgstr "%s settings"
+
+#: ../controllers/admin/settings.php:60
+#, fuzzy
+msgid "Settings saved"
+msgstr "Options sauvegard&eacute;es."
+
+#: ../models/message_model.php:259
+#, php-format
+msgid "Reply from %s"
+msgstr "Réponse de %s"
+
+#: ../models/message_model.php:261
+#, php-format
+msgid ""
+"Hello %s,\n"
+"\n"
+"Your message has been replied by %s.\n"
+" To read the message click the link below\n"
+"\n"
+"%s\n"
+"\n"
+". If you don't want to receive any further notification, go to link below.\n"
+"\n"
+"%s\n"
+"\n"
+"Thank you.\n"
+"Administrator"
+msgstr ""
+"Bonjour %s,\n"
+"\n"
+"Votre message a été répondu par %s. \n"
+"Pour lire la réponse, cliquez sur le lien suivant:\n"
+"\n"
+"%s\n"
+"\n"
+"Si vous ne voulez plus recevoir ce notice, visitez le lien suivant\n"
+"%s\n"
+"\n"
+"Merci.\n"
+"L'administrateur"
+
+#: ../views/error.php:3
+msgid "Go back"
+msgstr "Revenir en arri&egrave;re"
+
+#: ../views/list.php:4
+#, fuzzy
+msgid "Forum Administration"
+msgstr "Administration T&eacute;l&eacute;chargement"
+
+#: ../views/list.php:7
+msgid "Settings"
+msgstr "Configurations"
+
+#: ../views/list.php:8
+#, fuzzy
+msgid "Manage messages"
+msgstr "Tous les messages"
+
+#: ../views/list.php:9
+#, fuzzy
+msgid "Add new topic"
+msgstr "Ajouter cat&eacute;gorie"
+
+#: ../views/list.php:10
+#: ../views/search.php:22
+msgid "Cancel"
+msgstr "Annuler"
+
+#: ../views/list.php:25
+#: ../views/results_bkc.php:10
+#: ../views/search.php:13
+msgid "Title"
+msgstr "Titre"
+
+#: ../views/list.php:26
+#, fuzzy
+msgid "Ordering"
+msgstr "Ordre"
+
+#: ../views/list.php:27
+msgid "Status"
+msgstr "&Eacute;tat"
+
+#: ../views/list.php:28
+msgid "Action"
+msgstr "Action"
+
+#: ../views/list.php:29
+msgid "Hits"
+msgstr "Visites"
+
+#: ../views/list.php:53
+#: ../views/results_bkc.php:42
+#, php-format
+msgid "on %s by %s"
+msgstr "le %s par %s"
+
+#: ../views/results.php:23
+msgid "Edit"
+msgstr "Modifier"
+
+#: ../views/results.php:25
+msgid "Delete"
+msgstr "Supprimer"
+
+#: ../views/results.php:33
+msgid "more"
+msgstr "suite"
+
+#: ../views/results_bkc.php:13
+#: ../views/search.php:15
+msgid "Author"
+msgstr "Auteur"
+
+#: ../views/results_bkc.php:16
+msgid "Messages"
+msgstr "Messages"
+
+#: ../views/results_bkc.php:19
+msgid "Last change"
+msgstr "Modifié le"
+
+#: ../views/search.php:5
+msgid "Search:"
+msgstr "Chercher:"
+
+#: ../views/search.php:9
+msgid "in:"
+msgstr "dans :"
+
+#: ../views/search.php:12
+msgid "Everywhere"
+msgstr ""
+
+#: ../views/search.php:14
+msgid "Message"
+msgstr "Message"
+
+#: ../views/search.php:18
+msgid "Exact search"
+msgstr "Recherche exacte"
+
+#: ../views/admin/settings.php:4
+msgid "Quick menu"
+msgstr "Menu rapide"
+
+#: ../views/admin/settings.php:7
+#, fuzzy
+msgid "General settings"
+msgstr "Configurations générales"
+
+#: ../views/admin/settings.php:21
+#, fuzzy
+msgid "Save Settings"
+msgstr "Valider modification"
+
+#: ../views/admin/settings.php:37
+msgid "Theme"
+msgstr ""
+
+#: ../views/admin/settings.php:39
+msgid "None"
+msgstr ""
+
+#: ../views/admin/topic/create.php:22
+msgid "Title cannot be empty"
+msgstr "Le titre ne peut pas être vide"
+
+#: ../views/admin/topic/create.php:32
+msgid "Information"
+msgstr "Information"
+
+#: ../views/admin/topic/create.php:35
+msgid "Details"
+msgstr "Détails"
+
+#: ../views/admin/topic/create.php:36
+#, fuzzy
+msgid "Administrators"
+msgstr "Param&egrave;tres d&#8217;administration"
+
+#: ../views/admin/topic/create.php:48
+#: ../views/message/create.php:41
+#: ../views/message/index.php:54
+#: ../views/topic/create.php:20
+msgid "Save"
+msgstr "Enregistrer"
+
+#: ../views/admin/topic/create.php:60
+#: ../views/message/create.php:15
+#: ../views/topic/create.php:8
+msgid "Title:"
+msgstr "Titre:"
+
+#: ../views/admin/topic/create.php:62
+#: ../views/topic/create.php:10
+msgid "Description:"
+msgstr "Description&nbsp;:"
+
+#: ../views/admin/topic/create.php:65
+#: ../views/topic/create.php:13
+msgid "Access:"
+msgstr "Accès:"
+
+#: ../views/admin/topic/create.php:74
+msgid "Users who can edit and delete messages in this topic."
+msgstr ""
+
+#: ../views/admin/topic/create.php:76
+msgid "New admin:"
+msgstr "Nouvel admin:"
+
+#: ../views/admin/topic/create.php:76
+msgid "Add"
+msgstr "Ajouter"
+
+#: ../views/admin/topic/create.php:80
+msgid "Username"
+msgstr "Login"
+
+#: ../views/admin/topic/delete.php:8
+#: ../views/message/delete.php:9
+msgid "Confirm?"
+msgstr "Confirmer?"
+
+#: ../views/admin/topic/delete.php:12
+#: ../views/message/delete.php:13
+msgid "No"
+msgstr "Non"
+
+#: ../views/admin/topic/delete.php:13
+#: ../views/message/delete.php:14
+msgid "Yes"
+msgstr "Oui"
+
+#: ../views/admin/topic/list.php:26
+msgid "Admin"
+msgstr "Admin"
+
+#: ../views/admin/topic/list.php:47
+msgid "View"
+msgstr "Afficher"
+
+#: ../views/message/create.php:10
+msgid "Username:"
+msgstr "Login"
+
+#: ../views/message/create.php:18
+#: ../views/message/index.php:8
+msgid "Topic:"
+msgstr "Sujet:"
+
+#: ../views/message/create.php:32
+msgid "Message:"
+msgstr "Message"
+
+#: ../views/message/create.php:38
+#: ../views/message/index.php:51
+msgid "Notify me when replied:"
+msgstr "Notifie-moi des réponses"
+
+#: ../views/message/delete.php:6
+msgid "This message was already replied. Do you want to delete it and its replies?"
+msgstr ""
+
+#: ../views/message/index.php:9
+msgid "Thread:"
+msgstr "Discussion:"
+
+#: ../views/message/index.php:10
+msgid "Replies:"
+msgstr "Réponses:"
+
+#: ../views/message/index.php:37
+msgid "Quote"
+msgstr "Citer"
+
+#: ../views/message/index.php:38
+msgid "Back to top"
+msgstr "Retour"
+
+#: ../views/message/index.php:46
+msgid "Reply:"
+msgstr "R&eacute;pondre :"
+
+#: ../views/message/index.php:60
+msgid "Reply to the thread"
+msgstr "Répondre à la discussion"
+
+#: ../views/topic/index.php:23
+msgid "Replies"
+msgstr "Réponses"
+
+#: ../views/topic/index.php:53
+#: ../views/topic/list.php:40
+#, php-format
+msgid "on %s <br />by %s"
+msgstr "le %s <br />par %s"
+
+#: ../views/topic/list.php:8
+#, fuzzy
+msgid "Add a new topic"
+msgstr "Ajouter cat&eacute;gorie"
+
+#~ msgid "username"
+#~ msgstr "Login"
+#~ msgid "password"
+#~ msgstr "Mot de passe"
+#~ msgid "password confirmation"
+#~ msgstr "Confirmation mot de passe"
+#~ msgid "The %s field is required"
+#~ msgstr "Le champ %s est obligatoire"
+#~ msgid "The %s field does not match the %s field"
+#~ msgstr "Le champ %s est différent de %s"
+#~ msgid "User registered"
+#~ msgstr "Utilisateur enregistré"
+#~ msgid "The username is already in use"
+#~ msgstr ""
+#~ "D&eacute;sol&eacute;, ce nom d'identification est d&eacute;j&agrave; "
+#~ "utilis&eacute;e!"
+#~ msgid "Username and status required"
+#~ msgstr "Le nom d'identification et le status est nécessaire"
+#~ msgid "You cannot remove yourself"
+#~ msgstr "Vous ne pouvez pas supprimer vous-même"
+#~ msgid "User deleted"
+#~ msgstr "Membre supprim&eacute;"
+#~ msgid "User status updated"
+#~ msgstr "Status mis &agrave; jour"
+#~ msgid "User saved"
+#~ msgstr "Membre sauvegard&eacute;es."
+#~ msgid "The email is already in use"
+#~ msgstr ""
+#~ "D&eacute;sol&eacute;, cette adresse mail est d&eacute;j&agrave; "
+#~ "utilis&eacute;e!"
+#~ msgid "Username is required"
+#~ msgstr "Le champ username est obligatoire"
+#~ msgid "Please enter your password"
+#~ msgstr "Veuillez insérer  le mot de passe."
+#~ msgid "Logged in:"
+#~ msgstr "Connect&eacute;:"
+#~ msgid "Login error. Please verify your username "
+#~ msgstr ""
+#~ "Connexion &eacute;chou&eacute;e. Merci de saisir de nouveau votre "
+#~ "identifiant et mot de passe."
+#~ msgid "You are now logged out."
+#~ msgstr "Vous &ecirc;tes maintant d&eacute;connect&eacute;"
+#~ msgid "You are now logged in"
+#~ msgstr "Vous &ecirc;tes maintenant connect&eacute;"
+#~ msgid "Please enter your username"
+#~ msgstr "Merci de renseigner l'identifiant."
+#~ msgid "Login error. Please verify your username and your password."
+#~ msgstr ""
+#~ "Connexion &eacute;chou&eacute;e. Merci de saisir de nouveau votre "
+#~ "identifiant et mot de passe."
+#~ msgid "The email address you entered is not valid."
+#~ msgstr ""
+#~ "L'adresse que vous avez ins&eacute;r&eacute;e n'est pas valide. Veuillez "
+#~ "essayer."
+#~ msgid "Your password for %s"
+#~ msgstr "Votre mot de passe pour %s"
+#~ msgid ""
+#~ "Hello %s,\n"
+#~ "\n"
+#~ "Thank you for registering to %s.\n"
+#~ "Now you can enter in the site with these information.\n"
+#~ "\n"
+#~ "Username: %s\n"
+#~ "Password: %s\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Bonjour %s,\n"
+#~ "\n"
+#~ "Merci de vous inscrire sur %s.\n"
+#~ "Vous pouvez entrer dans le site avec les informations suivantes.\n"
+#~ "\n"
+#~ "Identification: %s\n"
+#~ "Mot de passe: %s\n"
+#~ "\n"
+#~ msgid ""
+#~ "\n"
+#~ "Thank you.\n"
+#~ "The administrator"
+#~ msgstr ""
+#~ "\n"
+#~ "Merci.\n"
+#~ "L'administrateur du site"
+#~ msgid "New member for %s"
+#~ msgstr "Nouveau membre pour %s"
+#~ msgid ""
+#~ "Hello admin,\n"
+#~ "\n"
+#~ "A new member has just registere into your site. These are the submitted "
+#~ "information.\n"
+#~ "\n"
+#~ "Username: %s\n"
+#~ "Email: %s\n"
+#~ "IP: %s\n"
+#~ "Thank you.\n"
+#~ "The administrator"
+#~ msgstr ""
+#~ "Bonjour admin,\n"
+#~ "\n"
+#~ "Un nouveau membe vient de vous inscrire sur votre site. Voici les "
+#~ "informations insérées.\n"
+#~ "\n"
+#~ "Username: %s\n"
+#~ "Email: %s\n"
+#~ "IP: %s\n"
+#~ "Merci.\n"
+#~ "L'administrateur du site"
+#~ msgid ""
+#~ "Thank you for registering with this site.\n"
+#~ "\n"
+#~ "Please check your email %s and get there your password, then turn back to "
+#~ "log in."
+#~ msgstr ""
+#~ "Merci de vous inscrire sur ce site,\n"
+#~ "\n"
+#~ "V&eacute;rifier votre email %s pour avoir votre mot de passe."
+#~ msgid ""
+#~ "The username format is not valid, please use alphanumeric characters."
+#~ msgstr ""
+#~ "Le format du nom d'identification n'est pas valide. Veuillez utiliser "
+#~ "seulement des chiffres et des lettres."
+#~ msgid "Your profile was saved."
+#~ msgstr "Votre profil est enregistré"
+#~ msgid ""
+#~ "Hello %s,\n"
+#~ "\n"
+#~ "You said you forgot your password for %s. Since we do not keep passwords "
+#~ "in clear, you have to create one. Click the link below to create a new "
+#~ "password.\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Thank you.\n"
+#~ "The administrator"
+#~ msgstr ""
+#~ "Bonjour %s,\n"
+#~ "\n"
+#~ "Vous avez dit que vous avez oubli&eacute; votre mot de passe pour %s. "
+#~ "Comme nous ne conservons pas des mots de passe, vous devez en cr&eacute;"
+#~ "er un autre. Cliquez sur le lien ci-dessous pour le cr&eacute;er.\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Merci.\n"
+#~ "L'administrateur"
+#~ msgid ""
+#~ "We have sent to %s the instruction on how to create a new password. "
+#~ "Please check your email."
+#~ msgstr ""
+#~ "Nous avons envoy&eacute; &agrave; %s les instructions pour cr&eacute;er "
+#~ "un noveau mot de passe. Veuillez lire votre email."
+#~ msgid ""
+#~ "Your password is now changed. You can login with your username and the "
+#~ "new password."
+#~ msgstr ""
+#~ "Votre mot de passe est maintenant chang&eacute;. Vous pouvez vous "
+#~ "identifier avec le nouveau username et mot de passe."
+#~ msgid ""
+#~ "The activation link is not valid. Please check again your email and "
+#~ "verify the link. If you are sure the link was right then contact the "
+#~ "administrator."
+#~ msgstr ""
+#~ "Le lien que vous avez utilis&eacute; n'est pas valide. Veuillez verifier "
+#~ "le message que nous avons envoy&eacute et r&eacute;essayser. Si vous "
+#~ "pensez qu'il y a une erreur, contacter l'administrateur."
+#~ msgid "The address %s is not found in our database. Try another address."
+#~ msgstr ""
+#~ "L'adresse %s n'est pas dans notre base de données. Essayer une autre "
+#~ "adresse."
+#~ msgid "Change your email"
+#~ msgstr "Changer adresse email"
+#~ msgid "Email"
+#~ msgstr "Email"
+#~ msgid "Email change confirmation"
+#~ msgstr "Confirmation de changement d'email"
+#~ msgid ""
+#~ "Please, check your new email %s, We sent a link to verify that it belongs "
+#~ "to you."
+#~ msgstr ""
+#~ "Vérifier votre email %s, Nous y avons envoyé le code de vérification."
+#~ msgid "Your email is now changed. "
+#~ msgstr "Votre adresse est maintenant chang&eacute;e"
+#~ msgid "The link is not valid. Please check your email to verify. "
+#~ msgstr "Le lien n'est pas valide. Vérifier votre adresse email."
+#~ msgid "To create a new password, please enter your email."
+#~ msgstr ""
+#~ "Pour pouvoir cr&eacute;er un nouveau mot de passe, ins&eacute;rer votre "
+#~ "adresse email."
+#~ msgid "Submit"
+#~ msgstr "Envoyer"
+#~ msgid "Now, create a new password."
+#~ msgstr "Maintenant, cr&eacute;er un nouveau mot de passe"
+#~ msgid "Deactivate"
+#~ msgstr "D&eacute;sactiver"
+#~ msgid "Activate"
+#~ msgstr "Activer"
+#~ msgid "Please submit your new email."
+#~ msgstr "Merci d'ins&eacute;rer une nouvelle adresse."
+#~ msgid "You will receive a confirmation in your new email."
+#~ msgstr "Vous allez recevoir une confirmaton dans votre email"
+#~ msgid "Navigation"
+#~ msgstr "Navigation"
+#~ msgid "Add a user"
+#~ msgstr "Ajouter Utilisateur"
+#~ msgid "Password"
+#~ msgstr "Mot de passe"
+#~ msgid "Edit a user"
+#~ msgstr "Modifier l&#8217;utilisateur"
+#~ msgid "Active"
+#~ msgstr "Actif"
+#~ msgid "Disabled"
+#~ msgstr "D&eacute;sactiv&eacute;e"
+#~ msgid "Login"
+#~ msgstr "Login"
+#~ msgid "Please enter here your login and password"
+#~ msgstr "Merci de saisir votre identifiant et mot de passe."
+#~ msgid "Lost password ?"
+#~ msgstr "Mot de passe perdu?"
+#~ msgid "Log out"
+#~ msgstr "D&eacute;connecter"
+#~ msgid "Change email"
+#~ msgstr "Changer adresse email"
+#~ msgid "Edit your profile"
+#~ msgstr "Votre profil et options personnelles"
+#~ msgid "You can change your profile here, if you want."
+#~ msgstr "Vous pouvez changer votre profile ici si vous voulez."
+#~ msgid "Please fill the form below and click on Register"
+#~ msgstr "Remplir le formulaire ci-dessous et cliquer sur Enregistrer"
+#~ msgid "Confirm email"
+#~ msgstr "Confirmer email"
+#~ msgid "Fields marked with * are required"
+#~ msgstr "Les champs avec * sont obligatoires"
+#~ msgid "Register"
+#~ msgstr "Inscription"
+#~ msgid "Enter a username"
+#~ msgstr "Insérer votre nom d'utilisateur"
+#~ msgid "Enter at least {0} characters"
+#~ msgstr "Insérer au moins {0} caractères"
+#~ msgid "{0} is already in use"
+#~ msgstr "{0} n'est plus disponible"
+#~ msgid "Please enter a valid email address"
+#~ msgstr "Erreur&nbsp;: veuillez taper une adresse e-mail"
+#~ msgid "Repeat your email"
+#~ msgstr "Répéter l'email"
+#~ msgid "Enter the same email as above"
+#~ msgstr "Insérer la meme adresse email"
+#~ msgid "Module"
+#~ msgstr "Module"
+#~ msgid "have access to"
+#~ msgstr "a accès à"
+#~ msgid "view in"
+#~ msgstr "voir dans"
+#~ msgid "add into"
+#~ msgstr "ajouter dans"
+#~ msgid "edit in"
+#~ msgstr "modifier dans"
+#~ msgid "delete in"
+#~ msgstr "supprimer dans"
+#~ msgid "Sorry, you cannot %s the %s module"
+#~ msgstr "D&eacute;sol&eacute; vous ne pouvez pas %s le module %s"
+
