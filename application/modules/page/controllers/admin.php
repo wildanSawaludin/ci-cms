@@ -22,7 +22,7 @@ class Admin extends MX_Controller {
 	
 	function index($parent_id = 0, $start = 0)
 	{
-		$params['where'] = array('parent_id' => $parent_id, 'lang' => $this->user->lang);		
+		$params['where'] = array('parent_id' => $parent_id, 'lang' => $this->user->lang, 'active <>' => -1);		
 		$params['order_by'] = 'weight';
 		$search_id = $this->pages->save_params(serialize($params));
 		
@@ -492,4 +492,15 @@ class Admin extends MX_Controller {
 
 		
 	}	
+	
+	function archives($parent_id = 0, $start = 0)
+	{
+		$params['where'] = array('parent_id' => $parent_id, 'lang' => $this->user->lang, 'active' => -1);		
+		$params['order_by'] = 'weight';
+		$search_id = $this->pages->save_params(serialize($params));
+		
+		$this->results($search_id, $start);
+		return;
+	
+	}
 }

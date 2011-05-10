@@ -157,6 +157,7 @@ function ajaxFileUpload() {
 			
 			<label for="status"><?php echo __("Status", $module)?></label>
 			<select name="status" id="status" class="input-select">
+				<option<?php if ($page['active'] == -1): echo ' selected="selected"'; endif;?> value="-1"><?php echo __("Archived", $module)?></option>
 				<option<?php if ($page['active'] == 0): echo ' selected="selected"'; endif;?> value="0"><?php echo __("Draft", $module)?></option>
 				<option<?php if ($page['active'] == 1): echo ' selected="selected"'; endif;?> value="1"><?php echo __("Published", $module)?></option>
 			</select><br />
