@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Solaitra:Forum\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-23 10:10+0100\n"
-"PO-Revision-Date: 2010-07-23 10:10+0100\n"
+"POT-Creation-Date: 2011-05-03 11:44+0100\n"
+"PO-Revision-Date: 2011-05-03 11:46+0100\n"
 "Last-Translator: Hery <hery@serasera.org>\n"
 "Language-Team: Hery serasera.org <hery@serasera.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,54 +15,54 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../forum_blocks.php:33
 #: ../forum_blocks.php:34
 #: ../forum_blocks.php:35
-#: ../forum_blocks.php:39
+#: ../forum_blocks.php:36
 #: ../forum_blocks.php:40
+#: ../forum_blocks.php:41
 msgid "User menu"
 msgstr "Momba anao"
 
-#: ../forum_blocks.php:33
+#: ../forum_blocks.php:34
 msgid "Change password"
 msgstr "Hanova tenimiafina"
 
-#: ../forum_blocks.php:34
+#: ../forum_blocks.php:35
 msgid "My posts"
 msgstr "Ny lahatsoratro"
 
-#: ../forum_blocks.php:35
+#: ../forum_blocks.php:36
 msgid "Sign out"
 msgstr "Hivoaka"
 
-#: ../forum_blocks.php:39
+#: ../forum_blocks.php:40
 msgid "Forgot password"
 msgstr "Adino ny tenimiafina"
 
-#: ../forum_blocks.php:40
+#: ../forum_blocks.php:41
 msgid "Sign in"
 msgstr "Hiditra"
 
-#: ../forum_blocks.php:44
+#: ../forum_blocks.php:45
 msgid "Forum"
 msgstr "Dinika - forum"
 
-#: ../forum_blocks.php:46
+#: ../forum_blocks.php:47
 msgid "Post a new message"
 msgstr "Hanoratra hevitra"
 
-#: ../forum_blocks.php:47
-#: ../controllers/forum.php:41
-#: ../controllers/admin/admin.php:43
+#: ../forum_blocks.php:48
+#: ../controllers/forum.php:42
+#: ../controllers/admin/admin.php:44
 msgid "Topic list"
 msgstr "Lisitry ny lohahevitra"
 
-#: ../forum_blocks.php:48
-#: ../controllers/admins.php:29
+#: ../forum_blocks.php:49
+#: ../controllers/admins.php:30
 msgid "Admin list"
 msgstr "Ireo mpandrindra"
 
-#: ../forum_blocks.php:49
+#: ../forum_blocks.php:50
 msgid "Search message"
 msgstr "Tadiavo ny lahatsoratra"
 
@@ -70,312 +70,313 @@ msgstr "Tadiavo ny lahatsoratra"
 #: ../forum_update.php:33
 #: ../forum_update.php:60
 #: ../forum_update.php:78
+#: ../forum_update.php:96
 #, php-format
 msgid "Forum module updated to %s"
 msgstr "Nasondrotra ho tao %s ny module forum"
 
-#: ../controllers/forum.php:62
-#: ../controllers/forum.php:193
-#: ../controllers/forum.php:737
+#: ../controllers/forum.php:63
+#: ../controllers/forum.php:194
+#: ../controllers/forum.php:738
 msgid "Not authorized"
 msgstr "Tsy  mahazo alalana"
 
-#: ../controllers/forum.php:63
+#: ../controllers/forum.php:64
 msgid "You cannot add a new topic."
 msgstr "Tsy afaka mampiditra lohahevitra ianao"
 
-#: ../controllers/forum.php:67
-#: ../controllers/admin/admin.php:65
+#: ../controllers/forum.php:68
+#: ../controllers/admin/admin.php:66
 msgid "Create a new topic"
 msgstr "Hampiditra lohahevitra"
 
-#: ../controllers/forum.php:111
-#: ../controllers/admin/admin.php:114
+#: ../controllers/forum.php:112
+#: ../controllers/admin/admin.php:115
 msgid "Topic saved succesfully"
 msgstr "Voatahiry ny lohahevitra"
 
-#: ../controllers/forum.php:116
-#: ../controllers/admin/admin.php:118
+#: ../controllers/forum.php:117
+#: ../controllers/admin/admin.php:119
 msgid "Delete topic"
 msgstr "Fafao ny lohahevitra"
 
-#: ../controllers/forum.php:120
-#: ../controllers/forum.php:153
-#: ../controllers/admin/admin.php:122
-#: ../controllers/admin/admin.php:156
+#: ../controllers/forum.php:121
+#: ../controllers/forum.php:154
+#: ../controllers/admin/admin.php:123
+#: ../controllers/admin/admin.php:157
 msgid "Please specify a topic"
 msgstr "Mifidiana lohahevitra azafady"
 
-#: ../controllers/forum.php:130
-#: ../controllers/admin/admin.php:131
+#: ../controllers/forum.php:131
+#: ../controllers/admin/admin.php:132
 msgid "The topic is not empty. Delete all messages in it then try again."
 msgstr "Mbola misy hafatra ao anatin'io lohahevitra io. Fafao daholo aloha ny hafatra."
 
-#: ../controllers/forum.php:138
-#: ../controllers/admin/admin.php:139
+#: ../controllers/forum.php:139
+#: ../controllers/admin/admin.php:140
 msgid "Topic deleted successfully"
 msgstr "Voafafa soa amantsara ny lohahevitra"
 
-#: ../controllers/forum.php:165
-#: ../controllers/admin/admin.php:169
+#: ../controllers/forum.php:166
+#: ../controllers/admin/admin.php:170
 msgid "Topic not found"
 msgstr "Tsy misy lohahevitra hita"
 
-#: ../controllers/forum.php:194
+#: ../controllers/forum.php:195
 msgid "You cannot view this topic or the topic does not exist."
 msgstr "Tsy afaka mijery ny lohahevitra ianao, na tsy misy ilay lohahevitra tadiavinao."
-
-#: ../controllers/forum.php:212
-#: ../controllers/forum.php:758
-#: ../controllers/forum.php:812
-#: ../controllers/admin/admin.php:216
-#: ../controllers/admin/admin.php:457
-msgid "First"
-msgstr "Voalohany"
 
 #: ../controllers/forum.php:213
 #: ../controllers/forum.php:759
 #: ../controllers/forum.php:813
 #: ../controllers/admin/admin.php:217
 #: ../controllers/admin/admin.php:458
+msgid "First"
+msgstr "Voalohany"
+
+#: ../controllers/forum.php:214
+#: ../controllers/forum.php:760
+#: ../controllers/forum.php:814
+#: ../controllers/admin/admin.php:218
+#: ../controllers/admin/admin.php:459
 msgid "Last"
 msgstr "Farany"
 
-#: ../controllers/forum.php:229
-#: ../controllers/forum.php:589
-#: ../controllers/forum.php:597
-#: ../controllers/forum.php:778
-#: ../controllers/rss.php:115
-#: ../controllers/rss.php:127
-#: ../controllers/admin/admin.php:233
-#: ../controllers/admin/admin.php:331
+#: ../controllers/forum.php:230
+#: ../controllers/forum.php:590
+#: ../controllers/forum.php:598
+#: ../controllers/forum.php:779
+#: ../controllers/rss.php:116
+#: ../controllers/rss.php:128
+#: ../controllers/admin/admin.php:234
+#: ../controllers/admin/admin.php:332
 msgid "No message found"
 msgstr "Tsy misy hafatra hita"
 
-#: ../controllers/forum.php:230
-#: ../controllers/forum.php:779
-#: ../controllers/admin/admin.php:234
+#: ../controllers/forum.php:231
+#: ../controllers/forum.php:780
+#: ../controllers/admin/admin.php:235
 msgid "There is no message available in this topic"
 msgstr "Tsy  misy hafatra hita ato"
 
-#: ../controllers/forum.php:231
-#: ../controllers/admin/admin.php:235
+#: ../controllers/forum.php:232
+#: ../controllers/admin/admin.php:236
 msgid "Add a new message"
 msgstr "Hampiditra hevitra vaovao"
 
-#: ../controllers/forum.php:274
+#: ../controllers/forum.php:275
 msgid "Move a message"
 msgstr "Hafindra ny lahatsoratra"
 
-#: ../controllers/forum.php:278
-#: ../controllers/forum.php:295
-#: ../controllers/forum.php:303
-#: ../controllers/forum.php:449
-#: ../controllers/forum.php:466
-#: ../controllers/forum.php:611
-#: ../controllers/forum.php:683
-#: ../controllers/admin/admin.php:197
-#: ../controllers/admin/admin.php:256
-#: ../controllers/admin/admin.php:374
-#: ../controllers/admin/admin.php:397
+#: ../controllers/forum.php:279
+#: ../controllers/forum.php:296
+#: ../controllers/forum.php:304
+#: ../controllers/forum.php:450
+#: ../controllers/forum.php:467
+#: ../controllers/forum.php:613
+#: ../controllers/forum.php:684
+#: ../controllers/admin/admin.php:198
+#: ../controllers/admin/admin.php:257
+#: ../controllers/admin/admin.php:375
+#: ../controllers/admin/admin.php:398
 msgid "Error"
 msgstr "Hadisoana"
 
-#: ../controllers/forum.php:279
-#: ../controllers/forum.php:450
-#: ../controllers/admin/admin.php:257
+#: ../controllers/forum.php:280
+#: ../controllers/forum.php:451
+#: ../controllers/admin/admin.php:258
 msgid "You did not choose a message"
 msgstr "Tsy nifidy lahatsoratra ianao"
 
-#: ../controllers/forum.php:296
-#: ../controllers/forum.php:304
+#: ../controllers/forum.php:297
+#: ../controllers/forum.php:305
 msgid "You cannot move this message"
 msgstr "Tsy afaka mamindra  ity hevitra ity ianao"
 
-#: ../controllers/forum.php:314
+#: ../controllers/forum.php:326
 msgid "Message is now moved"
 msgstr "Voafindra soa amantsara ny hafatra"
 
-#: ../controllers/forum.php:344
+#: ../controllers/forum.php:345
 #, php-format
 msgid "%s's messages"
 msgstr "Ireo lahatsoratr'i %s"
 
-#: ../controllers/forum.php:360
-#: ../controllers/forum.php:368
+#: ../controllers/forum.php:361
+#: ../controllers/forum.php:369
 msgid "Reply error"
 msgstr "Hadisoana hita"
 
-#: ../controllers/forum.php:361
+#: ../controllers/forum.php:362
 msgid "You did not choose a message to reply to"
 msgstr "Tsy nifidy ny hafatra hovaliana ianao"
 
-#: ../controllers/forum.php:369
+#: ../controllers/forum.php:370
 msgid "Message not found"
 msgstr "Tsy hita ny hevitra"
 
-#: ../controllers/forum.php:391
-#: ../controllers/forum.php:430
-#: ../controllers/forum.php:480
+#: ../controllers/forum.php:392
+#: ../controllers/forum.php:431
+#: ../controllers/forum.php:481
 msgid "Posting error"
 msgstr "Hadisoana hita"
 
-#: ../controllers/forum.php:392
+#: ../controllers/forum.php:393
 msgid "You are not allowed to reply the message"
 msgstr "Tsy afaka mamaly hevitra ianao"
 
-#: ../controllers/forum.php:407
+#: ../controllers/forum.php:408
 msgid "Create a new message"
 msgstr "Hampiditra hevitra vaovao"
 
-#: ../controllers/forum.php:431
-#: ../controllers/forum.php:481
+#: ../controllers/forum.php:432
+#: ../controllers/forum.php:482
 msgid "There is no topic available"
 msgstr "Tsy misy lohahevitra hita"
 
-#: ../controllers/forum.php:445
+#: ../controllers/forum.php:446
 msgid "Modify message"
 msgstr "Ahitsio ny lahatsoratra"
 
-#: ../controllers/forum.php:467
+#: ../controllers/forum.php:468
 msgid "You cannot edit this message"
 msgstr "Tsy afaka manova ity hevitra ity ianao"
 
-#: ../controllers/forum.php:503
+#: ../controllers/forum.php:504
 msgid "Topic missing"
 msgstr "Tsisy lohahevitra"
 
-#: ../controllers/forum.php:504
+#: ../controllers/forum.php:505
 msgid "Please go back and choose a topic"
 msgstr "Miverena dia mifidiana lohahevitra azafady"
 
-#: ../controllers/forum.php:511
+#: ../controllers/forum.php:512
 msgid "Message required"
 msgstr "Ilaina ny hafatra"
 
-#: ../controllers/forum.php:512
-#: ../controllers/admin/admin.php:285
+#: ../controllers/forum.php:513
+#: ../controllers/admin/admin.php:286
 msgid "You forgot to write the message"
 msgstr "Adinonao ny votoatiny"
 
-#: ../controllers/forum.php:546
+#: ../controllers/forum.php:547
 msgid "Preview message"
 msgstr "Jereo aloha ny hafatra"
 
-#: ../controllers/forum.php:579
+#: ../controllers/forum.php:580
 msgid "Message saved succesfully"
 msgstr "Voatahiry ny lahatsoratra"
 
-#: ../controllers/forum.php:590
-#: ../controllers/forum.php:598
-#: ../controllers/rss.php:116
-#: ../controllers/rss.php:128
-#: ../controllers/admin/admin.php:332
+#: ../controllers/forum.php:591
+#: ../controllers/forum.php:599
+#: ../controllers/rss.php:117
+#: ../controllers/rss.php:129
+#: ../controllers/admin/admin.php:333
 msgid "There is no message to delete"
 msgstr "Tsy misy lahatsoratra hofafaina"
 
-#: ../controllers/forum.php:612
+#: ../controllers/forum.php:614
 msgid "You cannot delete this message"
 msgstr "Tsy afaka mamafa ity hevitra ity ianao"
 
-#: ../controllers/forum.php:622
-#: ../controllers/admin/admin.php:344
+#: ../controllers/forum.php:623
+#: ../controllers/admin/admin.php:345
 msgid "The message  has been deleted."
 msgstr "Voafafa ny lahatsoratra"
 
-#: ../controllers/forum.php:636
-#: ../controllers/admin/admin.php:351
+#: ../controllers/forum.php:637
+#: ../controllers/admin/admin.php:352
 msgid "Delete message?"
 msgstr "Hofafaina ny hafatra?"
 
-#: ../controllers/forum.php:661
+#: ../controllers/forum.php:662
 msgid "Search"
 msgstr "Tadiavo"
 
-#: ../controllers/forum.php:684
-#: ../controllers/admin/admin.php:398
+#: ../controllers/forum.php:685
+#: ../controllers/admin/admin.php:399
 msgid "No valid field"
 msgstr "Tsy ara-dalàna ny field"
 
-#: ../controllers/forum.php:738
+#: ../controllers/forum.php:739
 msgid "You cannot view this message or the message does not exist."
 msgstr "Tsy afaka mamaky ity hevitra ity ianao, na tsy misy io hevitra io."
 
-#: ../controllers/forum.php:811
-#: ../controllers/admin/admin.php:456
+#: ../controllers/forum.php:812
+#: ../controllers/admin/admin.php:457
 msgid "Search result"
 msgstr "Vokatry ny fikarohana"
 
-#: ../controllers/forum.php:835
-#: ../controllers/admin/admin.php:480
+#: ../controllers/forum.php:836
+#: ../controllers/admin/admin.php:481
 msgid "Search messages"
 msgstr "Hitady hevitra"
 
-#: ../controllers/forum.php:848
+#: ../controllers/forum.php:849
 msgid "Unsubscribed"
 msgstr "Tsy  handray email"
 
-#: ../controllers/forum.php:849
+#: ../controllers/forum.php:850
 msgid "You will no longer receive notification about that message"
 msgstr "Tsy handray email intsony ianao rehefa misy mamaly io hafatra io"
 
-#: ../controllers/rss.php:33
+#: ../controllers/rss.php:34
 msgid "Last messages"
 msgstr "Lahatsoratra vao tonga"
 
-#: ../controllers/rss.php:35
+#: ../controllers/rss.php:36
 msgid "Last posted messages"
 msgstr "Lahatsoratra tonga farany"
 
-#: ../controllers/rss.php:60
+#: ../controllers/rss.php:61
 msgid "Last updates"
 msgstr "Niova farany"
 
-#: ../controllers/rss.php:62
+#: ../controllers/rss.php:63
 msgid "Last posted replies"
 msgstr "Valiny farany"
 
-#: ../controllers/rss.php:90
+#: ../controllers/rss.php:91
 #, php-format
 msgid "Topic: %s"
 msgstr "Lohahevitra : %s"
 
-#: ../controllers/rss.php:92
+#: ../controllers/rss.php:93
 #, php-format
 msgid "Last posted from %s"
 msgstr "Hafatra farany avy amin'ny %s"
 
-#: ../controllers/rss.php:135
+#: ../controllers/rss.php:136
 #, php-format
 msgid "Thread: %s"
 msgstr "Fitohizan'ny hafatra : %s"
 
-#: ../controllers/rss.php:137
+#: ../controllers/rss.php:138
 #, php-format
 msgid "Thread about the message %s"
 msgstr "Fitohizan'ny hafatra %s"
 
-#: ../controllers/admin/admin.php:153
+#: ../controllers/admin/admin.php:154
 msgid "Modify a topic"
 msgstr "Ahitsio ny lohahevitra"
 
-#: ../controllers/admin/admin.php:198
+#: ../controllers/admin/admin.php:199
 msgid "The topic does not exist."
 msgstr "Tsy hita ny lohahevitra"
 
-#: ../controllers/admin/admin.php:284
+#: ../controllers/admin/admin.php:285
 msgid "Message required found"
 msgstr "Tsy nisy hafatra hita"
 
-#: ../controllers/admin/admin.php:375
+#: ../controllers/admin/admin.php:376
 msgid "Nothing to search"
 msgstr "Tsy misy hotadiavina"
 
-#: ../controllers/admin/settings.php:26
+#: ../controllers/admin/settings.php:27
 msgid " settings"
 msgstr "safidy"
 
-#: ../controllers/admin/settings.php:59
+#: ../controllers/admin/settings.php:60
 msgid "Settings saved"
 msgstr "Voatahiry ny safidy"
 
@@ -424,26 +425,42 @@ msgid "Go back"
 msgstr "Miverena"
 
 #: ../views/list.php:4
+#: ../views/admin/topic/list.php:4
 msgid "Forum Administration"
 msgstr "Fandrindrana ny forum"
 
 #: ../views/list.php:7
+#: ../views/admin/topic/list.php:7
 msgid "Settings"
 msgstr "Fanovana"
 
 #: ../views/list.php:8
+#: ../views/admin/topic/list.php:8
 msgid "Manage messages"
 msgstr "Ny hafatra"
 
 #: ../views/list.php:9
+#: ../views/admin/topic/list.php:9
 msgid "Add new topic"
 msgstr "Hampiditra lohahevitra"
 
 #: ../views/list.php:10
+#: ../views/search.php:22
+#: ../views/admin/settings.php:22
+#: ../views/admin/topic/create.php:49
+#: ../views/admin/topic/list.php:10
+#: ../views/message/create.php:51
+#: ../views/message/index.php:70
+#: ../views/message/move.php:18
+#: ../views/message/preview.php:53
+#: ../views/topic/create.php:21
 msgid "Cancel"
 msgstr "Aoka ihany"
 
 #: ../views/list.php:25
+#: ../views/results_bkc.php:10
+#: ../views/search.php:13
+#: ../views/admin/topic/list.php:25
 msgid "Title"
 msgstr "Lohateny"
 
@@ -456,6 +473,8 @@ msgid "Status"
 msgstr "Toetra"
 
 #: ../views/list.php:28
+#: ../views/admin/topic/create.php:80
+#: ../views/admin/topic/list.php:28
 msgid "Action"
 msgstr "Atao"
 
@@ -464,6 +483,7 @@ msgid "Hits"
 msgstr "Vangy"
 
 #: ../views/list.php:53
+#: ../views/results_bkc.php:42
 #, php-format
 msgid "on %s by %s"
 msgstr "ny %s hoy %s"
@@ -480,7 +500,7 @@ msgstr "Ahitsio"
 #: ../views/admin/topic/delete.php:4
 #: ../views/admin/topic/list.php:49
 #: ../views/message/delete.php:4
-#: ../views/message/index.php:37
+#: ../views/message/index.php:36
 msgid "Delete"
 msgstr "Fafao"
 
@@ -490,19 +510,15 @@ msgstr "tohiny"
 
 #: ../views/results_bkc.php:13
 #: ../views/search.php:15
-#: ../views/topic/index.php:39
 msgid "Author"
 msgstr "Mpanoratra"
 
 #: ../views/results_bkc.php:16
 #: ../views/admin/topic/list.php:27
-#: ../views/topic/list.php:29
 msgid "Messages"
 msgstr "Hafatra"
 
 #: ../views/results_bkc.php:19
-#: ../views/topic/index.php:48
-#: ../views/topic/list.php:32
 msgid "Last change"
 msgstr "Niova farany"
 
@@ -519,7 +535,6 @@ msgid "Everywhere"
 msgstr "N'aiza n'aiza"
 
 #: ../views/search.php:14
-#: ../views/topic/index.php:36
 msgid "Message"
 msgstr "Hevitra"
 
@@ -565,12 +580,12 @@ msgstr "Fandrindrana"
 
 #: ../views/admin/topic/create.php:48
 #: ../views/message/create.php:49
-#: ../views/message/index.php:69
+#: ../views/message/index.php:68
 #: ../views/message/move.php:17
 #: ../views/message/preview.php:51
 #: ../views/topic/create.php:20
 msgid "Save"
-msgstr "Tehirizo"
+msgstr "Alefaso"
 
 #: ../views/admin/topic/create.php:60
 #: ../views/message/create.php:15
@@ -652,13 +667,13 @@ msgid "Message:"
 msgstr "Lahatsoratra :"
 
 #: ../views/message/create.php:46
-#: ../views/message/index.php:66
+#: ../views/message/index.php:65
 #: ../views/message/preview.php:48
 msgid "Notify me when replied:"
 msgstr "Ilazao rehefa misy mamaly:"
 
 #: ../views/message/create.php:50
-#: ../views/message/index.php:70
+#: ../views/message/index.php:69
 #: ../views/message/preview.php:52
 msgid "Preview"
 msgstr "Jereo aloha"
@@ -676,7 +691,7 @@ msgid "Replies:"
 msgstr "Valiny :"
 
 #: ../views/message/index.php:16
-#: ../views/message/index.php:56
+#: ../views/message/index.php:55
 msgid "Pages:"
 msgstr "Pejy:"
 
@@ -684,19 +699,19 @@ msgstr "Pejy:"
 msgid "Move"
 msgstr "Afindrao"
 
-#: ../views/message/index.php:50
+#: ../views/message/index.php:49
 msgid "Quote"
 msgstr "Valio"
 
-#: ../views/message/index.php:51
+#: ../views/message/index.php:50
 msgid "Back to top"
 msgstr "Miverina eny ambony"
 
-#: ../views/message/index.php:63
+#: ../views/message/index.php:62
 msgid "Reply:"
 msgstr "Valio"
 
-#: ../views/message/index.php:76
+#: ../views/message/index.php:75
 msgid "Reply to the thread"
 msgstr "Hamaly hafatra"
 

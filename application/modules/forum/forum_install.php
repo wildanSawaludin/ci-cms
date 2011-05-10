@@ -73,6 +73,6 @@ INDEX ( `name` )
 
 $this->db->query($query);
 
-$query = "INSERT INTO " . $this->db->dbprefix('form_settings') . " (`name`, `value`) VALUES ('style', 'blue')"; 
+$query = "INSERT INTO " . $this->db->dbprefix('forum_settings') . " (`name`, `value`) VALUES ('style', 'blue')"; 
 $this->db->query($query);
 

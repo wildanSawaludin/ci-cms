@@ -176,7 +176,7 @@ class Page_Model extends CI_Model {
 	function list_pages($parent = 0, $level = 0)
 	{
 		
-		$this->db->where(array('parent_id' => $parent, 'lang' => $this->user->lang));
+		$this->db->where(array('active <>' => -1, 'parent_id' => $parent, 'lang' => $this->user->lang));
 		$this->db->order_by('parent_id, weight');
 		$query = $this->db->get('pages');
 		
@@ -200,6 +200,7 @@ class Page_Model extends CI_Model {
 		$this->db->order_by('id', 'DESC');
 		$this->db->where('parent_id', $id);
 		$this->db->where('lang', $this->user->lang);
+		$this->db->where('active', 1);
 		$query = $this->db->get('pages', $limit);
 		return $query->result_array();
 	}

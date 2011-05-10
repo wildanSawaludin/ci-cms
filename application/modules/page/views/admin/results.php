@@ -5,6 +5,7 @@
 
 <ul class="manage">
 	<li><a href="<?php echo site_url('admin/page/settings')?>"><?php echo __("Settings", $module)?></a></li>
+	<li><a href="<?php echo site_url('admin/page/archives')?>"><?php echo __("Archived pages", $module)?></a></li>
 	<li><a href="<?php echo site_url('admin/page/create')?>"><?php _e("Create new Page", $module)?></a></li>
 	<li><a href="<?php echo ($this->uri->segment(3) == 'search') ? site_url('admin/page') : site_url('admin')?>" class="last"><?php _e("Cancel", $module)?></a></li>
 </ul>
@@ -50,9 +51,9 @@
 <?php if ($i % 2 != 0): $rowClass = 'odd'; else: $rowClass = 'even'; endif;?>
 		<tr class="<?php echo $rowClass?>">
 				<td class="center"><?php echo $i?></td>
-				<td><?php if($page['children'] > 0): ?><?php echo anchor('admin/page/index/' . $page['id'],  (strlen($page['title']) > 20? substr($page['title'], 0,20) . '...': $page['title'])) ?> [<?php echo anchor('admin/page/index/' . $page['id'], "+ " . $page['children']) ?>] <?php else: ?><?php echo  (strlen($page['title']) > 20? substr($page['title'], 0,20) . '...': $page['title']) ; endif; ?></td>
+				<td><?php if($page['children'] > 0): ?><?php echo anchor('admin/page/' . (($page['active']==-1)? 'archives': 'index') . '/' . $page['id'],  (strlen($page['title']) > 20? substr($page['title'], 0,20) . '...': $page['title'])) ?> [<?php echo anchor('admin/page/' . (($page['active']==-1)? 'archives': 'index') . '/' . $page['id'], "+ " . $page['children']) ?>] <?php else: ?><?php echo  (strlen($page['title']) > 20? substr($page['title'], 0,20) . '...': $page['title']) ; endif; ?></td>
 				<td><?php echo $page['uri']?></td>
-				<td><?php if ($page['active']==1): echo 'Published'; else: echo 'Draft'; endif;?></td>
+				<td><?php if ($page['active']==1): echo 'Published'; elseif($page['active']==-1) : echo 'Archive'; else: echo 'Draft'; endif;?></td>
 				<td>
 				<a href="<?php echo site_url('admin/page/move/up/'. $page['id'] . '/' . $search_id . '/' . $start)?>"><img src="<?php echo site_url('application/views/' . $this->system->theme_dir . 'admin/images/moveup.gif')?>" width="16" height="16" title="<?php echo __("Move up", $module)?>" alt="<?php echo __("Move up", $module)?>"/></a>
 				</td><td>
