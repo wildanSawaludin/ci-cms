@@ -9,6 +9,9 @@
 			<?php  echo __("Now, create a new password.", $module);
 			?>
 			<br />
+			
+			<label for="username"><?php  echo __("Username", $module)?>:</label>
+			<strong class="input-text" style="border: none;"><?php echo $row['username'] ; ?></strong> <br />
 			<label for="newpass"><?php  echo __("New password", $module)?>:</label>
 			<input type="password" name="newpass" value="" id="newpass" class="input-text" /><br />
 

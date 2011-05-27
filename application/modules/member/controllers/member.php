@@ -362,6 +362,7 @@ class Member extends MX_Controller {
 				{
 					$this->user->update($user['username'], array('activation' => '', 'password' => $this->input->post('newpass')));
 					$this->template['message'] = __("Your password is now changed. You can login with your username and the new password.", $this->template['module']);
+					$this->user->logout();
 					$this->layout->load($this->template, 'adino_result');
 				}
 				else

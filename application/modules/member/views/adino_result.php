@@ -3,6 +3,6 @@
 <?php  echo $message ?>
 </p>
 <p>
-<a href="<?php  echo site_url( $this->session->userdata("last_uri") ) ?>"><?php  _e("Go back", $module) ?></a>
+<a href="<?php  echo site_url('') ?>"><?php  _e("Go back", $module) ?></a>
 </p>
 
