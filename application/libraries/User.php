@@ -191,7 +191,7 @@
 			//destroy previous sesson
 			$this->_destroy_session();
 			//First check from the table
-			
+			$result = array();
 			$result['username'] = $username;
 			$result['password'] = $password;
 			
@@ -210,6 +210,8 @@
 				$this->_start_session();
 				$this->obj->session->set_flashdata('notification', 'Login successful...');
 				
+				//if ever we need to do action on the registered user (as array)
+				$this->obj->plugin->do_action('user_logged_in', $result);
 				if($remember !== false)
 				{
 					$this->obj->load->library('user_persistence');
