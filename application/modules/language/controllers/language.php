@@ -45,7 +45,7 @@
 			}
 			else
 			{
-				$redirect = str_replace("$lang" , "", $this->uri->uri_string());
+				$redirect = substr($this->uri->uri_string(), 3);
 			}
 			
 			redirect($redirect);
