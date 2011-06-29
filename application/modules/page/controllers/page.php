@@ -208,15 +208,8 @@ and set to approve comments automatically.
 				$built_uri = $this->system->page_home;
 			}
 			
-			if ( $page = $this->pages->get_page(array('uri' => $built_uri)) )
+			if ( $page = $this->pages->get_page(array('uri' => $built_uri, 'lang' => $this->user->lang)) )
 			{
-				//if it does not belong to the UI language
-				//then go to the correct lang
-				
-				if($page['lang'] != $this->user->lang)
-				{
-					redirect($page['lang'] . '/' . $page['uri']);
-				}
 				
 				$page = $this->plugin->apply_filters('page_item', $page);
 				
@@ -326,6 +319,11 @@ and set to approve comments automatically.
 					$this->template['message'] = __("The page you're looking for is not active!", "page");
 					$view = '403';
 				}
+			}
+			elseif( $page = $this->pages->get_page(array('uri' => $built_uri)) )
+			{
+				//the page exists but in another language, so change the language and go to the page
+				redirect($page['lang'] . '/' . $page['uri']);
 			}
 			else
 			{
