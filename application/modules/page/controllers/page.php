@@ -208,8 +208,16 @@ and set to approve comments automatically.
 				$built_uri = $this->system->page_home;
 			}
 			
-			if ( $page = $this->pages->get_page(array('uri' => $built_uri, 'lang' => $this->user->lang)) )
+			if ( $page = $this->pages->get_page(array('uri' => $built_uri)) )
 			{
+				//if it does not belong to the UI language
+				//then go to the correct lang
+				
+				if($page['lang'] != $this->user->lang)
+				{
+					redirect($page['lang'] . '/' . $page['uri']);
+				}
+				
 				$page = $this->plugin->apply_filters('page_item', $page);
 				
 				//can view?
@@ -229,7 +237,7 @@ and set to approve comments automatically.
 					return;
 				}
 				
-				if ($page['active'] == 1)
+				if ($page['active'] != 0)
 				{
 					
 					$this->template['comments'] = $this->pages->get_comments(array('where' => array('page_id' => $page['id'], 'status' => 1), 'order_by' => 'id'));
