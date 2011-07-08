@@ -51,7 +51,7 @@
 <?php if ($i % 2 != 0): $rowClass = 'odd'; else: $rowClass = 'even'; endif;?>
 		<tr class="<?php echo $rowClass?>">
 				<td class="center"><?php echo $i?></td>
-				<td><?php if($page['children'] > 0): ?><?php echo anchor('admin/page/' . (($page['active']==-1)? 'archives': 'index') . '/' . $page['id'],  (strlen($page['title']) > 20? substr($page['title'], 0,20) . '...': $page['title'])) ?> [<?php echo anchor('admin/page/' . (($page['active']==-1)? 'archives': 'index') . '/' . $page['id'], "+ " . $page['children']) ?>] <?php else: ?><?php echo  (strlen($page['title']) > 20? substr($page['title'], 0,20) . '...': $page['title']) ; endif; ?></td>
+				<td><?php if($page['children'] > 0): ?><?php echo anchor('admin/page/' . (($page['active']==-1)? 'archives': 'index') . '/' . $page['id'],  character_limiter($page['title'],20)) ?> [<?php echo anchor('admin/page/' . (($page['active']==-1)? 'archives': 'index') . '/' . $page['id'], "+ " . $page['children']) ?>] <?php else: ?><?php echo   character_limiter($page['title'],20) ; endif; ?></td>
 				<td><?php echo $page['uri']?></td>
 				<td><?php if ($page['active']==1): echo 'Published'; elseif($page['active']==-1) : echo 'Archive'; else: echo 'Draft'; endif;?></td>
 				<td>
