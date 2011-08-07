@@ -56,13 +56,21 @@ class Cms_locale {
 	{
 		if(!isset($this->default))
 		{
-			$row = $this->obj->language_model->get(array('default' => 1));
+			$rows = $this->get_active();
 			
-			if ($row)
+			if ($rows)
 			{
-				$this->default = $row['code'] ;
+				foreach ( $rows as $row )
+				{
+					if($row['default'] == 1)
+					{
+						$this->default = $row['code'];
+						return $this->default;
+					}
+				}
 			}
-			elseif (strlen( $this->obj->config->item('language') ) == 2 )
+			
+			if (strlen( $this->obj->config->item('language') ) == 2 )
 			{
 				$this->default = $this->obj->config->item('language');
 			}
@@ -78,7 +86,7 @@ class Cms_locale {
 	{
 		if(!isset($this->codes))
 		{
-			$rows = $this->obj->language_model->get_list(array('active' => 1));
+			$rows = $this->get_active();
 			$codes = array();
 			
 			if ( $rows )
