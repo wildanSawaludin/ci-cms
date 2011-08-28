@@ -71,7 +71,7 @@
 					}
 					else
 					{
-						$parent = 0;
+						return false;
 					}
 				}
 				
