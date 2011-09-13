@@ -36,14 +36,14 @@
 			
 		}
 		
-		function listall($debut = 0, $limit = 20, $order = 'id') 
+		function listall($start = 0, $limit = 20, $order = 'id') 
 		{
 			$where = array();
 			if ($filter = $this->input->post('filter'))
 			{
 				$where = array('username' => $filter, 'email' => $filter);
 			}
-			$this->template['members'] = $this->member_model->get_users($where, array('limit' => $limit, 'start' => $debut, 'order_by' => $order));
+			$this->template['members'] = $this->member_model->get_users($where, array('limit' => $limit, 'start' => $start, 'order_by' => $order));
 			$this->load->library('pagination');
 
 			$config['uri_segment'] = 4;
@@ -56,6 +56,7 @@
 			$this->pagination->initialize($config); 
 
 			$this->template['pager'] = $this->pagination->create_links();
+			$this->template['start'] = $start;
 			
 			$this->layout->load($this->template, 'admin');
 			return;
