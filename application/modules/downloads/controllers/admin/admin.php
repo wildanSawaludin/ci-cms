@@ -28,6 +28,15 @@ class Admin extends MX_Controller {
 		//rehefa tsisy nin nin dia lisitry ny cateogory
 		$per_page = 20;
 		
+		if ($cat == 0)
+		{
+			$this->template['cat'] = array('pid' => 0, 'id' => 0, 'title' => __("Root", 'downloads'));
+		}
+		else
+		{
+			$this->template['cat'] = $this->downloads->get_cat($cat);
+			
+		}
 		
 		$this->user->check_level($this->template['module'], LEVEL_VIEW);
 		
@@ -52,14 +61,6 @@ class Admin extends MX_Controller {
 		
 		$this->template['files'] = $this->downloads->get_docs($cat, $start, $per_page);
 		
-		if ($cat == 0)
-		{
-			$this->template['cat'] = array('pid' => 0, 'id' => 0, 'title' => __("Root", 'downloads'));
-		}
-		else
-		{
-			$this->template['cat'] = $this->downloads->get_cat($cat);
-		}
 		
 		
 		$config['uri_segment'] = 5;

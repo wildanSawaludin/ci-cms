@@ -30,7 +30,16 @@ class Downloads extends MX_Controller {
 		
 		if ($pid != 0)
 		{
-			$this->template['parent'] = $this->downloads->get_cat($pid);
+			$parent = $this->downloads->get_cat($pid);
+			//language check.
+			//if people are just opening the link to the category with a different language
+			//they will be redirected to the right language
+			if($parent['lang'] != $this->user->lang)
+			{
+				redirect($parent['lang'] . '/downloads/index/' . $pid );
+				return;
+			}
+			$this->template['parent'] = $parent;
 		}
 		
 		if (isset($this->template['parent']['title']))
