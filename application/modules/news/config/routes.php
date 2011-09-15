@@ -1,4 +1,5 @@
 <?php 
+	$route['news(/rss.*)'] = "news/rss$1";
 	$route['news/list(/:any)?'] = 'news/index$1';
 	$route['news(/tag.*)'] = "news/tag$1";
 	$route['news(/cat.*)'] = "news/cat$1";
