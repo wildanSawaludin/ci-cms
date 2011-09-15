@@ -1,5 +1,5 @@
 <a name="top"> </a>
-<h1><?php echo $title;?> <a href='<?php echo site_url('forum/rss/message/' . $messages['0']['mid']) ?>' target='_blank'><img src="http://forum.serasera.org/application/views/dinika_v3/images/feed-icon-14x14.png" width="14" height="14" border="0"></a></h1>
+<h1><?php echo $title;?> <a href='<?php echo site_url('forum/rss/message/' . $messages['0']['mid']) ?>' target='_blank'><img src="<?php echo site_url('application/modules/forum/images/feed-icon-14x14.png') ?>" width="14" height="14" border="0"></a></h1>
 
 <?php if ($notice = $this->session->flashdata('notification')):?>
 <p class="notice"><?=$notice;?></p>
@@ -39,7 +39,9 @@
 
 </td>
 </tr><tr>
-<td valign="top" class="message-body"> <img src="http://avatar.serasera.org/<?php echo md5($row['username'])?>.jpg" align="left" hspace="5" width="40" height="40" class="avatar"/>
+<td valign="top" class="message-body"> 
+<?php $this->plugin->do_action('forum_avatar_image', array('username' => $row['username'], 'email' => $row['email'])); ?>
+
 <?php echo $this->bbcode->parse(nl2br(strip_tags($row['message']))) ?>
 </td>
 </tr>

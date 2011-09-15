@@ -97,7 +97,7 @@ class Download_model extends CI_Model {
 		$this->db->select($select1 . ', '. $select2);
 		$this->db->order_by('weight');
 		$this->db->where('cat', $cat);
-		$this->db->where('lang', $this->user->lang);
+		//$this->db->where('lang', $this->user->lang);
 		$this->db->from('download_doc');
 		$this->db->join('download_files', 'download_doc.file_id = download_files.id', 'left');
 		$this->db->limit($per_page, $start);
