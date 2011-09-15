@@ -66,7 +66,7 @@ class Admin extends MX_Controller {
 		$config['first_link'] = __('First');
 		$config['last_link'] = __('Last');
 		$config['base_url'] = base_url() . 'admin/downloads/index/' . $cat;
-		$config['total_rows'] = $this->downloads->get_totalfiles($cat);
+		$config['total_rows'] = $this->downloads->get_totaldocs($cat);
 		$config['per_page'] = $per_page; 
 
 		$this->pagination->initialize($config); 

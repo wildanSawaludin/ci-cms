@@ -49,6 +49,9 @@ else
 ?>		
 <img src="<?php echo site_url('media/images/downloads/' . $row['ext'] . '.gif')?>" >
 <a href="<?php echo $row['link']?>"><?php echo $row['title']?></a><br />
+<div class="description">
+<?php echo (strlen($row['desc']) > 400)? substr($row['desc'], 0, 400) . " " . anchor('downloads/document/show/' . $row['id'], __("more...", $module)) : $row['desc'] ?>
+</div>
 </div>
 <?php endforeach;?>
 <?php endif; ?>

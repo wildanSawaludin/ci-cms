@@ -56,7 +56,7 @@ class Downloads extends MX_Controller {
 		$config['first_link'] = __('First');
 		$config['last_link'] = __('Last');
 		$config['base_url'] = base_url() . 'downloads/index/' . $pid;
-		$config['total_rows'] = $this->downloads->get_totalfiles($pid);
+		$config['total_rows'] = $this->downloads->get_totaldocs($pid);
 		$config['per_page'] = $per_page; 
 
 		$this->pagination->initialize($config); 
