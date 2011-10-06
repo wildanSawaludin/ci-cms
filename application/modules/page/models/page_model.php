@@ -273,6 +273,26 @@ class Page_Model extends CI_Model {
 		$this->cache->remove_group('page_list');
 	}
 	
+	function get_comment($id = 0)
+	{
+		$query = $this->db->get_where('page_comments', array('id' => $id));
+		if ( $query->num_rows() > 0 )
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return false;
+		}
+		
+	}
+	
+	function delete_comment($id)
+	{
+		$this->db->where('id', $id);
+		$this->db->delete('page_comments');
+	}
+	
 	function get_comments($params = array())
 	{
 		$default_params = array
@@ -304,6 +324,28 @@ class Page_Model extends CI_Model {
 			return false;
 		}
 		
+	}
+	
+	function get_total_comments($params)
+	{
+		$default_params = array
+		(
+			'where' => array()
+		);
+		
+		foreach ($default_params as $key => $value)
+		{
+			$params[$key] = (isset($params[$key]))? $params[$key]: $default_params[$key];
+		}
+		if ($params['where'])
+		{
+			$this->db->where($params['where']);
+		}
+		$this->db->select('count(id)');
+		$this->db->from('page_comments');
+				
+		return $this->db->count_all_results();
+	
 	}
 	
 	function get_images($params)

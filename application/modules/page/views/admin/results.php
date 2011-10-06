@@ -5,6 +5,7 @@
 
 <ul class="manage">
 	<li><a href="<?php echo site_url('admin/page/settings')?>"><?php echo __("Settings", $module)?></a></li>
+	<li><a href="<?php echo site_url('admin/page/comments')?>"><?php echo __("Comments", $module)?></a></li>
 	<li><a href="<?php echo site_url('admin/page/archives')?>"><?php echo __("Archived pages", $module)?></a></li>
 	<li><a href="<?php echo site_url('admin/page/create')?>"><?php _e("Create new Page", $module)?></a></li>
 	<li><a href="<?php echo ($this->uri->segment(3) == 'search') ? site_url('admin/page') : site_url('admin')?>" class="last"><?php _e("Cancel", $module)?></a></li>

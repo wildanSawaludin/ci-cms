@@ -414,6 +414,22 @@ and set to approve comments automatically.
 
         }
 
+		//view by id
+		function view($id = 0)
+		{
+			$data['id'] = $id;
+			$page = $this->pages->get_page($data);
+			if($page)
+			{
+				redirect($page['uri']);
+				return;
+			}
+			else
+			{
+				$this->layout->load($this->template, '404');
+				return;
+			}
+		}
 		
 	}
 
