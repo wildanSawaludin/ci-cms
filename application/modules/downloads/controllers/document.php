@@ -31,7 +31,7 @@ class Document extends MX_Controller {
 	
 	function get($file)
 	{
-        
+        $file = (urldecode($file));
         $row = $this->downloads->get_doc(array('download_files.file' => $file));
         
 		if ($row)
