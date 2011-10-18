@@ -1,0 +1,642 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Solaitra:Downloads\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-09-02 15:26+0100\n"
+"PO-Revision-Date: 2011-09-02 15:47+0100\n"
+"Last-Translator: Hery <hery@serasera.org>\n"
+"Language-Team: Hery serasera.org <hery@serasera.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Malagasy\n"
+"X-Poedit-Country: MADAGASCAR\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../news_plugins.php:18
+#: ../news_plugins.php:37
+msgid "You must submit the security code that appears in the image"
+msgstr "Ampidiro ny soratra eo amin'ny sary"
+
+#: ../news_plugins.php:85
+msgid "Security code:"
+msgstr "Soratra fiaro:"
+
+#: ../news_plugins.php:86
+msgid "Confirm security code:"
+msgstr "Hamarino ny soratra fiaro:"
+
+#: ../news_update.php:21
+#: ../news_update.php:58
+#: ../news_update.php:75
+#: ../news_update.php:118
+#, php-format
+msgid "News module updated to %s"
+msgstr ""
+
+#: ../controllers/news.php:45
+#: ../controllers/news.php:79
+msgid "Comment Notification"
+msgstr "Filazana rehefa misy hafatra"
+
+#: ../controllers/news.php:47
+#: ../controllers/news.php:80
+#, php-format
+msgid ""
+"\n"
+"Hello,\n"
+"\n"
+"A new comment has been sent to the news\n"
+"%s\n"
+"\n"
+"\n"
+"If you don't want to receive other notification, go to\n"
+"%s\n"
+"\n"
+"and disable notification.\n"
+msgstr ""
+"\n"
+"Miarahaba,\n"
+"\n"
+"Nisy nametraka hevitra ny lahatsoratra napetrakao ao amin'ny \n"
+"%s\n"
+"\n"
+"\n"
+"Raha toa ka tsy te handray filazana tahaka ity intsony dia mandehana ao amin'ny \n"
+"%s\n"
+"\n"
+"dia atsaharo ny filazana.\n"
+
+#: ../controllers/news.php:112
+msgid "Comment to approve"
+msgstr "Hevitra mila jerena"
+
+#: ../controllers/news.php:114
+#, php-format
+msgid ""
+"\n"
+"Hello,\n"
+"\n"
+"A new comment has been sent to the news\n"
+"%s\n"
+"To approve it click the link below \n"
+"%s\n"
+"\n"
+"If you don't want to receive other notification, go to\n"
+"%s\n"
+"\n"
+"and set to approve comments automatically.\n"
+msgstr ""
+"\n"
+"Salama,\n"
+"\n"
+"Nisy nametraka hevitra vaovao ao amin'ny  \n"
+"%s\n"
+"Raha hanaiky na handà an'io ianao dia tsindrio ny rohy eto ambany\n"
+"%s\n"
+"\n"
+"Raha tsy te handray filazana tahaka ity intsony dia mandehana ao amin'ny \n"
+"%s\n"
+"\n"
+"dia safidio ny fanekena mandeha ho azy.\n"
+
+#: ../controllers/news.php:139
+msgid "Thank you for your comment. In this site, the comments need to be approved by the administrator. Once approved, you will see it listed here."
+msgstr "Misaotra anao tamin'ny hevitra. Rehefa eken'ny mpiandraikitra ny takelaka ny hevitra napetrakao dia hiseho."
+
+#: ../controllers/news.php:185
+msgid "No news found"
+msgstr "Tsy misy lahatsoratra hita"
+
+#: ../controllers/news.php:204
+#: ../controllers/news.php:250
+#: ../controllers/news.php:306
+#: ../controllers/admin/admin.php:43
+#: ../controllers/admin/category.php:39
+#: ../controllers/admin/comments.php:56
+msgid "First"
+msgstr "Voalohany"
+
+#: ../controllers/news.php:205
+#: ../controllers/news.php:251
+#: ../controllers/news.php:307
+#: ../controllers/admin/admin.php:44
+#: ../controllers/admin/category.php:40
+#: ../controllers/admin/comments.php:57
+msgid "Last"
+msgstr "Farany"
+
+#: ../controllers/news.php:216
+msgid "All news"
+msgstr "Ny lahatsoratra rehetra"
+
+#: ../controllers/news.php:233
+#: ../controllers/rss.php:77
+msgid "No category"
+msgstr "Tsy voasokajy"
+
+#: ../controllers/news.php:263
+#, php-format
+msgid "News in %s"
+msgstr "Lahatsoratra ao amin'ny %s"
+
+#: ../controllers/news.php:267
+msgid "Other news"
+msgstr "Vaovao hafa"
+
+#: ../controllers/news.php:286
+#: ../controllers/rss.php:129
+msgid "Tag list"
+msgstr "Lisitry ny sokanjinteny"
+
+#: ../controllers/news.php:293
+#, php-format
+msgid "News tagged with %s "
+msgstr "Lahatsoratra misy sokajin-teny hoe %s"
+
+#: ../controllers/admin/admin.php:72
+msgid "Settings updated"
+msgstr "Voatahiry ny safidy"
+
+#: ../controllers/admin/admin.php:86
+#: ../controllers/admin/admin.php:205
+#: ../views/admin.php:26
+#: ../views/comments.php:45
+msgid "Title"
+msgstr "Lohateny"
+
+#: ../controllers/admin/admin.php:88
+#: ../controllers/admin/admin.php:207
+#, php-format
+msgid "The %s field can not be empty"
+msgstr "Tsy maintsy fenoina ny %s"
+
+#: ../controllers/admin/admin.php:165
+msgid "News saved"
+msgstr "Voatahiry ny lahatsoratra"
+
+#: ../controllers/admin/admin.php:272
+msgid "The image was deleted"
+msgstr "Voafafa ny sary"
+
+#: ../controllers/admin/admin.php:285
+msgid "The uploaded file exceeds the upload_max_filesize directive in php.ini"
+msgstr "Mavesatra loatra ny sary."
+
+#: ../controllers/admin/admin.php:288
+msgid "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form"
+msgstr "Le fichier t&eacute;l&eacute;charg&eacute; d&eacute;passe la taille maximale autoris&eacute;e (<em>MAX_FILE_SIZE</em>)"
+
+#: ../controllers/admin/admin.php:291
+msgid "The uploaded file was only partially uploaded"
+msgstr "Le fichier a &eacute;t&eacute; partiellement t&eacute;l&eacute;charg&eacute;"
+
+#: ../controllers/admin/admin.php:294
+msgid "No file was uploaded."
+msgstr "Aucun fichier t&eacute;l&eacute;charg&eacute;."
+
+#: ../controllers/admin/admin.php:298
+msgid "Missing a temporary folder"
+msgstr "R&eacute;pertoire temporaire manquant."
+
+#: ../controllers/admin/admin.php:301
+msgid "Failed to write file to disk"
+msgstr "L&#8217;&eacute;criture dans le fichier a &eacute;chou&eacute;"
+
+#: ../controllers/admin/admin.php:304
+msgid "File upload stopped by extension"
+msgstr "Chargement de fichier arreté"
+
+#: ../controllers/admin/admin.php:308
+msgid "No error code avaiable"
+msgstr "Pas de code erreur disponible"
+
+#: ../controllers/admin/admin.php:313
+msgid "No file was uploaded.."
+msgstr "Aucun fichier t&eacute;l&eacute;charg&eacute;."
+
+#: ../controllers/admin/category.php:75
+msgid "Category saved"
+msgstr "Voatahiry ny sokajy"
+
+#: ../controllers/admin/category.php:103
+msgid "The category contains other categories. It cannot be removed."
+msgstr "La catégorie contient d'autres catégories. Vous ne pouvez pas la supprimer."
+
+#: ../controllers/admin/category.php:110
+msgid "The category contains news. It cannot be removed."
+msgstr "La catégorie contient des articles. Vous ne pouvez pas la supprimer."
+
+#: ../controllers/admin/category.php:119
+msgid "The category  has been deleted."
+msgstr "La catégorie a été supprimée"
+
+#: ../controllers/admin/comments.php:74
+msgid "The comment has been approved"
+msgstr "Le commentaire a &eacute;t&eacute; approuv&eacute;"
+
+#: ../controllers/admin/comments.php:84
+msgid "The comment has been suspended"
+msgstr "Le commentaire a &eacute;t&eacute; chang&eacute;"
+
+#: ../controllers/admin/settings.php:46
+msgid "Settings saved"
+msgstr "Options sauvegard&eacute;es."
+
+#: ../views/404.php:3
+msgid "The news you're looking for couldn't be found!"
+msgstr "Tsy hita ny lahatsoratra tadiavinao"
+
+#: ../views/admin.php:4
+msgid "News Administration"
+msgstr "Param&egrave;tres d&#8217;administration"
+
+#: ../views/admin.php:7
+#: ../views/comments.php:21
+msgid "Settings"
+msgstr "Configurations"
+
+#: ../views/admin.php:8
+msgid "Manage comments"
+msgstr "G&eacute;rer les commentaires"
+
+#: ../views/admin.php:9
+msgid "Manage categories"
+msgstr "G&eacute;rer Cat&eacute;gories"
+
+#: ../views/admin.php:10
+msgid "Create news"
+msgstr "Hampiditra lahatsoratra"
+
+#: ../views/admin.php:11
+#: ../views/comments.php:22
+msgid "Cancel"
+msgstr "Aoka ihany"
+
+#: ../views/admin.php:27
+msgid "Ordering"
+msgstr "Filaharany"
+
+#: ../views/admin.php:28
+msgid "Status"
+msgstr "Toetra"
+
+#: ../views/admin.php:29
+#: ../views/comments.php:49
+msgid "Action"
+msgstr "Asa"
+
+#: ../views/admin.php:30
+msgid "Hits"
+msgstr "Mpamangy"
+
+#: ../views/admin.php:40
+msgid "Move up"
+msgstr "Ampiakaro"
+
+#: ../views/admin.php:41
+msgid "Move down"
+msgstr "Ampidino"
+
+#: ../views/admin.php:42
+msgid "Published"
+msgstr "Miseho"
+
+#: ../views/admin.php:42
+msgid "Draft"
+msgstr "Vakiraoka"
+
+#: ../views/admin.php:43
+msgid "View"
+msgstr "Asehoy"
+
+#: ../views/admin.php:44
+msgid "Edit"
+msgstr "Ahitsio"
+
+#: ../views/admin.php:45
+#: ../views/comments.php:68
+msgid "Delete"
+msgstr "Fafao"
+
+#: ../views/comments.php:4
+msgid "Confirm delete?"
+msgstr "Fafaina tokoa?"
+
+#: ../views/comments.php:18
+msgid "Comments"
+msgstr "Hevitra"
+
+#: ../views/comments.php:33
+msgid "Show:"
+msgstr "Asehoy:"
+
+#: ../views/comments.php:35
+msgid "All"
+msgstr "Rehetra"
+
+#: ../views/comments.php:36
+msgid "Approved"
+msgstr "Ekena"
+
+#: ../views/comments.php:37
+msgid "Suspended"
+msgstr "Nolavina"
+
+#: ../views/comments.php:46
+msgid "Author"
+msgstr "Mpanoratra"
+
+#: ../views/comments.php:47
+msgid "Email"
+msgstr "Email"
+
+#: ../views/comments.php:48
+msgid "Ip"
+msgstr "IP"
+
+#: ../views/comments.php:64
+msgid "Approve"
+msgstr "Ekena"
+
+#: ../views/comments.php:66
+msgid "Suspend"
+msgstr "Tsy aseho"
+
+#: ../views/comment_delete.php:22
+#: ../views/delete.php:22
+msgid "Confirm?"
+msgstr "Hamarino?"
+
+#: ../views/comment_delete.php:26
+#: ../views/create.php:225
+#: ../views/create.php:231
+#: ../views/delete.php:26
+#: ../views/settings.php:41
+#: ../views/settings.php:50
+#: ../views/settings.php:57
+#: ../views/settings.php:64
+#: ../views/admin/category_delete.php:13
+msgid "No"
+msgstr "Tsia"
+
+#: ../views/comment_delete.php:27
+#: ../views/create.php:224
+#: ../views/create.php:230
+#: ../views/delete.php:27
+#: ../views/settings.php:40
+#: ../views/settings.php:49
+#: ../views/settings.php:56
+#: ../views/settings.php:63
+#: ../views/admin/category_delete.php:14
+msgid "Yes"
+msgstr "Eny"
+
+#: ../views/create.php:4
+msgid "Quick links"
+msgstr "Rohy malaky"
+
+#: ../views/create.php:7
+#: ../views/create.php:153
+msgid "Content"
+msgstr "Votoatiny"
+
+#: ../views/create.php:8
+#: ../views/create.php:185
+msgid "Tags"
+msgstr "Sokajin-teny"
+
+#: ../views/create.php:9
+#: ../views/admin/category_create.php:8
+msgid "Options"
+msgstr "Safidy"
+
+#: ../views/create.php:29
+msgid "Upload"
+msgstr "Ampidiro"
+
+#: ../views/create.php:86
+#: ../views/create.php:175
+msgid "Small"
+msgstr "Kely"
+
+#: ../views/create.php:86
+#: ../views/create.php:175
+msgid "Medium"
+msgstr "Antonony"
+
+#: ../views/create.php:86
+#: ../views/create.php:175
+msgid "Original"
+msgstr ""
+
+#: ../views/create.php:86
+#: ../views/create.php:176
+msgid "Delete image"
+msgstr "Fafao ny sary"
+
+#: ../views/create.php:105
+msgid "Edit news"
+msgstr "Ahitsio"
+
+#: ../views/create.php:105
+msgid "Create News"
+msgstr "Hampiditra"
+
+#: ../views/create.php:110
+#: ../views/admin/category_create.php:23
+msgid "Save"
+msgstr "Tehirizo"
+
+#: ../views/create.php:125
+msgid "To create a news, just fill in your content below and click 'Save'.<br />If you want to save your progress without publishing it, Select 'Draft' status."
+msgstr "Pour créer un article, compléter le contenu et cliquer sur 'Enregistrer'. <br />Si vous ne voulez pas que l'article apparaissent directement, selectionner 'Brouillon'."
+
+#: ../views/create.php:130
+msgid "SEF Address"
+msgstr "Adiresy URI"
+
+#: ../views/create.php:132
+msgid "You can leave the SEF Address blank unless you want to specify your own"
+msgstr "Azonao tsy fenoina ny adiresy raha tsy hoe tena ilaina"
+
+#: ../views/create.php:135
+msgid "Category"
+msgstr "Sokajy"
+
+#: ../views/create.php:156
+msgid "Image"
+msgstr "Sary"
+
+#: ../views/create.php:159
+msgid "Available images:"
+msgstr ""
+
+#: ../views/create.php:164
+#: ../views/admin/category.php:23
+#: ../views/admin/category_create.php:37
+msgid "Name"
+msgstr "Anarana"
+
+#: ../views/create.php:165
+msgid "Click to insert"
+msgstr ""
+
+#: ../views/create.php:213
+msgid "New tag"
+msgstr "Sokajin-teny vaovao"
+
+#: ../views/create.php:218
+msgid "Date"
+msgstr "Daty"
+
+#: ../views/create.php:222
+msgid "Allow Comments"
+msgstr "Azo ametrahana hevitra"
+
+#: ../views/create.php:228
+msgid "Notify me for comments"
+msgstr "Handray filazana"
+
+#: ../views/index.php:10
+msgid "More"
+msgstr "Tohiny"
+
+#: ../views/read.php:13
+msgid "Submitted by:"
+msgstr "Nampidirin'i :"
+
+#: ../views/read.php:14
+msgid "On:"
+msgstr "Ny :"
+
+#: ../views/read.php:15
+msgid "In:"
+msgstr "Tao amin'ny :"
+
+#: ../views/read.php:32
+msgid "Go back"
+msgstr "Hiverina"
+
+#: ../views/read.php:37
+msgid "Comments:"
+msgstr "Hevitra:"
+
+#: ../views/read.php:53
+msgid "Add a comment"
+msgstr "Hampiditra hevitra"
+
+#: ../views/read.php:57
+msgid "Name:"
+msgstr "Anarana:"
+
+#: ../views/read.php:63
+msgid "Email:"
+msgstr "Email:"
+
+#: ../views/read.php:70
+msgid "Comment"
+msgstr "Hevitra"
+
+#: ../views/read.php:77
+msgid "Required"
+msgstr "Ilaina"
+
+#: ../views/read.php:78
+msgid "Add comment"
+msgstr "Ampiditra hevitra"
+
+#: ../views/settings.php:4
+msgid "Quick menu"
+msgstr "Menu rapide"
+
+#: ../views/settings.php:7
+msgid "General settings"
+msgstr "Options g&eacute;n&eacute;rales"
+
+#: ../views/settings.php:8
+msgid "Comments settings"
+msgstr "Configuration commentaires"
+
+#: ../views/settings.php:22
+msgid "Save Settings"
+msgstr "Configuration enregistr&eacute;"
+
+#: ../views/settings.php:34
+msgid "Change the settings for the news module"
+msgstr "Changer les options du module"
+
+#: ../views/settings.php:38
+msgid "Use Alternate RSS Header"
+msgstr ""
+
+#: ../views/settings.php:47
+msgid "Allow comments"
+msgstr "Autoriser les commentaires"
+
+#: ../views/settings.php:54
+msgid "Approve comments"
+msgstr "Ekeo ny hevitra"
+
+#: ../views/settings.php:61
+msgid "Nodify admin"
+msgstr "Ilazao ny mpandrindra"
+
+#: ../views/admin/category.php:4
+msgid "News Categories"
+msgstr "Sokajy vaovao"
+
+#: ../views/admin/category.php:7
+msgid "Add New"
+msgstr "Hampiditra vaovao"
+
+#: ../views/admin/category.php:24
+msgid "URI"
+msgstr "URI"
+
+#: ../views/admin/category_create.php:4
+msgid "Category information"
+msgstr "Andinindininy"
+
+#: ../views/admin/category_create.php:7
+msgid "Details"
+msgstr "Antsipirihany"
+
+#: ../views/admin/category_create.php:17
+msgid "Add new category"
+msgstr "Hampiditra sokajy vaovao"
+
+#: ../views/admin/category_create.php:40
+msgid "Uri"
+msgstr "Uri"
+
+#: ../views/admin/category_create.php:44
+msgid "Parent"
+msgstr "Parent"
+
+#: ../views/admin/category_create.php:67
+msgid "Active"
+msgstr "Actif"
+
+#: ../views/admin/category_create.php:71
+msgid "Description"
+msgstr "Description"
+
+#: ../views/admin/category_delete.php:4
+msgid "Delete category"
+msgstr "Supprimer une Cat&eacute;gorie"
+
+#: ../views/admin/category_delete.php:9
+msgid "Do you want to delete the category?"
+msgstr "&Ecirc;tes-vous certain(e) de vouloir effacer la catégorie"
+
+#: ../views/blocks/latest.php:2
+msgid "Latest news"
+msgstr "Derni&egrave;res actualiés"
+
+#: ../views/blocks/newpages.php:2
+msgid "Latest Pages"
+msgstr "Derni&egrave;res Pages"
+
