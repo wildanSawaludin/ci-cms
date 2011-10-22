@@ -65,7 +65,10 @@ class Member extends MX_Controller {
 			if ( !$this->input->post('submit') )
 			{
 				$this->template['last_post'] = $this->session->userdata('last_post');
-				$this->template['redirect'] = $this->session->userdata('redirect');
+				$redirect = $this->session->userdata('redirect');
+				if(!$redirect) $redirect = $this->input->server('HTTP_REFERER');
+				$this->template['redirect'] = $redirect;
+				
 				$this->session->unset_userdata('last_post');
 				$this->session->unset_userdata('redirect');
 				$this->layout->load($this->template, 'login');
