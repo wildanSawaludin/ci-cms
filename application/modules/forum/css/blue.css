@@ -1,0 +1,54 @@
+table.forum-list, table.forum-message {
+	width: 100%;
+	border: 1px solid #3B68D1;
+}
+
+.forum-list tbody{
+	
+	border: none;
+}
+
+.forum-list th {
+	font-weight: bold;
+	background-color: #3B68D1;
+	text-align: center;
+	color: #FFFFFF;
+}
+
+
+table.forum-message {
+	margin: 10px 0;
+}
+
+td.message-header {
+	background-color: #EEEEEE;
+}
+
+tr.odd {
+	background-color: #EEEEEE;
+}
+
+tr.even {
+	background-color: #FFFFFF; 
+}
+
+td.one-hour{
+	background-color: #4268FF;
+	color: #FFFFFF;
+}
+
+td.five-hours {
+	background-color: #7791FC; 
+}
+
+td.one-day {
+	background-color: #B1C0FC; 
+}
+
+td.five-days {
+	background-color: #D9E0FC; 
+}
+
+td.more-days {
+	background-color: #FFFFFF; 
+}
