@@ -1,5 +1,6 @@
 application/config/config.php
 application/config/database.php
+application/modules/helpdoc
 application/logs/*
 docs/*
 cache/*
