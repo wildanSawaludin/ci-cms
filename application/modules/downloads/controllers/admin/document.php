@@ -42,6 +42,15 @@ class Document extends MX_Controller {
 		
 		if (!is_null($id) && $row = $this->downloads->get_doc($id))
 		{
+			//language check.
+			//if people are just opening the link to the category with a different language
+			//they will be redirected to the right language
+			if($row['lang'] != $this->user->lang)
+			{
+				redirect($row['lang'] . '/admin/downloads/document/create/' . $cat . '/' . $id);
+				return;
+			}
+		
 			$this->template['row'] = $row;
 		}
 		else

@@ -210,6 +210,7 @@ and set to approve comments automatically.
 			
 			if ( $page = $this->pages->get_page(array('uri' => $built_uri, 'lang' => $this->user->lang)) )
 			{
+				
 				$page = $this->plugin->apply_filters('page_item', $page);
 				
 				//can view?
@@ -229,7 +230,7 @@ and set to approve comments automatically.
 					return;
 				}
 				
-				if ($page['active'] == 1)
+				if ($page['active'] != 0)
 				{
 					
 					$this->template['comments'] = $this->pages->get_comments(array('where' => array('page_id' => $page['id'], 'status' => 1), 'order_by' => 'id'));
@@ -318,6 +319,11 @@ and set to approve comments automatically.
 					$this->template['message'] = __("The page you're looking for is not active!", "page");
 					$view = '403';
 				}
+			}
+			elseif( $page = $this->pages->get_page(array('uri' => $built_uri)) )
+			{
+				//the page exists but in another language, so change the language and go to the page
+				redirect($page['lang'] . '/' . $page['uri']);
 			}
 			else
 			{
@@ -408,6 +414,22 @@ and set to approve comments automatically.
 
         }
 
+		//view by id
+		function view($id = 0)
+		{
+			$data['id'] = $id;
+			$page = $this->pages->get_page($data);
+			if($page)
+			{
+				redirect($page['uri']);
+				return;
+			}
+			else
+			{
+				$this->layout->load($this->template, '404');
+				return;
+			}
+		}
 		
 	}
 

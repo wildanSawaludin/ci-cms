@@ -123,7 +123,6 @@
 			$per_page = 20;
 			
 			
-			
 			if(is_null($tag))
 			{
 				$this->template['title'] = __("Tag list", "news");

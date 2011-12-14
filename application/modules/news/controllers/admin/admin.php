@@ -317,10 +317,7 @@
 			
 			
 				$config['upload_path'] = './media/images/o/';
-				$config['allowed_types'] = 'gif|jpg|png';
-				$config['max_size']	= '500';
-				$config['max_width']  = '1024';
-				$config['max_height']  = '768';
+				$config['allowed_types'] = 'gif|jpg|png|jpeg';
 				
 				//var_dump($config['upload_path']);
 				$this->load->library('upload', $config);	

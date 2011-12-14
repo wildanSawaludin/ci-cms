@@ -190,10 +190,10 @@ class Admin extends MX_Controller {
 	function create($parent_id = 0, $uri = null)
 	{
 		$this->user->check_level($this->template['module'], LEVEL_ADD);
-		if ( !$data = $this->cache->get('pagelist'.$this->user->lang, 'page') )
+		if ( !$data = $this->cache->get('pagelist'.$this->user->lang, 'page_list') )
 		{
-			$data = $this->pages->list_pages();
-			$this->cache->save('pagelist'.$this->user->lang, $data, 'page', 0);
+			$data = $this->pages->get_page_tree(array('select' => 'id, parent_id, title', 'where' => array('active <>' => -1, 'lang' => $this->user->lang)));
+			$this->cache->save('pagelist'.$this->user->lang, $data, 'page_list', 0);
 		}			
 		$this->javascripts->add('ajaxfileupload.js');
 		$this->template['parents'] = $data;
@@ -218,18 +218,19 @@ class Admin extends MX_Controller {
 	{
 		$this->user->check_level($this->template['module'], LEVEL_EDIT);
 		
+		//get the parent list according to the language of the page to edit 
+		$page = $this->pages->get_page( array('id' => $this->page_id) );
 
-		if ( !$data = $this->cache->get('pagelist'.$this->user->lang, 'page') )
+		if ( !$data = $this->cache->get('pagelist'.$page['lang'], 'page_list') )
 		{
-			$data = $this->pages->list_pages();
-			$this->cache->save('pagelist'.$this->user->lang, $data, 'page', 0);
+			$data = $this->pages->get_page_tree(array('select' => 'id, parent_id, title', 'where' => array('active <>' => -1, 'lang' => $page['lang'])));
+			$this->cache->save('pagelist'.$page['lang'], $data, 'page_list', 0);
 		}			
 		$this->javascripts->add('ajaxfileupload.js');
 		$this->template['parents'] = $data;
 		
 		$this->template['images'] = $this->pages->get_images(array('where' => array('src_id' => 0)));
 		
-		$page = $this->pages->get_page( array('id' => $this->page_id) );
 		$this->template['images'] = $this->pages->get_images(array('where' => 'src_id = 0 OR src_id = ' . $page['id'] ));
 		$this->template['parent_id'] = $page['parent_id'];
 		$this->template['page'] = $page;

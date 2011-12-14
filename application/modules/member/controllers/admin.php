@@ -36,14 +36,14 @@
 			
 		}
 		
-		function listall($debut = 0, $limit = 20, $order = 'id') 
+		function listall($start = 0, $limit = 20, $order = 'id') 
 		{
 			$where = array();
 			if ($filter = $this->input->post('filter'))
 			{
 				$where = array('username' => $filter, 'email' => $filter);
 			}
-			$this->template['members'] = $this->member_model->get_users($where, array('limit' => $limit, 'start' => $debut, 'order_by' => $order));
+			$this->template['members'] = $this->member_model->get_users($where, array('limit' => $limit, 'start' => $start, 'order_by' => $order));
 			$this->load->library('pagination');
 
 			$config['uri_segment'] = 4;
@@ -56,6 +56,7 @@
 			$this->pagination->initialize($config); 
 
 			$this->template['pager'] = $this->pagination->create_links();
+			$this->template['start'] = $start;
 			
 			$this->layout->load($this->template, 'admin');
 			return;
@@ -137,8 +138,10 @@
 			
 		}
 
-		function delete($username = null)
+		function delete($username = null, $confirm = 0)
 		{
+
+			$this->user->check_level('member', LEVEL_DEL);
 			if (is_null($username))
 			{
 				$this->session->set_flashdata("notification", __("Username and status required", $this->template['module']));
@@ -152,9 +155,21 @@
 			
 			}
 			
-			$this->db->delete('users', array('username' => $username));
-			$this->session->set_flashdata("notification", __("User deleted", $this->template['module']));
-			redirect("admin/member/listall");
+			if($confirm == 0)
+			{
+				$this->template['username'] = $username;
+				$this->layout->load($this->template, 'delete');
+			}
+			else
+			{
+				
+				$this->db->delete('users', array('username' => $username));
+				$this->plugin->do_action('member_delete', $username);
+				$this->session->set_flashdata("notification", __("User deleted", $this->template['module']));
+				redirect("admin/member/listall");
+			}
+			
+
 			
 		}
 		

@@ -10,7 +10,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Admin extends MX_Controller {
 	var $template;
-
+	
 	function __construct()
 	{
 		parent::__construct();
@@ -20,6 +20,7 @@ class Admin extends MX_Controller {
 		$this->template['module']	= 'downloads';
 		$this->template['admin']		= true;
 		$this->load->model('download_model', 'downloads');
+
 	}
 	
 	function index($cat = 0, $start = null)
@@ -27,6 +28,15 @@ class Admin extends MX_Controller {
 		//rehefa tsisy nin nin dia lisitry ny cateogory
 		$per_page = 20;
 		
+		if ($cat == 0)
+		{
+			$this->template['cat'] = array('pid' => 0, 'id' => 0, 'title' => __("Root", 'downloads'));
+		}
+		else
+		{
+			$this->template['cat'] = $this->downloads->get_cat($cat);
+			
+		}
 		
 		$this->user->check_level($this->template['module'], LEVEL_VIEW);
 		
@@ -51,21 +61,13 @@ class Admin extends MX_Controller {
 		
 		$this->template['files'] = $this->downloads->get_docs($cat, $start, $per_page);
 		
-		if ($cat == 0)
-		{
-			$this->template['cat'] = array('pid' => 0, 'id' => 0, 'title' => __("Root", 'downloads'));
-		}
-		else
-		{
-			$this->template['cat'] = $this->downloads->get_cat($cat);
-		}
 		
 		
 		$config['uri_segment'] = 5;
 		$config['first_link'] = __('First');
 		$config['last_link'] = __('Last');
 		$config['base_url'] = base_url() . 'admin/downloads/index/' . $cat;
-		$config['total_rows'] = $this->downloads->get_totalfiles($cat);
+		$config['total_rows'] = $this->downloads->get_totaldocs($cat);
 		$config['per_page'] = $per_page; 
 
 		$this->pagination->initialize($config); 
@@ -79,6 +81,7 @@ class Admin extends MX_Controller {
 	
 	function settings()
 	{
+	
 		if ($post = $this->input->post('submit') )
 		{
 			
@@ -87,11 +90,21 @@ class Admin extends MX_Controller {
 			
 				if ( $this->input->post($key) !== false)
 				{
-					$this->downloads->set($key, $this->input->post($key));
+					if($key == 'upload_path')
+					{
+						$upload_path = $this->input->post($key);
+						if (substr($upload_path, -1) != DIRECTORY_SEPARATOR) $upload_path = $upload_path . DIRECTORY_SEPARATOR;
+						$this->downloads->set($key, $upload_path);
+					}
+					else
+					{
+						$this->downloads->set($key, $this->input->post($key));
+					}
 					
 				}
 				else
 				{
+					
 					$this->downloads->set($key, $val);
 				}
 			}

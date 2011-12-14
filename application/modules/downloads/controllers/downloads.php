@@ -30,7 +30,16 @@ class Downloads extends MX_Controller {
 		
 		if ($pid != 0)
 		{
-			$this->template['parent'] = $this->downloads->get_cat($pid);
+			$parent = $this->downloads->get_cat($pid);
+			//language check.
+			//if people are just opening the link to the category with a different language
+			//they will be redirected to the right language
+			if($parent['lang'] != $this->user->lang)
+			{
+				redirect($parent['lang'] . '/downloads/index/' . $pid );
+				return;
+			}
+			$this->template['parent'] = $parent;
 		}
 		
 		if (isset($this->template['parent']['title']))
@@ -56,7 +65,7 @@ class Downloads extends MX_Controller {
 		$config['first_link'] = __('First');
 		$config['last_link'] = __('Last');
 		$config['base_url'] = base_url() . 'downloads/index/' . $pid;
-		$config['total_rows'] = $this->downloads->get_totalfiles($pid);
+		$config['total_rows'] = $this->downloads->get_totaldocs($pid);
 		$config['per_page'] = $per_page; 
 
 		$this->pagination->initialize($config); 

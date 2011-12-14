@@ -103,7 +103,7 @@ function ajaxFileUpload() {
 <h1 id="edit"><?php echo ($page['id'])? __("Edit page", $module) : __("Create New Page", $module)?></h1>
 
 <form  enctype="multipart/form-data" class="edit" action="<?php echo site_url('admin/page/save')?>" method="post" accept-charset="utf-8">
-		<input type="hidden" name="lang" value="<?php echo $this->user->lang ?>" />
+		<input type="hidden" name="lang" value="<?php echo (isset($page['lang'])? $page['lang'] : $this->user->lang )?>" />
 		<input type="hidden" name="id" value="<?php echo $page['id'] ?>" />
 		<ul>
 			<li><input type="submit" name="submit" value="Save page" class="input-submit" /></li>
@@ -204,7 +204,7 @@ function ajaxFileUpload() {
 
 			<label for="g_id"><?php _e("Page access:", $module)?></label><br />
 		<select name="g_id" id="g_id" class="select">
-		<?php foreach ($this->user->get_group_list() as $group): ?>
+		<?php foreach ($this->user->get_group_list(array('where' => "g_id IN ('" . join("', '", $this->user->groups) . "')")) as $group): ?>
 			<option value="<?php echo $group['g_id'] ?>" <?php if ($group['g_id'] == $page['g_id']) echo "selected" ?> ><?php echo __($group['g_name'], $module) ?></option>
 		<?php endforeach; ?> 
 		</select>

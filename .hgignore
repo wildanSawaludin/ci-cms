@@ -2,6 +2,7 @@ application/config/config.php
 application/config/database.php
 application/modules/helpdoc
 application/logs/*
+ci-cms/*
 docs/*
 cache/*
 user_guide/*

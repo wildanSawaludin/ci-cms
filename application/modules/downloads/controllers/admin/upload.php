@@ -10,7 +10,6 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Upload extends MX_Controller {
 	var $template;
-
 	function __construct()
 	{
 		parent::__construct();
@@ -20,13 +19,12 @@ class Upload extends MX_Controller {
 		$this->template['module']	= 'downloads';
 		$this->template['admin']		= true;
 		$this->load->model('download_model', 'downloads');
-
 	}
 
 
 	function index($start = null)
 	{
-		//rehefa tsisy nin nin dia lisitry ny cateogory
+		
 		$per_page = 20;
 		
 		
@@ -56,15 +54,17 @@ class Upload extends MX_Controller {
 
 	function save()
 	{
+		
 
 		$this->user->check_level($this->template['module'], LEVEL_ADD);
 	
 		if ($_FILES['file']['name'] != '')
 		{
 
-			$config['upload_path'] = './media/files/';
-			$config['allowed_types'] = isset($this->settings->allowed_file_type) ? $this->settings->allowed_file_type : 'gif|jpg|png|bmp|doc|docx|xls|mp3|swf|exe|pdf|wav';
-			$config['max_size']	= '2000';
+			$config['upload_path'] = isset($this->downloads->settings['upload_path']) ? $this->downloads->settings['upload_path'] : $this->downloads->default_settings['upload_path'];
+			$config['allowed_types'] = isset($this->downloads->settings['allowed_file_types']) ? $this->downloads->settings['allowed_file_types'] : $this->downloads->default_settings['allowed_file_types'];
+			$config['max_size'] = isset($this->downloads->settings['max_size']) ? $this->downloads->settings['max_size'] : $this->downloads->default_settings['max_size'];
+
 			
 			$this->load->library('upload', $config);
 			
@@ -151,10 +151,9 @@ class Upload extends MX_Controller {
 		else 
 		{
 		
-		
-			$config['upload_path'] = $this->downloads->settings['upload_path'];
-			$config['allowed_types'] = $this->downloads->settings['allowed_file_types'];
-			$config['max_size']	= '2000';
+			$config['upload_path'] = isset($this->downloads->settings['upload_path']) ? $this->downloads->settings['upload_path'] : $this->downloads->default_settings['upload_path'];
+			$config['allowed_types'] = isset($this->downloads->settings['allowed_file_types']) ? $this->downloads->settings['allowed_file_types'] : $this->downloads->default_settings['allowed_file_types'];
+			$config['max_size'] = isset($this->downloads->settings['max_size']) ? $this->downloads->settings['max_size'] : $this->downloads->default_settings['max_size'];
 			
 			//var_dump($config['upload_path']);
 			$this->load->library('upload', $config);	

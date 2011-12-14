@@ -44,7 +44,7 @@
 <?php  $i = 1; foreach ($members as $member): ?>
 <?php  if ($i % 2 != 0): $rowClass = 'odd'; else: $rowClass = 'even'; endif;?>
 		<tr class="<?php  echo $rowClass?>">
-				<td class="center"><?php  echo $i?></td>
+				<td class="center"><?php  echo ($i + $start) ?></td>
 				<td><?php  echo $member['username']?></td>
 				<td><?php  echo $member['email']?></td>
 				<td>

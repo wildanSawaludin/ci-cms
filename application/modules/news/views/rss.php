@@ -34,10 +34,10 @@ echo '<?xml version="1.0" encoding="utf-8"?>' . "
 		  <?php  endif; ?>
           <description><![CDATA[<?php  echo $item['body'] ?>]]></description>
       <pubDate><?php  echo date ('r', $item['date']);?></pubDate>
-	  	<?php  //if(isset($item['img'])) :?>
-			<enclosure url="<?php  //echo $item['img'] ?>" length="" type="image/jpeg"/>
-			<media:thumbnail xmlns:media='http://search.yahoo.com/mrss/' url='<?php  //echo $item['img'] ?>' height='100' width='100'/>
-		<?php // endif; ?>
+	  	<?php  if(isset($item['img'])) :?>
+			<enclosure url="<?php  echo $item['img'] ?>" length="" type="image/jpeg"/>
+			<media:thumbnail xmlns:media='http://search.yahoo.com/mrss/' url='<?php  echo $item['img'] ?>' height='100' width='100'/>
+		<?php  endif; ?>
         </item>
 
         

@@ -516,7 +516,7 @@ class Forum extends MX_Controller {
 
 				}
 
-				if($title === false)
+				if(trim($title) == '')
 				{
 					$title = substr($message, 0, 50) . "...";
 				}

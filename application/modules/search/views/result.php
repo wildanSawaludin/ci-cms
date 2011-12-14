@@ -35,7 +35,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 <td class="title"><?php  echo ((isset($row['result_link']))?"<a href='".$row['result_link']."'>":"")?><?php  echo $row['result_title']?><?php  echo ((isset($row['result_link']))?"</a>":"")?> <?php  echo ((isset($row['result_type']))?"(".$row['result_type'].")":"")?> <?php  echo ((isset($row['result_date']))?"(".$row['result_date'].")":"")?></td>
 </tr>
 <tr class="description">
-<td><?php  echo eregi_replace("(".$tosearch. ")","<span style='background-color: yellow'>\\1</span>", strip_tags($row['result_text']))?></td>
+<td><?php  echo str_replace($tosearch,"<span style='background-color: yellow'>" . $tosearch . "</span>", strip_tags($row['result_text']))?></td>
 </tr>
 <?php $i++; endforeach; ?>
 </tbody>

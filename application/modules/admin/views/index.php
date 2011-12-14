@@ -8,6 +8,11 @@
 		<li><a href="<?php echo site_url('admin/module')?>"><?php echo __("Modules settings", $module)?></a></li>		
 		<li><a href="<?php echo site_url('admin/admins')?>"><?php echo __("Administrators", $module)?></a></li>		
 		<li><a href="<?php echo site_url('admin/groups')?>"><?php echo __("Group management", $module)?></a></li>
+		<?php 
+		//adding a filter so that we can add special menu in modules
+		$qm = "";
+		echo $this->plugin->apply_filters('admin_quick_menu', $qm); 
+		?>
 	</ul>
 	<div class="quickend"></div>
 

@@ -1,4 +1,4 @@
-<h1><?php echo $title;?> <a href='<?php echo site_url('forum/rss/topic/' . $topic['tid']) ?>' target='_blank'><img src="http://forum.serasera.org/application/views/dinika_v3/images/feed-icon-14x14.png" width="14" height="14" border="0"></a></h1>
+<h1><?php echo $title;?> <a href='<?php echo site_url('forum/rss/topic/' . $topic['tid']) ?>' target='_blank'><img src="<?php echo site_url('application/modules/forum/images/feed-icon-14x14.png') ?>" width="14" height="14" border="0"></a></h1>
 <?php if(is_array($topic['admins'])) : ?>
 <p><b><?php echo __("Admins:", $module) ?></b> 
 <?php 

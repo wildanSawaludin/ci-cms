@@ -82,3 +82,15 @@ if ($this->system->modules[$module]['version'] < $version)
 	$this->db->update('modules', $data);
 	redirect("admin/module");
 }
+
+$version = "2.1.1";
+// Fixed bugs on upload_path
+
+if ($this->system->modules[$module]['version'] < $version)
+{
+	
+	$data = array('version' => $version);
+	$this->db->where(array('name'=> $module));
+	$this->db->update('modules', $data);
+	redirect("admin/module");
+}

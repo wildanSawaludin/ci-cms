@@ -3,6 +3,8 @@
 class Page_Model extends CI_Model {
 	var $tmppages;
 	var $fields;
+	var $_tree = array();
+	var $pagetree = array();
 	function __construct()
 	{
 		parent::__construct();
@@ -271,6 +273,26 @@ class Page_Model extends CI_Model {
 		$this->cache->remove_group('page_list');
 	}
 	
+	function get_comment($id = 0)
+	{
+		$query = $this->db->get_where('page_comments', array('id' => $id));
+		if ( $query->num_rows() > 0 )
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return false;
+		}
+		
+	}
+	
+	function delete_comment($id)
+	{
+		$this->db->where('id', $id);
+		$this->db->delete('page_comments');
+	}
+	
 	function get_comments($params = array())
 	{
 		$default_params = array
@@ -302,6 +324,28 @@ class Page_Model extends CI_Model {
 			return false;
 		}
 		
+	}
+	
+	function get_total_comments($params)
+	{
+		$default_params = array
+		(
+			'where' => array()
+		);
+		
+		foreach ($default_params as $key => $value)
+		{
+			$params[$key] = (isset($params[$key]))? $params[$key]: $default_params[$key];
+		}
+		if ($params['where'])
+		{
+			$this->db->where($params['where']);
+		}
+		$this->db->select('count(id)');
+		$this->db->from('page_comments');
+				
+		return $this->db->count_all_results();
+	
 	}
 	
 	function get_images($params)
@@ -404,7 +448,31 @@ class Page_Model extends CI_Model {
 		return $this->db->insert_id();
 		
 	}
-	
+
+	function get_page_tree( $params = array(), $depth = 100, $level = 0)
+	{
+		
+		if(!isset($params['where']['parent_id'])) $params['where']['parent_id'] = 0;
+		$params['order_by'] = 'weight';
+		$rows = $this->get_page_list($params);
+
+		// display each child
+		if ($rows )
+		{
+			foreach ($rows as $row) {
+			// indent and display the title of this child
+				$row['level'] = $level;
+				$this->_tree[] = $row;
+				if($level < $depth)
+				{
+					$params['where']['parent_id'] = $row['id'];
+					$this->get_page_tree($params, $depth, $level+1);
+				}
+			}
+		}
+		return $this->_tree;
+	}	
+		
 	function get_page_list($params)
 	{
 		
@@ -454,31 +522,35 @@ class Page_Model extends CI_Model {
 				$results = $query->result_array();
 				foreach ($results as $aresult)
 				{
-					$aresult['children'] = 0;
-					$query = $this->db->query("SELECT count('id') cnt FROM " . $this->db->dbprefix('pages') . " WHERE parent_id = '" . $aresult['id'] . "'");
-					
-					if($query->num_rows() > 0)
+					if($params['select'] == '*')
 					{
-						$row =  $query->row_array();
-						$aresult['children'] = $row['cnt'];
+						$aresult['children'] = 0;
+						$query = $this->db->query("SELECT count('id') cnt FROM " . $this->db->dbprefix('pages') . " WHERE parent_id = '" . $aresult['id'] . "'");
+						
+						if($query->num_rows() > 0)
+						{
+							$row =  $query->row_array();
+							$aresult['children'] = $row['cnt'];
+						}
+                    
+						$this->db->order_by('id DESC');
+						$this->db->limit(1);
+						$this->db->where(array('src_id' => $aresult['id'], 'module' => 'page'));
+						$query2 = $this->db->get('images');
+						$aresult['image'] = $query2->row_array();
 					}
-                    
-                    $this->db->order_by('id DESC');
-                    $this->db->limit(1);
-                    $this->db->where(array('src_id' => $aresult['id'], 'module' => 'page'));
-                    $query2 = $this->db->get('images');
-                    $aresult['image'] = $query2->row_array();
-                    
                     //summary
-                    if($page_break_pos = strpos($aresult['body'], "<!-- page break -->"))
-                    {
-                        $aresult['summary'] = substr($aresult['body'], 0, $page_break_pos);
-                    }
-                    else
-                    {
-                        $aresult['summary'] = character_limiter(strip_tags($aresult['body']), 200);
-                    }
-
+					if (isset($aresult['body']))
+					{
+						if($page_break_pos = strpos($aresult['body'], "<!-- page break -->"))
+						{
+							$aresult['summary'] = substr($aresult['body'], 0, $page_break_pos);
+						}
+						else
+						{
+							$aresult['summary'] = character_limiter(strip_tags($aresult['body']), 200);
+						}
+					}
 
 					$result[] = $aresult;
 				}
@@ -490,6 +562,8 @@ class Page_Model extends CI_Model {
 		return $result;
 		
 	}		
+	
+
 	
 	function get_params($id)
 	{

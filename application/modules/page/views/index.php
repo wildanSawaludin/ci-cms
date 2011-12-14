@@ -64,6 +64,11 @@
 <?php if ($i % 2 != 0): $rowClass = 'odd'; else: $rowClass = 'even'; endif; ?>
 	<div class="<?php echo $rowClass?>">
 	<h4><?php if (!empty($comment['website'])):?><a href="<?php echo $comment['website']?>"><?php endif;?><?php echo $i . ". " . $comment['author']?><?php if (!empty($comment['website'])):?></a><?php endif;?></h4>
+	<?php if(isset($this->user->level['page']) && $this->user->level['page'] >= LEVEL_DEL): ?>
+	<div class="adminbox">
+	<?php echo anchor('admin/page/comments/delete/' . $comment['id'], __("Delete", $module)) ?>
+	</div>
+	<?php endif; ?>
 	<p><?php echo nl2br(strip_tags($comment['body'], "<b><i><img>")) ?><br /><i>(<?php echo date("d/m/Y H:i:s", $comment['date']) ?>)</i></p>
 	</div>
 	<?php $i++; endforeach; ?>
