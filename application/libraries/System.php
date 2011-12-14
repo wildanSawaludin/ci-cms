@@ -167,7 +167,6 @@
                 while ( false !== ($cache_file = readdir($handle)) )
 				{
 					// make sure we don't delete silly dirs like .svn, or . or ..
-					
 					if ($cache_file != 'index.html' && substr($cache_file, 0, 1) != ".")
 					{
 						if(is_dir($cache_file) && substr($chache_file, 0, 1) != ".")
@@ -229,7 +228,8 @@
 			} 
 			else if (is_array($fileglob)) 
 			{
-				$rcs = array_map('rm', $fileglob);
+				$callback = array($this, __FUNCTION__);
+				$rcs = array_map($callback, $fileglob);
 				if (in_array(false, $rcs)) 
 				{
 					return false;
