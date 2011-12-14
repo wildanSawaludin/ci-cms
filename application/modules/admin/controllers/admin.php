@@ -66,10 +66,9 @@
 
         function clear_cache()
         {
-            $this->system->clear_cache();
-           // redirect('admin');
-		   exit;
-        
+           $this->system->clear_cache();
+           redirect('admin');
+  
         }
         
         
