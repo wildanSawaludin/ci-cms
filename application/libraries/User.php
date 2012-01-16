@@ -21,6 +21,8 @@
 		var $id = 0;
 		var $logged_in = false;
 		var $auto_login = false;
+		var $lang;
+		var $email;
 		var $username = '';
 		var $table = 'users';
 		var $level = array();
