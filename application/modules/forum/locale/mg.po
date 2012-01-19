@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Solaitra:Forum\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-03 11:44+0100\n"
-"PO-Revision-Date: 2011-05-03 11:46+0100\n"
+"POT-Creation-Date: 2012-01-19 08:31+0100\n"
+"PO-Revision-Date: 2012-01-19 08:32+0100\n"
 "Last-Translator: Hery <hery@serasera.org>\n"
 "Language-Team: Hery serasera.org <hery@serasera.org>\n"
 "MIME-Version: 1.0\n"
@@ -390,7 +390,7 @@ msgstr "Valiny tamin'i %s"
 msgid ""
 "Hello %s,\n"
 "\n"
-"Your message has been replied by %s.\n"
+"Your message %s has been replied by %s.\n"
 " To read the message click the link below\n"
 "\n"
 "%s\n"
@@ -404,7 +404,7 @@ msgid ""
 msgstr ""
 "Salama %s,\n"
 "\n"
-"Novalian'i %s ny hafatra napetrakao.\n"
+"Ny hafatra %s napetrakao dia novalian'i %s.\n"
 "Raha hamaky ny hafatra dia tsindrio ny rohy eto ambany\n"
 "\n"
 "%s\n"
@@ -450,10 +450,9 @@ msgstr "Hampiditra lohahevitra"
 #: ../views/admin/topic/create.php:49
 #: ../views/admin/topic/list.php:10
 #: ../views/message/create.php:51
-#: ../views/message/index.php:70
+#: ../views/message/index.php:72
 #: ../views/message/move.php:18
 #: ../views/message/preview.php:53
-#: ../views/topic/create.php:21
 msgid "Cancel"
 msgstr "Aoka ihany"
 
@@ -580,10 +579,9 @@ msgstr "Fandrindrana"
 
 #: ../views/admin/topic/create.php:48
 #: ../views/message/create.php:49
-#: ../views/message/index.php:68
+#: ../views/message/index.php:70
 #: ../views/message/move.php:17
 #: ../views/message/preview.php:51
-#: ../views/topic/create.php:20
 msgid "Save"
 msgstr "Alefaso"
 
@@ -591,17 +589,14 @@ msgstr "Alefaso"
 #: ../views/message/create.php:15
 #: ../views/message/move.php:7
 #: ../views/message/preview.php:29
-#: ../views/topic/create.php:8
 msgid "Title:"
 msgstr "Lohateny :"
 
 #: ../views/admin/topic/create.php:62
-#: ../views/topic/create.php:10
 msgid "Description:"
 msgstr "Andinindininy :"
 
 #: ../views/admin/topic/create.php:65
-#: ../views/topic/create.php:13
 msgid "Access:"
 msgstr "Fidirana :"
 
@@ -667,13 +662,13 @@ msgid "Message:"
 msgstr "Lahatsoratra :"
 
 #: ../views/message/create.php:46
-#: ../views/message/index.php:65
+#: ../views/message/index.php:67
 #: ../views/message/preview.php:48
 msgid "Notify me when replied:"
 msgstr "Ilazao rehefa misy mamaly:"
 
 #: ../views/message/create.php:50
-#: ../views/message/index.php:69
+#: ../views/message/index.php:71
 #: ../views/message/preview.php:52
 msgid "Preview"
 msgstr "Jereo aloha"
@@ -691,7 +686,7 @@ msgid "Replies:"
 msgstr "Valiny :"
 
 #: ../views/message/index.php:16
-#: ../views/message/index.php:55
+#: ../views/message/index.php:57
 msgid "Pages:"
 msgstr "Pejy:"
 
@@ -699,19 +694,19 @@ msgstr "Pejy:"
 msgid "Move"
 msgstr "Afindrao"
 
-#: ../views/message/index.php:49
+#: ../views/message/index.php:51
 msgid "Quote"
 msgstr "Valio"
 
-#: ../views/message/index.php:50
+#: ../views/message/index.php:52
 msgid "Back to top"
 msgstr "Miverina eny ambony"
 
-#: ../views/message/index.php:62
+#: ../views/message/index.php:64
 msgid "Reply:"
 msgstr "Valio"
 
-#: ../views/message/index.php:75
+#: ../views/message/index.php:77
 msgid "Reply to the thread"
 msgstr "Hamaly hafatra"
 

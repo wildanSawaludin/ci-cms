@@ -258,7 +258,7 @@ class Message_model extends CI_Model {
 				$this->email->to($row['email']);
 				$subject = '[' . $this->system->site_name . '] ' . sprintf(__("Reply from %s", "forum"), $this->user->username);
 				$this->email->subject($subject);
-				$message = sprintf(__("Hello %s,\n\nYour message has been replied by %s.\n To read the message click the link below\n\n%s\n\n. If you don't want to receive any further notification, go to link below.\n\n%s\n\nThank you.\nAdministrator", "forum"), $row['username'], $this->user->username, site_url('forum/message/' . $pid), site_url('forum/unsubscribe/' . $pid));
+				$message = sprintf(__("Hello %s,\n\nYour message %s has been replied by %s.\n To read the message click the link below\n\n%s\n\n. If you don't want to receive any further notification, go to link below.\n\n%s\n\nThank you.\nAdministrator", "forum"), $row['username'], $row['title'], $this->user->username, site_url('forum/message/' . $pid), site_url('forum/unsubscribe/' . $pid));
 
 				$this->email->message($message);
 				$this->email->send();
