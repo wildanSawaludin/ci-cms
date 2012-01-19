@@ -247,22 +247,26 @@ class Message_model extends CI_Model {
 	function notify($pid)
 	{
 		//get all notified message
-		$query = $this->db->query("SELECT DISTINCT username, email FROM " . $this->db->dbprefix('forum_messages') . " WHERE ( pid='" . $pid . "' OR mid='" . $pid . "' ) AND notify='Y' AND username <> '" . $this->user->username . "'");
+		$query = $this->db->query("SELECT DISTINCT username, email, title FROM " . $this->db->dbprefix('forum_messages') . " WHERE ( pid='" . $pid . "' OR mid='" . $pid . "' ) AND notify='Y' AND username <> '" . $this->user->username . "'");
 		if($query->num_rows() > 0)
 		{
+			$notified = array();
 			$this->load->library('email');
 			foreach($query->result_array() as $row)
 			{
-				$this->email->clear();
-				$this->email->from($this->system->admin_email, "Admin " . $this->system->site_name );
-				$this->email->to($row['email']);
-				$subject = '[' . $this->system->site_name . '] ' . sprintf(__("Reply from %s", "forum"), $this->user->username);
-				$this->email->subject($subject);
-				$message = sprintf(__("Hello %s,\n\nYour message has been replied by %s.\n To read the message click the link below\n\n%s\n\n. If you don't want to receive any further notification, go to link below.\n\n%s\n\nThank you.\nAdministrator", "forum"), $row['username'], $this->user->username, site_url('forum/message/' . $pid), site_url('forum/unsubscribe/' . $pid));
+				if(!isset($notified[ $row['email'] ]))
+				{
+					$this->email->clear();
+					$this->email->from($this->system->admin_email, "Admin " . $this->system->site_name );
+					$this->email->to($row['email']);
+					$subject = '[' . $this->system->site_name . '] ' . sprintf(__("Reply from %s", "forum"), $this->user->username);
+					$this->email->subject($subject);
+					$message = sprintf(__("Hello %s,\n\nYour message %s has been replied by %s.\n To read the message click the link below\n\n%s\n\n. If you don't want to receive any further notification, go to link below.\n\n%s\n\nThank you.\nAdministrator", "forum"), $row['username'], '"' . $row['title'] . '"' , $this->user->username, site_url('forum/message/' . $pid), site_url('forum/unsubscribe/' . $pid));
 
-				$this->email->message($message);
-				$this->email->send();
-			
+					$this->email->message($message);
+					$this->email->send();
+					$notified[ $row['email'] ] = 1;
+				}
 			}
 		}
 		
