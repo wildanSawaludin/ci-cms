@@ -1,4 +1,6 @@
 <h1><?php  echo $title ?></h1>
+<?php $news_pre_list = ""; ?>
+<?php echo $this->plugin->apply_filters("news_pre_list", $news_pre_list) ?>
 <?php  if (is_array($rows) && count($rows) > 0) :?>
 <?php  $i = $total_rows; foreach($rows as $row):?>
 <?php  if ($i % 2 != 0): $rowClass = 'odd'; else: $rowClass = 'even'; endif;?>
@@ -18,6 +20,8 @@
 <?php  echo __("No news found", $module)?>
 <?php  endif; ?>
 
+<?php $news_post_list = ""; ?>
+<?php echo $this->plugin->apply_filters("news_post_list", $news_post_list) ?>
 
 
 
