@@ -247,7 +247,7 @@ class Message_model extends CI_Model {
 	function notify($pid)
 	{
 		//get all notified message
-		$query = $this->db->query("SELECT DISTINCT username, email, title FROM " . $this->db->dbprefix('forum_messages') . " WHERE ( pid='" . $pid . "' OR mid='" . $pid . "' ) AND notify='Y' AND username <> '" . $this->user->username . "'");
+		$query = $this->db->query("SELECT DISTINCT username, email, title FROM " . $this->db->dbprefix('forum_messages') . " WHERE ( pid='" . $pid . "' OR mid='" . $pid . "' ) AND notify='Y' AND username <> '" . $this->user->username . "' ORDER BY id DESC");
 		if($query->num_rows() > 0)
 		{
 			$notified = array();
