@@ -513,7 +513,7 @@
 		}
 		//reordinate
 		$i = 0;
-		$this->db->order_by('ordering');
+		$this->db->order_by('ordering', 'id DESC');
 		$this->db->where(array('cat' => $cat, 'lang' => $this->user->lang));
 		
 		$query = $this->db->get('news');

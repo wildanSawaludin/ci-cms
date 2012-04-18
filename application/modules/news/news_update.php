@@ -122,3 +122,20 @@ $this->dbforge->create_table('news_tags', TRUE);
 	$this->db->update('modules', $data);
 	redirect("admin/module");
 }
+
+//update to 2.1.0
+$version = "2.1.0";
+
+// captcha removed from core and added as plugin filter (so that developpers may add other captcha)
+
+if ($this->system->modules[$module]['version'] < $version)
+{
+	
+
+	$this->session->set_flashdata("notification", sprintf(__("News module updated to %s", $module), $version)) ;
+	
+	$data = array('version' => $version);
+	$this->db->where(array('name'=> $module));
+	$this->db->update('modules', $data);
+	redirect("admin/module");
+}

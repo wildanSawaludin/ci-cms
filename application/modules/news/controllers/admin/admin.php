@@ -29,7 +29,7 @@
 			$params['start'] = $start;
 			$params['limit'] = $per_page;
 			$params['where'] = array('news.lang' => $this->user->lang);
-			$params['order_by'] = "id DESC";
+			$params['order_by'] = "ordering, id DESC";
 			
 			$data = $this->news->get_list($params);
 			

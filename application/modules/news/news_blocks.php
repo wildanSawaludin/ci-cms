@@ -45,7 +45,7 @@ function news_latest_news($limit = 5)
 	$rows = array();
 	$params = array(
 	'limit' => $limit,
-	'order_by' => 'news.id DESC',
+	'order_by' => 'news.ordering, news.id DESC',
 	'where' => array('news.lang' => $obj->user->lang)
 	);
 	$obj->load->model('news/news_model');
