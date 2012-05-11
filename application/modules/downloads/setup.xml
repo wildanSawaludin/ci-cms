@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<module>
+        <name>downloads</name>
+        <date>04/08/2008</date>
+        <author>hery</author>
+        <email>hery@serasera.org</email>
+        <url>http://hery.serasera.org</url>
+        <copyright>GNU/GPL License</copyright>
+        <version>2.1.1</version>
+        <description>Download module</description>
+</module>
+
