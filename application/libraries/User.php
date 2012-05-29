@@ -69,6 +69,16 @@
 						$this->groups[] = $row['g_id'];
 					}
 				}
+				//user also is member of his own groups
+				
+				$this->obj->db->select('g_id');
+				$this->obj->db->where('g_owner', $this->username);
+				$query = $this->obj->db->get("groups");
+				if($rows = $query->result_array()){
+					foreach ($rows as $row) {
+						$this->groups[] = $row['g_id'];
+					}
+				}
 			}		
 		}
 
