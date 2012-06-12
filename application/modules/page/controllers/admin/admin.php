@@ -80,13 +80,28 @@ class Admin extends MX_Controller {
 		}
 		else
 		{
+			
 			$parent_uri = '';
 			if ($parent_id = $this->input->post('parent_id'))
 			{
 				$parent = $this->pages->get_page(array('id' => $parent_id));
 				$parent_uri = $parent['uri'] . "/";
 			}
-			$data['uri'] = $parent_uri . format_title($this->input->post('title'));
+			
+			$title = trim($this->input->post('title'));
+			$raw_uri = url_title($title, 'dash', true);
+			$uri = url_title($title, 'dash', true);
+			
+			$i = 1;
+			
+			while($this->pages->get_page($parent_uri . "/" . $uri))
+			{
+				$uri = $raw_uri . '-' . $i;
+				$i++;
+			}
+			
+			$data['uri'] = $parent_uri . "/" . $uri;
+			
 		}
 		
 							

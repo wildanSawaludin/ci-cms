@@ -203,3 +203,19 @@ if ($this->system->modules[$module]['version'] < $version)
 	$this->db->update('modules', $data);
 	redirect("admin/module");
 }
+
+//update to 1.2.0
+//uri generation, uri field has now 255 maximum lenght
+$version = "2.0.0";
+
+if ($this->system->modules[$module]['version'] < $version)
+{
+	$this->db->query("ALTER TABLE " . $this->db->dbprefix('pages') . " CHANGE  `uri`  `uri` VARCHAR( 255 ) NOT NULL");
+
+	$this->session->set_flashdata("notification", sprintf(__("Page module updated to %s"), $version)) ;
+	
+	$data = array('version' => $version);
+	$this->db->where(array('name'=> $module));
+	$this->db->update('modules', $data);
+	redirect("admin/module");
+}
