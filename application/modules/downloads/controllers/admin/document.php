@@ -31,6 +31,18 @@ class Document extends MX_Controller {
 	
 	}
 
+	function fromfile($fileid)
+	{
+		$this->template['parents'] = $this->downloads->get_catlist();
+		$this->template['file'] = $this->downloads->get_file($fileid);
+		
+
+		$this->template['row'] = $this->downloads->doc_fields;
+		
+		$this->layout->load($this->template, 'admin/document_create_fromfile');
+		
+	
+	}
 	function create($cat = 0, $id = null)
 	{
 				

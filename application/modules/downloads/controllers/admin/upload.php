@@ -97,7 +97,11 @@ class Upload extends MX_Controller {
 		
 		if ($row = $this->downloads->get_file($id))
 		{
-			
+			if($this->downloads->get_doc(array('download_files.name' => $row['name'])))
+			{
+				echo __("This file is already linked with a document, please delete the document first");
+				return;
+			}
 			$this->downloads->delete_file($row);
 		
 			echo __("The file was deleted", 'downloads');
@@ -191,10 +195,16 @@ class Upload extends MX_Controller {
 		
 		if ($row = $this->downloads->get_file($this->input->post('id')))
 		{
+			if($this->downloads->get_doc(array('download_files.name' => $row['name'])))
+			{
+				
+				echo "{error: 1, message: '" . addslashes(__("This file is already linked with a document, please delete the document first", "downloads")) . "'}";
+				return;
+			}
 			
 			$this->downloads->delete_file($row);
 		
-			echo __("The file was deleted", 'downloads');
+			echo "{error: 0, message: '" . __("The file was deleted", 'downloads') . "'}";
 		}
 		else
 		{

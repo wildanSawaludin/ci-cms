@@ -59,6 +59,7 @@ class Document extends MX_Controller {
             }
 
 			$fn = $this->downloads->settings['upload_path'] . $file;
+			
 			if(file_exists($fn))
 			{
                 
