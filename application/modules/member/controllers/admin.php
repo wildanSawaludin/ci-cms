@@ -199,7 +199,7 @@
 		{
 			$this->load->library('form_validation');
 			$this->form_validation->CI =& $this;
-			$this->form_validation->set_rules('password',__('Password', $this->template['module']),"trim|matches[passconf]|required");
+			$this->form_validation->set_rules('password',__('Password', $this->template['module']),"trim|matches[passconf]");
 			$this->form_validation->set_rules('passconf', __("Confirm",$this->template['module']), "trim");
 			$this->form_validation->set_rules('email', __("Email", $this->template['module']),"trim|required|valid_email|callback__verify_mail");	
 			$this->form_validation->set_error_delimiters('<p style="color:#900">', '</p>');
