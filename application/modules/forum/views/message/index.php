@@ -70,8 +70,10 @@
 <input type="submit" name="submit" value="<?php echo __("Save", $module)?>" class="input-submit" />
 <input type="submit" name="preview" value="<?php echo __("Preview", $module)?>" class="input-submit" />
 <a href="<?php echo site_url( $this->session->userdata("last_uri") )?>" class="input-submit"><?php echo __("Cancel", $module)?></a>
+<?php $this->plugin->do_action('forum_post_form'); ?>
 
 </form>
+
 <?php else: ?>
 <div class="forum_reply_link">
 <?php echo anchor('forum/message/reply/' . $pid , __("Reply to the thread", $module)) ?>
