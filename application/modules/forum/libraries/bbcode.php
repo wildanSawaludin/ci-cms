@@ -152,6 +152,10 @@ Class BBCode{
 
 	private $close_time=0;
 	private $add_time=0;
+    public 	$buttons = '<div class="btn bold" title="bold"></div><div class="btn italic"></div><div class="btn underline"></div><div class="btn link"></div><div class="btn quote"></div>
+<div class="btn code"></div><div class="btn image"></div><div class="btn usize"></div><div class="btn dsize"></div><div class="btn nlist"></div>
+<div class="btn blist"></div><div class="btn litem"></div><div class="btn back"></div><div class="btn forward"></div><div class="btn youtube"></div><div class="btn dailymotion"></div>';
+
 
 	/**
 	 * The Constructor
@@ -215,6 +219,14 @@ Class BBCode{
 		$this->quote_styles=self::ARG_NO_QUOTE|self::ARG_DOUBLE_QUOTE|self::ARG_SINGLE_QUOTE;
 		$this->tree=null;
 	}
+    
+    
+    /***
+     *
+     *
+     *
+    
+    */
 	/**
 	 * Attach a parser as argument sub-parser
 	 *

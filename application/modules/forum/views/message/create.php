@@ -40,8 +40,9 @@ echo $this->user->username ;
 
 
 <label for="message"><?php echo __("Message:", $module) ?></label>
-<?php echo $this->forum->bbcode_buttons ?>
+<?php echo $this->bbcode->buttons ?>
 <textarea name="message" class="bbcode input-textarea" rows="10" cols="68" style="height: 200px"><?php echo $message['message'] ?></textarea><br />
+<?php $this->plugin->do_action('forum_post_form'); ?>
 
 <label for="notify"><?php echo __("Notify me when replied:", $module) ?>
 <input type="checkbox" name="notify" value="Y" checked /> </label><br />

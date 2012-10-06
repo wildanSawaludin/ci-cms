@@ -243,8 +243,8 @@ class Forum extends MX_Controller {
 	function _write_header()
 	{
 		echo "
-		<link rel='stylesheet' href='http://static.serasera.org/js/jquery/jquery-bbcode-editor-3/style.css' />
-		<script type='text/javascript' src='http://static.serasera.org/js/jquery/jquery-bbcode-editor-3/jquery.bbcodeeditor-1.0.min.js'></script>
+		<link rel='stylesheet' href='http://static.serasera.org/js/jquery/jquery-bbcode-editor-4/style.css' />
+		<script type='text/javascript' src='http://static.serasera.org/js/jquery/jquery-bbcode-editor-4/jquery.bbcodeeditor-1.0.min.js'></script>
 		<script type=\"text/javascript\">
 		$(document).ready(function(){
 				$('textarea.bbcode').bbcodeeditor(

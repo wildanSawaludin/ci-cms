@@ -12,9 +12,6 @@ class Forum_model extends CI_Model {
 
 	var $options = array();
 	var $settings = array('style' => null);
-	var $bbcode_buttons = '<div class="btn bold" title="bold"></div><div class="btn italic"></div><div class="btn underline"></div><div class="btn link"></div><div class="btn quote"></div>
-<div class="btn code"></div><div class="btn image"></div><div class="btn usize"></div><div class="btn dsize"></div><div class="btn nlist"></div>
-<div class="btn blist"></div><div class="btn litem"></div><div class="btn back"></div><div class="btn forward"></div><div class="btn youtube"></div><div class="btn dailymotion"></div>';
 	function __construct()
 	{
 		parent::__construct();
