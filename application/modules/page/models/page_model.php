@@ -525,7 +525,7 @@ class Page_Model extends CI_Model {
 					if($params['select'] == '*')
 					{
 						$aresult['children'] = 0;
-						$query = $this->db->query("SELECT count('id') cnt FROM " . $this->db->dbprefix('pages') . " WHERE parent_id = '" . $aresult['id'] . "'");
+						$query = $this->db->query("SELECT count('id') as cnt FROM " . $this->db->dbprefix('pages') . " WHERE parent_id = '" . $aresult['id'] . "'");
 						
 						if($query->num_rows() > 0)
 						{

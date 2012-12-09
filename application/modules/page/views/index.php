@@ -52,6 +52,9 @@
 <?php endif; ?>
 
 
+<?php $this->plugin->do_action('page_post_content'); ?>
+
+
 <?php if (!empty($comments)): ?>
 <div id="comments">
 
