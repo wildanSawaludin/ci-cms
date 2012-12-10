@@ -163,7 +163,7 @@ class Forum_model extends CI_Model {
 		//soundcloud
 		$this->bbcode->add_element('soundcloud', array(
 			'type'=>BBCode::TYPE_OPTARG,
-			'content_handling' => 'namana_bbcode_soundcloud_function'
+			'content_handling' => 'forum_bbcode_soundcloud_function'
 			));
 
 		$this->bbcode->add_element('', array(
@@ -173,49 +173,49 @@ class Forum_model extends CI_Model {
 		
 		
 		$smileys = array(
-			':-)'			=>	'<img src="http://static.serasera.org/smileys/grin.gif" />',
-			':lol:'			=>	'<img src="http://static.serasera.org/smileys/lol.gif" />',
-			':cheese:'		=>	'<img src="http://static.serasera.org/smileys/cheese.gif" />',
-			':)'			=>	'<img src="http://static.serasera.org/smileys/smile.gif" />',
-			';-)'			=>	'<img src="http://static.serasera.org/smileys/wink.gif" />',
-			';)'			=>	'<img src="http://static.serasera.org/smileys/wink.gif" />',
-			':smirk:'		=>	'<img src="http://static.serasera.org/smileys/smirk.gif" />',
-			':roll:'		=>	'<img src="http://static.serasera.org/smileys/rolleyes.gif" />',
-			':wow:'			=>	'<img src="http://static.serasera.org/smileys/surprise.gif" />',
-			':-S'			=>	'<img src="http://static.serasera.org/smileys/confused.gif" />',
-			':bug:'			=>	'<img src="http://static.serasera.org/smileys/bigsurprise.gif" />',
-			':-P'			=>	'<img src="http://static.serasera.org/smileys/tongue_laugh.gif" />',
-			'%-P'			=>	'<img src="http://static.serasera.org/smileys/tongue_rolleye.gif" />',
-			';-P'			=>	'<img src="http://static.serasera.org/smileys/tongue_wink.gif" />',
-			':P'			=>	'<img src="http://static.serasera.org/smileys/rasberry.gif" />',
-			':blank:'		=>	'<img src="http://static.serasera.org/smileys/blank.gif" />',
-			':long:'		=>	'<img src="http://static.serasera.org/smileys/longface.gif" />',
-			':ohh:'			=>	'<img src="http://static.serasera.org/smileys/ohh.gif" />',
-			':grrr:'		=>	'<img src="http://static.serasera.org/smileys/grrr.gif" />',
-			':gulp:'		=>	'<img src="http://static.serasera.org/smileys/gulp.gif" />',
-			'8-/'			=>	'<img src="http://static.serasera.org/smileys/ohoh.gif" />',
-			':down:'		=>	'<img src="http://static.serasera.org/smileys/downer.gif" />',
-			':red:'			=>	'<img src="http://static.serasera.org/smileys/embarrassed.gif" />',
-			':sick:'		=>	'<img src="http://static.serasera.org/smileys/sick.gif" />',
-			':shut:'		=>	'<img src="http://static.serasera.org/smileys/shuteye.gif" />',
-			':-/'			=>	'<img src="http://static.serasera.org/smileys/hmm.gif" />',
-			'>:('			=>	'<img src="http://static.serasera.org/smileys/mad.gif" />',
-			':mad:'			=>	'<img src="http://static.serasera.org/smileys/mad.gif" />',
-			'>:-('			=>	'<img src="http://static.serasera.org/smileys/angry.gif" />',
-			':angry:'		=>	'<img src="http://static.serasera.org/smileys/angry.gif" />',
-			':zip:'			=>	'<img src="http://static.serasera.org/smileys/zip.gif" />',
-			':kiss:'		=>	'<img src="http://static.serasera.org/smileys/kiss.gif" />',
-			':ahhh:'		=>	'<img src="http://static.serasera.org/smileys/shock.gif" />',
-			':coolsmile:'	=>	'<img src="http://static.serasera.org/smileys/shade_smile.gif" />',
-			':coolsmirk:'	=>	'<img src="http://static.serasera.org/smileys/shade_smirk.gif" />',
-			':coolgrin:'	=>	'<img src="http://static.serasera.org/smileys/shade_grin.gif" />',
-			':coolhmm:'		=>	'<img src="http://static.serasera.org/smileys/shade_hmm.gif" />',
-			':coolmad:'		=>	'<img src="http://static.serasera.org/smileys/shade_mad.gif" />',
-			':coolcheese:'	=>	'<img src="http://static.serasera.org/smileys/shade_cheese.gif" />',
-			':vampire:'		=>	'<img src="http://static.serasera.org/smileys/vampire.gif" />',
-			':snake:'		=>	'<img src="http://static.serasera.org/smileys/snake.gif" />',
-			':exclaim:'		=>	'<img src="http://static.serasera.org/smileys/exclaim.gif" />',
-			':question:'	=>	'<img src="http://static.serasera.org/smileys/question.gif" />'
+			':-)'			=>	'<img src="' . base_url() . 'application/modules/forum/smileys/grin.gif" />',
+			':lol:'			=>	'<img src="' . base_url() . 'application/modules/forum/smileys/lol.gif" />',
+			':cheese:'		=>	'<img src="' . base_url() . 'application/modules/forum/smileys/cheese.gif" />',
+			':)'			=>	'<img src="' . base_url() . 'application/modules/forum/smileys/smile.gif" />',
+			';-)'			=>	'<img src="' . base_url() . 'application/modules/forum/smileys/wink.gif" />',
+			';)'			=>	'<img src="' . base_url() . 'application/modules/forum/smileys/wink.gif" />',
+			':smirk:'		=>	'<img src="' . base_url() . 'application/modules/forum/smileys/smirk.gif" />',
+			':roll:'		=>	'<img src="' . base_url() . 'application/modules/forum/smileys/rolleyes.gif" />',
+			':wow:'			=>	'<img src="' . base_url() . 'application/modules/forum/smileys/surprise.gif" />',
+			':-S'			=>	'<img src="' . base_url() . 'application/modules/forum/smileys/confused.gif" />',
+			':bug:'			=>	'<img src="' . base_url() . 'application/modules/forum/smileys/bigsurprise.gif" />',
+			':-P'			=>	'<img src="' . base_url() . 'application/modules/forum/smileys/tongue_laugh.gif" />',
+			'%-P'			=>	'<img src="' . base_url() . 'application/modules/forum/smileys/tongue_rolleye.gif" />',
+			';-P'			=>	'<img src="' . base_url() . 'application/modules/forum/smileys/tongue_wink.gif" />',
+			':P'			=>	'<img src="' . base_url() . 'application/modules/forum/smileys/rasberry.gif" />',
+			':blank:'		=>	'<img src="' . base_url() . 'application/modules/forum/smileys/blank.gif" />',
+			':long:'		=>	'<img src="' . base_url() . 'application/modules/forum/smileys/longface.gif" />',
+			':ohh:'			=>	'<img src="' . base_url() . 'application/modules/forum/smileys/ohh.gif" />',
+			':grrr:'		=>	'<img src="' . base_url() . 'application/modules/forum/smileys/grrr.gif" />',
+			':gulp:'		=>	'<img src="' . base_url() . 'application/modules/forum/smileys/gulp.gif" />',
+			'8-/'			=>	'<img src="' . base_url() . 'application/modules/forum/smileys/ohoh.gif" />',
+			':down:'		=>	'<img src="' . base_url() . 'application/modules/forum/smileys/downer.gif" />',
+			':red:'			=>	'<img src="' . base_url() . 'application/modules/forum/smileys/embarrassed.gif" />',
+			':sick:'		=>	'<img src="' . base_url() . 'application/modules/forum/smileys/sick.gif" />',
+			':shut:'		=>	'<img src="' . base_url() . 'application/modules/forum/smileys/shuteye.gif" />',
+			':-/'			=>	'<img src="' . base_url() . 'application/modules/forum/smileys/hmm.gif" />',
+			'>:('			=>	'<img src="' . base_url() . 'application/modules/forum/smileys/mad.gif" />',
+			':mad:'			=>	'<img src="' . base_url() . 'application/modules/forum/smileys/mad.gif" />',
+			'>:-('			=>	'<img src="' . base_url() . 'application/modules/forum/smileys/angry.gif" />',
+			':angry:'		=>	'<img src="' . base_url() . 'application/modules/forum/smileys/angry.gif" />',
+			':zip:'			=>	'<img src="' . base_url() . 'application/modules/forum/smileys/zip.gif" />',
+			':kiss:'		=>	'<img src="' . base_url() . 'application/modules/forum/smileys/kiss.gif" />',
+			':ahhh:'		=>	'<img src="' . base_url() . 'application/modules/forum/smileys/shock.gif" />',
+			':coolsmile:'	=>	'<img src="' . base_url() . 'application/modules/forum/smileys/shade_smile.gif" />',
+			':coolsmirk:'	=>	'<img src="' . base_url() . 'application/modules/forum/smileys/shade_smirk.gif" />',
+			':coolgrin:'	=>	'<img src="' . base_url() . 'application/modules/forum/smileys/shade_grin.gif" />',
+			':coolhmm:'		=>	'<img src="' . base_url() . 'application/modules/forum/smileys/shade_hmm.gif" />',
+			':coolmad:'		=>	'<img src="' . base_url() . 'application/modules/forum/smileys/shade_mad.gif" />',
+			':coolcheese:'	=>	'<img src="' . base_url() . 'application/modules/forum/smileys/shade_cheese.gif" />',
+			':vampire:'		=>	'<img src="' . base_url() . 'application/modules/forum/smileys/vampire.gif" />',
+			':snake:'		=>	'<img src="' . base_url() . 'application/modules/forum/smileys/snake.gif" />',
+			':exclaim:'		=>	'<img src="' . base_url() . 'application/modules/forum/smileys/exclaim.gif" />',
+			':question:'	=>	'<img src="' . base_url() . 'application/modules/forum/smileys/question.gif" />'
 			);
 			
 		$this->bbcode->attach_smileys($smileys);
@@ -262,7 +262,7 @@ function forum_bbcode_dailymotion_function($url)
 	return '<object width="480" height="360"><param name="movie" value="http://www.dailymotion.com/swf/video/' . $vid .'"></param><param name="allowFullScreen" value="true"></param><param name="allowScriptAccess" value="always"></param><embed type="application/x-shockwave-flash" src="http://www.dailymotion.com/swf/video/'. $vid .'" width="480" height="360" allowfullscreen="true" allowscriptaccess="always"></embed></object>';
 }
 
-function namana_bbcode_soundcloud_function($url)
+function forum_bbcode_soundcloud_function($url)
 {
 	//try with this later on http://jurawa.com/notes/item/29-embedding-the-new-soundcloud-html5-player-using-the-soundcloud-api-and-php
 	//but now just be simple

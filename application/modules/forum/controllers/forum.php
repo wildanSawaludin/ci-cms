@@ -125,7 +125,7 @@ class Forum extends MX_Controller {
 				$this->check_level('forum', LEVEL_DEL);
 
 
-				$messages = $this->message->get_total(array('where' => array ('tid' => $tid)));
+				$nb_msg = $this->message->get_total(array('where' => array ('tid' => $tid)));
 				if ($nb_msg >0)
 				{
 					$this->template['message'] = __("The topic is not empty. Delete all messages in it then try again.", "forum");
@@ -243,8 +243,8 @@ class Forum extends MX_Controller {
 	function _write_header()
 	{
 		echo "
-		<link rel='stylesheet' href='http://static.serasera.org/js/jquery/jquery-bbcode-editor-4/style.css' />
-		<script type='text/javascript' src='http://static.serasera.org/js/jquery/jquery-bbcode-editor-4/jquery.bbcodeeditor-1.0.min.js'></script>
+		<link rel='stylesheet' href='" . base_url() . "application/modules/forum/js/jquery/jquery-bbcode-editor-4/style.css' />
+		<script type='text/javascript' src='" . base_url() . "application/modules/forum/js/jquery/jquery-bbcode-editor-4/jquery.bbcodeeditor-1.0.min.js'></script>
 		<script type=\"text/javascript\">
 		$(document).ready(function(){
 				$('textarea.bbcode').bbcodeeditor(

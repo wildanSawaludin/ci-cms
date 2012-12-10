@@ -100,3 +100,20 @@ if ($this->system->modules[$module]['version'] < $version)
 	$this->db->update('modules', $data);
 	redirect("admin/module");
 }
+
+$version = "2.1.0";
+
+//smileys and js removed from static.serasera.org
+
+
+if ($this->system->modules[$module]['version'] < $version)
+{
+	
+	
+	$this->session->set_flashdata("notification", sprintf(__("Forum module updated to %s", $module), $version)) ;
+	
+	$data = array('version' => $version);
+	$this->db->where(array('name'=> $module));
+	$this->db->update('modules', $data);
+	redirect("admin/module");
+}

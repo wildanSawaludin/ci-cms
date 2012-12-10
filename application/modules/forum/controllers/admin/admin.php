@@ -127,8 +127,10 @@ class Admin extends MX_Controller {
 				$this->user->check_level('forum', LEVEL_DEL);
 
 				$topic = $this->topic->get_topic($tid);
-				if ($topic['messages'] > 0)
-				{
+				$nb_msg = $this->message->get_total(array('where' => array ('tid' => $tid)));
+
+				if ($nb_msg >0)
+                {
 					$this->template['message'] = __("The topic is not empty. Delete all messages in it then try again.", "forum");
 					$this->layout->load($this->template, "error");
 					return;
