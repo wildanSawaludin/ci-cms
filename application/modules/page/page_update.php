@@ -219,3 +219,31 @@ if ($this->system->modules[$module]['version'] < $version)
 	$this->db->update('modules', $data);
 	redirect("admin/module");
 }
+
+//update to 2.1.0
+//This is a left over table modification. In some versions the table is already modified :-(
+$version = "2.1.0";
+
+if ($this->system->modules[$module]['version'] < $version)
+{
+	$query = $this->db->query("SELECT COLUMN_NAME FROM  information_schema.COLUMNS WHERE  table_name = '" . $this->db->dbprefix('pages') . "' and COLUMN_NAME = 'username'");
+    if($query->num_rows() == 0)
+    {
+        $this->db->query("ALTER TABLE " . $this->db->dbprefix('pages') . " ADD username VARCHAR( 255 ) NOT NULL DEFAULT '" . $this->user->username . "'") ;
+    }
+	$query = $this->db->query("SELECT COLUMN_NAME FROM  information_schema.COLUMNS WHERE  table_name = '" . $this->db->dbprefix('pages') . "' and COLUMN_NAME = 'email'");
+    
+    if($query->num_rows() == 0)
+    {
+        $this->db->query("ALTER TABLE " . $this->db->dbprefix('pages') . " ADD email VARCHAR( 255 ) NOT NULL DEFAULT '" . $this->user->email . "'") ;
+    }
+    
+    
+	$this->session->set_flashdata("notification", sprintf(__("Page module updated to %s"), $version)) ;
+	
+	$data = array('version' => $version);
+	$this->db->where(array('name'=> $module));
+	$this->db->update('modules', $data);
+	redirect("admin/module");
+    
+}

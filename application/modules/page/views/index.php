@@ -53,7 +53,9 @@
 
 
 <?php $this->plugin->do_action('page_post_content', $page['id']); ?>
-
+<?php
+//general page setting
+if (isset($this->system->page_approve_comments) && $this->system->page_approve_comments==1): ?>
 
 <?php if (!empty($comments)): ?>
 <div id="comments">
@@ -108,3 +110,5 @@
 </form>
 </div>
 <?php endif; ?>
+
+<?php endif; //general page module setting ?>
