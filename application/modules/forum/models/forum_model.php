@@ -238,10 +238,12 @@ function forum_bbcode_youtube_function($youtubeURL)
 {
 	if(strpos($youtubeURL, 'http://') !== false)
 	{
-		$youtubeID = strchr($youtubeURL,'=');
-		//remove that equals sign to get the video ID 
-		$youtubeID = substr($youtubeID,1);
-	}
+        $arrayUrl = parse_url($youtubeURL);
+        $query = $arrayUrl['query'];
+        parse_str($query, $arrayQuery);
+		$youtubeID = $arrayQuery['v'];
+
+        }
 	else
 	{
 		$youtubeID = $youtubeURL;
@@ -250,7 +252,10 @@ function forum_bbcode_youtube_function($youtubeURL)
 	
  
 	//get the video id in to the embed code
-	return "<object width=\"480\" height=\"385\"><param name=\"movie\" value=\"http://www.youtube.com/v/".$youtubeID."&hl=en&fs=1&rel=0\"></param><param name=\"allowFullScreen\" value=\"true\"></param><embed src=\"http://www.youtube.com/v/".$youtubeID."&hl=en&fs=1&rel=0\" type=\"application/x-shockwave-flash\" allowfullscreen=\"true\" width=\"480\" height=\"385\"></embed></object>"; 
+	/* 
+    return "<object width=\"480\" height=\"385\"><param name=\"movie\" value=\"http://www.youtube.com/v/".$youtubeID."&hl=en&fs=1&rel=0\"></param><param name=\"allowFullScreen\" value=\"true\"></param><embed src=\"http://www.youtube.com/v/".$youtubeID."&hl=en&fs=1&rel=0\" type=\"application/x-shockwave-flash\" allowfullscreen=\"true\" width=\"480\" height=\"385\"></embed></object>"; 
+     */
+    return "<iframe width=\"560\" height=\"315\" src=\"http://www.youtube.com/embed/" . $youtubeID ."\" frameborder=\"0\" allowfullscreen></iframe>";
 	
 }
 
