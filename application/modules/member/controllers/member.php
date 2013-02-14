@@ -129,7 +129,7 @@ class Member extends MX_Controller {
 		
 		$this->load->library('form_validation');
 		$this->form_validation->CI =& $this;
-		$this->form_validation->set_rules('username',__('Username', $this->template['module']), "trim|required|min_length[4]|max_length[12]|xss_clean|callback__verify_username");
+		$this->form_validation->set_rules('username',__('Username', $this->template['module']), "trim|required|min_length[4]|max_length[30]|xss_clean|callback__verify_username");
 		$this->form_validation->set_rules('remail', __('Confirm Email', $this->template['module']), "trim|required");
 		$this->form_validation->set_rules('email', __('Email', $this->template['module']),  "trim|required|matches[remail]|valid_email|callback__verify_mail");	
 
@@ -201,7 +201,7 @@ class Member extends MX_Controller {
 			return FALSE;
 		}
 		
-		if ( !ereg("^[a-zA-Z0-9._-]+$", $username))
+		if ( !preg_match("/^[a-zA-Z0-9._-]+$/", $username))
 		{
 			$this->form_validation->set_message('_verify_username', __("The username format is not valid, please use alphanumeric characters.", $this->template['module']));
 			return FALSE;
