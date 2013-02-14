@@ -115,7 +115,7 @@ class Layout {
 			{
 				// make sure we don't map silly dirs like .svn, or . or ..
 
-				if (substr($theme, 0, 1) != "." && $theme != 'index.html' && $theme != 'admin')
+				if (substr($theme, 0, 1) != "." && $theme != 'index.html' && $theme != 'admin' && $theme != "readme.txt")
 				{
 					$themes[$theme] = $theme;
 				}
