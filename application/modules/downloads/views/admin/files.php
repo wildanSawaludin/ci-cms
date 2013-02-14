@@ -78,10 +78,18 @@ function deleteFile(obj) {
 	$.post('<?php  echo site_url('admin/downloads/upload/ajax_file_delete')?>',
 		{ id: id},
 		function(data){
-			alert(data);
-		}
+			if (data.error)
+			{
+				alert(data.message);
+			}
+			else 
+			{
+				alert(data.message);
+				$(obj).parent().parent().remove();
+			}
+		},
+		"json"
 	);
-	$(obj).parent().parent().remove();
 }
 
 </script>
@@ -112,16 +120,16 @@ function deleteFile(obj) {
 		<table id="file_list" class="page-list">
 			<thead>
 				<tr>
-					<th><?php  echo __("Date", 'downloads')?></th>
-					<th><?php  echo __("File", 'downloads')?></th>					
-					<th><?php  echo __("Size", 'downloads')?></th>					
-					<th><?php  echo __("Action", 'downloads')?></th>
+					<th width="10%"><?php  echo __("Date", 'downloads')?></th>
+					<th width="58%"><?php  echo __("File", 'downloads')?></th>					
+					<th width="7%"><?php  echo __("Size", 'downloads')?></th>					
+					<th colspan="2" width="25%"><?php  echo __("Action", 'downloads')?></th>
 				</tr>
 			</thead>
 			<tbody>
 		<?php  if (isset($rows)) : ?>
 		<?php  foreach($rows as $file): ?>
-		<tr><td><?php  echo date('d/m/Y', $file['date'])?></td><td><a href="<?php  echo site_url($this->downloads->settings['upload_path']  . $file['file'])?>"><?php  echo $file['file']?></a></td><td><?php  echo $file['size']?></td><td><a href="<?php  echo site_url('admin/projects/deletefile/' . $file['id']) ?>" class="deletefile" id="<?php  echo $file['id']?>"><?php  echo __("Delete file", 'downloads')?></a></td></tr>
+		<tr><td><?php  echo date('d/m/Y', $file['date'])?></td><td><a href="<?php  echo site_url($this->downloads->settings['upload_path']  . $file['file'])?>"><?php  echo $file['file']?></a></td><td><?php  echo $file['size']?></td><td><a href="<?php  echo site_url('admin/downloads/upload/delete/' . $file['id']) ?>" class="deletefile" id="<?php  echo $file['id']?>"><?php  echo __("Delete file", 'downloads')?></a></td><td><?php echo anchor('admin/downloads/document/fromfile/' . $file['id'], __("New document", "downloads")) ?></tr>
 		<?php  endforeach; ?>
 		<?php  endif;?>
 		</tbody>
