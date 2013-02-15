@@ -23,11 +23,8 @@
 ?>	
 <?php  echo $this->plugin->apply_filters("news_content", $news['body']) ?>
 
-<?php  
-	$post_content = "";
-	echo $this->plugin->apply_filters("news_post_content", $post_content);
-?>
 
+<?php $this->plugin->do_action('news_post_content', $news['id']); ?>
 <div class="back">
 <a href="javascript:history.back()"><?php  echo __("Go back", $module) ?></a>
 </div>
