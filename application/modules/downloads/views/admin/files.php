@@ -46,7 +46,7 @@ function ajaxFileUpload() {
 						alert(data.error);
 					}else
 					{
-						$("#file_list tbody").prepend("<tr><td>"+data.filedate+"</td><td>"+data.file+"</td><td>"+data.size+"</td><td><a href='#' class='deletefile' id='"+data.id+"'><?php  echo __('Delete file') ?></a></td></tr>");
+						$("#file_list tbody").prepend("<tr><td>"+data.filedate+"</td><td>"+data.file+"</td><td>"+data.size+"</td><td><a href='#' class='deletefile' id='"+data.id+"'><?php  echo __('Delete file') ?></a></td><td><a href='<?php echo site_url('admin/downloads/document/fromfile') ?>/"+data.id+"'><?php echo __("New document", "downloads") ?></a>  </td></tr>");
 						$("#file").val("");
 						handleDeleteFile();
 						
@@ -129,7 +129,7 @@ function deleteFile(obj) {
 			<tbody>
 		<?php  if (isset($rows)) : ?>
 		<?php  foreach($rows as $file): ?>
-		<tr><td><?php  echo date('d/m/Y', $file['date'])?></td><td><a href="<?php  echo site_url($this->downloads->settings['upload_path']  . $file['file'])?>"><?php  echo $file['file']?></a></td><td><?php  echo $file['size']?></td><td><a href="<?php  echo site_url('admin/downloads/upload/delete/' . $file['id']) ?>" class="deletefile" id="<?php  echo $file['id']?>"><?php  echo __("Delete file", 'downloads')?></a></td><td><?php echo anchor('admin/downloads/document/fromfile/' . $file['id'], __("New document", "downloads")) ?></tr>
+		<tr><td><?php  echo date('d/m/Y', $file['date'])?></td><td><a href="<?php  echo site_url($this->downloads->settings['upload_path']  . $file['file'])?>"><?php  echo $file['file']?></a></td><td><?php  echo $file['size']?></td><td><a href="<?php  echo site_url('admin/downloads/upload/delete/' . $file['id']) ?>" class="deletefile" id="<?php  echo $file['id']?>"><?php  echo __("Delete file", 'downloads')?></a></td><td><?php echo anchor('admin/downloads/document/fromfile/' . $file['id'], __("New document", "downloads")) ?></td></tr>
 		<?php  endforeach; ?>
 		<?php  endif;?>
 		</tbody>

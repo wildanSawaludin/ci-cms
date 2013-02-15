@@ -39,17 +39,17 @@
 			<tbody>
 			<tr>
 			<th valign="top"><?php _e("Allowed filetypes:", "downloads") ?></th>
-			<td valign="top"><input type="text" name="allowed_file_types" value="<?php echo $this->downloads->settings['allowed_file_types'] ?>" id="allowed_file_types" class="input-text" /></td>
+			<td valign="top"><input type="text" name="allowed_file_types" value="<?php if(isset($this->downloads->settings['allowed_file_types']))  echo $this->downloads->settings['allowed_file_types'] ?>" id="allowed_file_types" class="input-text" /></td>
 			</tr>
 			<tr>
 			<tr>
 			<th valign="top"><?php _e("Upload path:", "downloads") ?></th>
-			<td valign="top"><input type="text" name="upload_path" value="<?php echo $this->downloads->settings['upload_path'] ?>" id="upload_path" class="input-text" /></td>
+			<td valign="top"><input type="text" name="upload_path" value="<?php if(isset($this->downloads->settings['upload_path'])) echo $this->downloads->settings['upload_path'] ?>" id="upload_path" class="input-text" /></td>
 			</tr>
 			<tr>
 			<tr>
 			<th valign="top"><?php _e("Maximum filesize:", "downloads") ?></th>
-			<td valign="top"><input type="text" name="max_size" value="<?php echo $this->downloads->settings['max_size'] ?>" id="max_size" class="input-text" /></td>
+			<td valign="top"><input type="text" name="max_size" value="<?php if(isset($this->downloads->settings['max_size']))  echo $this->downloads->settings['max_size'] ?>" id="max_size" class="input-text" /></td>
 			</tr>
 
 			</tbody>

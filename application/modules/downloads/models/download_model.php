@@ -470,19 +470,23 @@ class Download_model extends CI_Model {
 				$this->settings = $this->default_settings;
 			}
 		}
+        
 
 	}
 	function set($name, $value)
 	{	
 		//update only if changed
+        
 		if (!isset($this->settings[$name])) {
 			$this->settings[$name] = $value;
 			$this->db->insert('download_settings', array('name' => $name, 'value' => $value));
 		}
-		elseif ($this->settings[$name] != $value) 
+		elseif ($this->settings[$name] !== $value) 
 		{
+            
 			$this->settings[$name] = $value;
-			$this->db->update('download_settings', array('value' => $value), "name = '$name'");
+			$this->db->update('download_settings', array('value' => $value), array('name' => $name));
+            
 		}
 	}
 	
