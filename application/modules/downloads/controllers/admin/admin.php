@@ -87,6 +87,7 @@ class Admin extends MX_Controller {
 			
 			foreach ($this->downloads->default_settings as $key => $val)
 			{
+			
 				if ( $this->input->post($key) !== false)
 				{
 					if($key == 'upload_path')
@@ -95,11 +96,7 @@ class Admin extends MX_Controller {
 						if (substr($upload_path, -1) != DIRECTORY_SEPARATOR) $upload_path = $upload_path . DIRECTORY_SEPARATOR;
 						$this->downloads->set($key, $upload_path);
 					}
-					elseif($key == 'max_size')
-					{
-						$this->downloads->set($key, intval($this->input->post($key)));
-					}
-                    else
+					else
 					{
 						$this->downloads->set($key, $this->input->post($key));
 					}

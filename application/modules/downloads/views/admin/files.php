@@ -46,7 +46,7 @@ function ajaxFileUpload() {
 						alert(data.error);
 					}else
 					{
-						$("#file_list tbody").prepend("<tr><td>"+data.filedate+"</td><td>"+data.file+"</td><td>"+data.size+"</td><td><a href='#' class='deletefile' id='"+data.id+"'><?php  echo __('Delete file') ?></a></td><td><a href='<?php echo site_url('admin/downloads/document/fromfile') ?>/"+data.id+"'><?php echo __("New document", "downloads") ?></a>  </td></tr>");
+						$("#file_list tbody").prepend("<tr><td>"+data.filedate+"</td><td>"+data.file+"</td><td>"+data.size+"</td><td><a href='#' class='deletefile' id='"+data.id+"'><?php  echo __('Delete file') ?></a></td><td><a href='<?php echo site_url('admin/downloads/document/fromfile/') ?>/"+data.id+"'><?php echo __("New document", "downloads") ?></a></td></tr>");
 						$("#file").val("");
 						handleDeleteFile();
 						

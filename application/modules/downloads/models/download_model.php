@@ -489,5 +489,51 @@ class Download_model extends CI_Model {
             
 		}
 	}
+    
+    function get_list($params = array())
+    {
+ 		$default_params = array
+		(
+			'select' => 'd.*, f.name, f.file, f.size, c.title as category ',
+			'order_by' => 'd.id DESC',
+			'limit' => null,
+			'where' => null,
+			'start' => 0
+		);
+		
+		foreach ($default_params as $key => $value)
+		{
+			$params[$key] = (isset($params[$key]))? $params[$key]: $default_params[$key];
+		}
+	
+		$this->db->select($params['select']);
+		$this->db->from('download_doc as d');
+		$this->db->join('download_files as f', 'd.file_id = f.id', 'left');
+        $this->db->join('download_cat as c', 'd.cat = c.id', 'left');
+		
+		
+		if(!is_null($params['where']))
+		{
+			$this->db->where($params['where']);
+		}
+		$this->db->order_by($params['order_by']);
+		
+		if(!is_null($params['limit']))
+		{
+			$this->db->limit($params['limit'], $params['start']);
+		}
+		
+		$query = $this->db->get();
+		
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return false;
+		}   
+    }
 	
 }

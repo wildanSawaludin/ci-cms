@@ -24,7 +24,7 @@ else
 <?php foreach ($rows as $row): ?>
 <div class="downloads-dir">
 
-<img src="<?php echo site_url('application/modules/downloads/images/dir.gif')?>" >
+<img src="<?php echo site_url('media/images/downloads/dir.gif')?>" >
 <a href="<?php echo site_url('downloads/index/' . $row['id'])?>"><?php echo strip_tags($row['title'])?></a><br />
 </div>
 <?php endforeach;?>
@@ -47,7 +47,7 @@ else
 	$row['link'] = site_url('downloads/document/get/' . $row['file']);
 }
 ?>		
-<img src="<?php echo site_url('application/modules/downloads/images/' . $row['ext'] . '.gif')?>" >
+<img src="<?php echo site_url('media/images/downloads/' . $row['ext'] . '.gif')?>" >
 <a href="<?php echo $row['link']?>"><?php echo $row['title']?></a><br />
 <div class="description">
 <?php echo (strlen($row['desc']) > 400)? substr($row['desc'], 0, 400) . " " . anchor('downloads/document/show/' . $row['id'], __("more...", $module)) : $row['desc'] ?>
