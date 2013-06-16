@@ -23,9 +23,9 @@ class Install extends MX_Controller
 	function index()
 	{
         $base_url = $this->config->item('base_url');
-		$query = $this->db->query("SELECT table_name FROM information_schema.tables WHERE table_name = '" . $this->db->dbprefix('settings') . "' ");
+		$tables = $this->db->list_tables();
         
-		if($query->num_rows() > 0)
+		if(!empty($tables))
 		{
 			redirect('install/update');
 			exit();
