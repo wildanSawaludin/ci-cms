@@ -20,7 +20,9 @@
             
     </div>
 <?php $i++; endforeach;?>
+<div style="clear: both; text-align: center;">
 <?php echo $pager?>
+</div>
 <?php else: ?>
         <?php echo __("Page not found", $module) ?>
 <?php endif; ?>
