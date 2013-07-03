@@ -568,7 +568,8 @@ class Forum extends MX_Controller {
 					$data['last_mid'] = ($data['pid'])? $data['pid'] . '#' . $data['mid']: $data['mid'];
 					$data['notify'] = $this->input->post('notify');
 				
-					$this->message->save($data);
+                    $this->message->save($data);
+					$this->plugin->do_action('forum_message_save', $data);
 					$this->topic->update_topic($data['tid'], array('last_mid' => $this->db->escape($data['last_mid']), 'last_username' => $this->db->escape($this->user->username), 'last_date' => $data['date'], 'messages' => 'messages+1'), false);
 					if($data['pid'])
 					{
