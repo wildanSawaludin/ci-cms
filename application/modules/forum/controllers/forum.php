@@ -22,7 +22,7 @@ class Forum extends MX_Controller {
 		$this->forum->get_user_level();
 		$this->forum->load_bbcode();
 		
-		$this->plugin->add_action('header', array(&$this, '_write_header'));
+		$this->plugin->add_action('header', array(&$this, '_forum_header'));
 	}
 
 	/*
@@ -240,8 +240,15 @@ class Forum extends MX_Controller {
 
 	}
 
+	function _forum_header()
+	{
+		echo '<link rel="stylesheet" href="' . site_url() . '/application/modules/forum/css/' . $this->forum->settings['style'] . '.css" type="text/css" media="screen" charset="utf-8" />';
+	
+	}
+	
 	function _write_header()
 	{
+		echo '<link rel="stylesheet" href="' . site_url() . '/application/modules/forum/css/' . $this->forum->settings['style'] . '.css" type="text/css" media="screen" charset="utf-8" />';
 		echo "
 		<link rel='stylesheet' href='" . base_url() . "application/modules/forum/js/jquery/jquery-bbcode-editor-4/style.css' />
 		<script type='text/javascript' src='" . base_url() . "application/modules/forum/js/jquery/jquery-bbcode-editor-4/jquery.bbcodeeditor-1.0.min.js'></script>
@@ -262,7 +269,6 @@ class Forum extends MX_Controller {
 		</script>
 
 		";
-		echo '<link rel="stylesheet" href="' . site_url() . '/application/modules/forum/css/' . $this->forum->settings['style'] . '.css" type="text/css" media="screen" charset="utf-8" />';
 	}
 
 	
@@ -394,6 +400,7 @@ class Forum extends MX_Controller {
 				$this->layout->load($this->template, "error");
 				return;
 			    }
+				$this->plugin->add_action('header', array(&$this, '_write_header'));
 
 			    $this->template['topic'] = $topic;
 			    $this->template['message'] = $reply;
@@ -434,6 +441,7 @@ class Forum extends MX_Controller {
 				    return;
 				}
 
+				$this->plugin->add_action('header', array(&$this, '_write_header'));
 
 				$this->template['topic'] = $topic;
 				$this->template['topics'] = $topics;				
@@ -484,6 +492,7 @@ class Forum extends MX_Controller {
 				    return;
 				}
 
+				$this->plugin->add_action('header', array(&$this, '_write_header'));
 
 				$this->template['topic'] = $topic;
 				$this->template['topics'] = $topics;
@@ -540,6 +549,8 @@ class Forum extends MX_Controller {
 					);
 					
 					$topics = $this->topic->get_list($params);
+					
+					$this->plugin->add_action('header', array(&$this, '_write_header'));
 					
 					
 					$this->template['topics'] = $topics;
@@ -771,6 +782,13 @@ class Forum extends MX_Controller {
 					$this->template['pid'] = $message['mid'];
 					$this->template['pager'] = $this->pagination->create_links();
 					$this->message->update("mid = '" . $message['mid'] . "' OR pid = '" . $message['mid'] . "' ", array('hits' => 'hits+1'), false);
+					
+					if($this->user->logged_in)
+					{
+						//for the editor
+						$this->plugin->add_action('header', array(&$this, '_write_header'));
+					}
+					
 					$this->layout->load($this->template, 'message/index');
 					
 
@@ -850,5 +868,10 @@ class Forum extends MX_Controller {
 		$this->template['title'] = __("Unsubscribed", "forum");
 		$this->template['message'] = __("You will no longer receive notification about that message", "forum");
 		$this->layout->load($this->template, "error");
+	}
+	
+	function user($username = null)
+	{
+	
 	}
 }
