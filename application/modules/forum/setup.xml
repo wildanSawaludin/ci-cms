@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<module>
+        <name>forum</name>
+        <date>24/12/2009</date>
+        <author>hery</author>
+        <email>hery@serasera.org</email>
+        <url>http://hery.serasera.org</url>
+        <copyright>GNU/GPL License</copyright>
+        <version>2.1.0</version>
+        <description>Forum module</description>
+</module>
+

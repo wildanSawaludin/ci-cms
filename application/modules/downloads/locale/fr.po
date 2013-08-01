@@ -1,0 +1,372 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Solaitra:Downloads\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-28 10:19+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: hery <hery@serasera.org>\n"
+"Language-Team: Hery serasera.org <hery@serasera.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../downloads_update.php:27
+#: ../downloads_update.php:53
+#, php-format
+msgid "%s module updated to %s"
+msgstr ""
+
+#: ../controllers/document.php:53
+#: ../views/403.php:1
+msgid "Forbidden"
+msgstr ""
+
+#: ../controllers/downloads.php:57
+msgid "Downloads"
+msgstr "T&eacute;l&eacute;chargements"
+
+#: ../controllers/downloads.php:65
+#: ../controllers/admin/admin.php:67
+#: ../controllers/admin/upload.php:41
+msgid "First"
+msgstr "Debut"
+
+#: ../controllers/downloads.php:66
+#: ../controllers/admin/admin.php:68
+#: ../controllers/admin/upload.php:42
+msgid "Last"
+msgstr "Dernier"
+
+#: ../controllers/admin/admin.php:33
+#: ../controllers/admin/category.php:39
+msgid "Root"
+msgstr "Racine"
+
+#: ../controllers/admin/admin.php:111
+msgid "Settings updated"
+msgstr "Options enregistrées"
+
+#: ../controllers/admin/category.php:66
+msgid "Category saved"
+msgstr "Categorie enregistrée"
+
+#: ../controllers/admin/category.php:94
+msgid "The category contains other categories. It cannot be removed."
+msgstr "Cette catégorie contient d'autres catégories. Vous ne pouvez pas la supprimer."
+
+#: ../controllers/admin/category.php:101
+msgid "The category contains files. It cannot be removed."
+msgstr "Cette catégorie contien de fichiers. Vous ne pouvez pas la supprimer."
+
+#: ../controllers/admin/category.php:110
+msgid "The category  has been deleted."
+msgstr "La catégorie a été supprimée"
+
+#: ../controllers/admin/document.php:69
+msgid "Please specify a link or select a downloaded file."
+msgstr "Veuillez insérer un lien ou sélectionner un fichier déjà téléchargé"
+
+#: ../controllers/admin/document.php:75
+msgid "Document saved"
+msgstr "Document enregistré"
+
+#: ../controllers/admin/document.php:106
+msgid "The document  has been deleted."
+msgstr "Le document a été supprimé"
+
+#: ../controllers/admin/upload.php:88
+msgid "File saved"
+msgstr "Fichier enregistré"
+
+#: ../controllers/admin/upload.php:103
+#: ../controllers/admin/upload.php:197
+msgid "The file was deleted"
+msgstr "Le fichier a été supprimé"
+
+#: ../controllers/admin/upload.php:107
+#: ../controllers/admin/upload.php:201
+msgid "File not found"
+msgstr "Fichier non trouvé"
+
+#: ../controllers/admin/upload.php:121
+msgid "The uploaded file exceeds the upload_max_filesize directive in php.ini"
+msgstr "Le fichier chargé dépasse la directive upload_max_filesize dand php.ini"
+
+#: ../controllers/admin/upload.php:124
+msgid "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form"
+msgstr ""
+
+#: ../controllers/admin/upload.php:127
+msgid "The uploaded file was only partially uploaded"
+msgstr ""
+
+#: ../controllers/admin/upload.php:130
+msgid "No file was uploaded."
+msgstr "Aucun fichier n'a été chargé"
+
+#: ../controllers/admin/upload.php:134
+msgid "Missing a temporary folder"
+msgstr ""
+
+#: ../controllers/admin/upload.php:137
+msgid "Failed to write file to disk"
+msgstr ""
+
+#: ../controllers/admin/upload.php:140
+msgid "File upload stopped by extension"
+msgstr ""
+
+#: ../controllers/admin/upload.php:144
+msgid "No error code avaiable"
+msgstr ""
+
+#: ../controllers/admin/upload.php:149
+msgid "No file was uploaded.."
+msgstr "Aucun fichier n'a été chargé."
+
+#: ../views/403.php:3
+msgid "You are not allowed to download this file."
+msgstr "Vous ne pouvez pas télécharger ce fichier"
+
+#: ../views/404.php:3
+msgid "The file you're looking for couldn't be found!"
+msgstr "Fichier non trouv&eacute;"
+
+#: ../views/index.php:53
+msgid "more..."
+msgstr "suite..."
+
+#: ../views/show.php:21
+msgid "Download"
+msgstr "Téléchargement"
+
+#: ../views/admin/admin.php:4
+msgid "Download Administration"
+msgstr "Administration T&eacute;l&eacute;chargement"
+
+#: ../views/admin/admin.php:7
+msgid "Settings"
+msgstr "Options"
+
+#: ../views/admin/admin.php:8
+msgid "Upload File"
+msgstr "Charger un fichier"
+
+#: ../views/admin/admin.php:9
+msgid "New Document"
+msgstr "Nouveau document"
+
+#: ../views/admin/admin.php:10
+msgid "New Category"
+msgstr "Nouvelle catégorie"
+
+#: ../views/admin/admin.php:11
+msgid "Cancel"
+msgstr "Annuler"
+
+#: ../views/admin/admin.php:23
+msgid "Categories in"
+msgstr "Catégories dans"
+
+#: ../views/admin/admin.php:29
+#: ../views/admin/admin.php:70
+msgid "Title"
+msgstr "Titre"
+
+#: ../views/admin/admin.php:30
+msgid "Summary"
+msgstr "Resumé"
+
+#: ../views/admin/admin.php:31
+#: ../views/admin/admin.php:72
+msgid "Status"
+msgstr "Etat"
+
+#: ../views/admin/admin.php:32
+#: ../views/admin/admin.php:73
+msgid "Ordering"
+msgstr "Ordre"
+
+#: ../views/admin/admin.php:33
+#: ../views/admin/admin.php:74
+msgid "Action"
+msgstr "Action"
+
+#: ../views/admin/admin.php:52
+#: ../views/admin/admin.php:103
+msgid "Move up"
+msgstr "Monter"
+
+#: ../views/admin/admin.php:53
+#: ../views/admin/admin.php:104
+msgid "Move down"
+msgstr "Descendre"
+
+#: ../views/admin/admin.php:65
+msgid "Documents in"
+msgstr "Documents dans"
+
+#: ../views/admin/admin.php:71
+msgid "File"
+msgstr "Fichier"
+
+#: ../views/admin/admin.php:75
+msgid "Hit"
+msgstr "Clics"
+
+#: ../views/admin/category.php:4
+msgid "Files"
+msgstr "Fichiers"
+
+#: ../views/admin/category.php:7
+msgid "New File"
+msgstr "Nouveau fichier"
+
+#: ../views/admin/category.php:23
+#: ../views/admin/category_create.php:37
+#: ../views/admin/document_create.php:36
+msgid "Name"
+msgstr "Nom"
+
+#: ../views/admin/category_create.php:4
+#: ../views/admin/document_create.php:4
+msgid "Information"
+msgstr "Information"
+
+#: ../views/admin/category_create.php:7
+#: ../views/admin/document_create.php:7
+msgid "Details"
+msgstr "Détails"
+
+#: ../views/admin/category_create.php:8
+msgid "Options"
+msgstr "Options"
+
+#: ../views/admin/category_create.php:17
+msgid "Add new category"
+msgstr "Ajouter une catégorie"
+
+#: ../views/admin/category_create.php:23
+#: ../views/admin/document_create.php:22
+msgid "Save"
+msgstr "Enregistrer"
+
+#: ../views/admin/category_create.php:40
+msgid "Parent"
+msgstr "Parent"
+
+#: ../views/admin/category_create.php:63
+#: ../views/admin/document_create.php:65
+msgid "Active"
+msgstr "Activé"
+
+#: ../views/admin/category_create.php:64
+#: ../views/admin/document_create.php:66
+msgid "Suspended"
+msgstr "Suspendu"
+
+#: ../views/admin/category_create.php:67
+#: ../views/admin/document_create.php:80
+msgid "Description"
+msgstr "Description"
+
+#: ../views/admin/category_delete.php:4
+msgid "Delete category"
+msgstr "Supprimer la catégorie"
+
+#: ../views/admin/category_delete.php:9
+msgid "Do you want to delete the category?"
+msgstr "Voulez-vous confirmer la suppression de cette catégorie?"
+
+#: ../views/admin/category_delete.php:13
+#: ../views/admin/document_delete.php:13
+msgid "No"
+msgstr "Non"
+
+#: ../views/admin/category_delete.php:14
+#: ../views/admin/document_delete.php:14
+msgid "Yes"
+msgstr "Oui"
+
+#: ../views/admin/document_create.php:16
+msgid "Add new document"
+msgstr "Ajouter nouvelle document"
+
+#: ../views/admin/document_create.php:39
+msgid "Downloaded"
+msgstr "Téléchargé"
+
+#: ../views/admin/document_create.php:49
+msgid "or Link"
+msgstr "ou Lien"
+
+#: ../views/admin/document_create.php:53
+msgid "Category"
+msgstr "Catégorie"
+
+#: ../views/admin/document_create.php:69
+msgid "Keywords"
+msgstr "Mots clés"
+
+#: ../views/admin/document_create.php:72
+msgid "Group access:"
+msgstr "Accès:"
+
+#: ../views/admin/document_delete.php:4
+msgid "Delete document"
+msgstr "Supprimer document"
+
+#: ../views/admin/document_delete.php:9
+msgid "Do you want to delete the document?"
+msgstr "Voulez-vous confirmer la suppression du document?"
+
+#: ../views/admin/files.php:49
+#: ../views/admin/files.php:124
+msgid "Delete file"
+msgstr "Supprimer le fichier"
+
+#: ../views/admin/files.php:91
+msgid "Upload files"
+msgstr "Charger fichiers"
+
+#: ../views/admin/files.php:109
+msgid "Upload"
+msgstr "Charger"
+
+#: ../views/admin/files.php:115
+msgid "Date"
+msgstr "Date"
+
+#: ../views/admin/files.php:117
+msgid "Size"
+msgstr "Volume"
+
+#: ../views/admin/settings.php:7
+msgid "Download settings"
+msgstr "Options téléchargement"
+
+#: ../views/admin/settings.php:23
+msgid "Save Settings"
+msgstr "Enregistrer options"
+
+#: ../views/admin/settings.php:35
+msgid "Use this page to change the settings for the download module."
+msgstr "Utiliser cette page pour changer les options du module \"download\""
+
+#: ../views/admin/settings.php:41
+msgid "Allowed filetypes:"
+msgstr "Types autorisés"
+
+#: ../views/admin/settings.php:46
+msgid "Upload path:"
+msgstr "Chemin des fichiers:"
+
+#: ../views/admin/settings.php:51
+msgid "Maximum filesize:"
+msgstr "Volume maximum du fichier:"
+
