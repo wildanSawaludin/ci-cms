@@ -100,7 +100,7 @@ class Admin extends MX_Controller {
 				$i++;
 			}
 			
-			$data['uri'] = $parent_uri . "/" . $uri;
+			$data['uri'] = $parent_uri . $uri;
 			
 		}
 		

@@ -22,7 +22,7 @@ function page_subpages($where, $limit = 5)
 	if (is_array($where))
 	{
 		$page = $obj->page_model->get_page($where);
-		return  $obj->page_model->get_subpages($page['id']);
+		return  $obj->page_model->get_subpages($page['id'], $limit);
 	}
 	
 	return  $obj->page_model->get_subpages($where);
