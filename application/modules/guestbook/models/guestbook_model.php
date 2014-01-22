@@ -229,7 +229,18 @@ class Guestbook_model extends CI_Model {
 		   {
 			  $this->settings[$row->name] = $row->value;
 		   }
-		}			
+		}
+		//default settings in case they didn't exist
+		$default_settings = array(
+			'style' => 'blue',
+			'notify_admin' => 'Y',
+			'access' => '1'
+		);
+		
+		foreach($default_settings as $k => $v)
+		{
+			if(!isset($this->settings[ $k ] )) $this->settings[ $k ] = $v;
+		}
 	}
 	function save_settings($name, $value)
 	{	
@@ -238,9 +249,9 @@ class Guestbook_model extends CI_Model {
 			$this->settings[$name] = $value;
 			$this->db->insert('guestbook_settings', array('name' => $name, 'value' => $value));
 		}
-		elseif ($this->settings->$name != $value) 
+		elseif ($this->settings[$name] != $value) 
 		{
-			$this->settings->$name = $value;
+			$this->settings[$name] = $value;
 			$this->db->update('guestbook_settings', array('value' => $value), "name = '$name'");
 		}
 	}

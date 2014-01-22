@@ -17,6 +17,7 @@ class Guestbook extends MX_Controller {
 
 	function index()
 	{
+		
 		//just go to list
 		$this->template['title'] = __("Guestbook messages", "guestbook");
 		$this->results();
@@ -24,6 +25,7 @@ class Guestbook extends MX_Controller {
 	
 	function sign()
 	{
+		var_dump($this->gbook->settings);
 		echo "Guestbook -> Sign<br>";
 		exit;
 		$this->load->helper('captcha');

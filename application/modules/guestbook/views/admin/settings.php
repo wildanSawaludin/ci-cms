@@ -32,6 +32,15 @@
 		
 				
 		<div id="one">
+
+			<label for="settings[access]"><?php  echo __("Who can post", $module)?></label>
+			<select name="settings[access]" class="input-select">
+			<?php foreach($groups as $g): ?>
+				<option value='<?php echo $g['g_id'] ?>' <?php  echo (($settings['access']==$g['g_id'])?"selected":"")?>><?php  echo $g['g_name'] ?></option>
+			<?php endforeach; ?>
+			</select>
+            <br />
+		
 		
 			<label for="settings[notify_admin]"><?php  echo __("Nodify admin", $module)?></label>
 			<select name="settings[notify_admin]" class="input-select">

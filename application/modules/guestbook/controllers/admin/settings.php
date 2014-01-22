@@ -30,7 +30,7 @@ class Settings extends CI_Controller {
 			
 			$this->_settings[$key] = $this->gbook->settings[$key];
 		}
-		
+		$this->template['groups'] = $this->user->get_group_list();
 		$this->template['settings'] = $this->_settings;
 			
 		$this->layout->load($this->template, 'admin/settings');

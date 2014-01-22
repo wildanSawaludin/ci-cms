@@ -1,5 +1,9 @@
 <h1><?php  echo __("Sign our guestbook", $module) ?></h1>
 
+<?php if(!in_array($this->gbook->settings['access'] , $this->user->groups)): ?>
+<?php echo anchor('member/login', __("Please enter here your username and password to post", $module)) ?>
+<?php else: ?>
+
 <form class="edit" name="sign" method="post" action="<?php  echo site_url('guestbook/save') ?>">
 <label for="g_name"><?php  echo __("Name:", $module) ?></label>
 <input type="text" name="g_name" id="g_name" class="input-text"/><br/>
@@ -17,3 +21,4 @@
 <input type="submit" name="submit" value="<?php  echo __("Submit", $module) ?>" class="input-submit"/>
 <?php  echo anchor('', __("Cancel", $module), array('class' => 'input-submit')) ?>
 </form>
+<?php endif; ?>
