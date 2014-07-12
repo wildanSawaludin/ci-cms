@@ -813,7 +813,12 @@ class Install extends MX_Controller
 		$query = $this->db->get('group_members');
  		if($query->num_rows() == 0)
 		{
-            $this->db->query("CREATE UNIQUE INDEX g_member_g_id ON " . $this->db->dbprefix("group_members") . " (g_user, g_id)");
+            try {
+				$this->db->query("CREATE UNIQUE INDEX g_member_g_id ON " . $this->db->dbprefix("group_members") . " (g_user, g_id)");
+			}
+			catch(Exception $e)
+			{
+			}
         }
     
     

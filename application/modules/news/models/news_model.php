@@ -134,6 +134,12 @@
 				{
 					$row['tags'] = $query->result_array();
 				}
+				
+				$this->db->order_by('id DESC');
+				$this->db->where(array('src_id' => $row['id'], 'module' => 'news'));
+				$query2 = $this->db->get('images');
+				$row['image'] = $query2->row_array();
+				
 				return $row;
 			
 			}
