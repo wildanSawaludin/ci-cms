@@ -22,7 +22,8 @@ function page_subpages($where, $limit = 5)
 	if (is_array($where))
 	{
 		$page = $obj->page_model->get_page($where);
-		return  $obj->page_model->get_subpages($page['id'], $limit);
+                
+		return  $obj->page_model->get_subpages($page['id']);
 	}
 	
 	return  $obj->page_model->get_subpages($where);
@@ -41,6 +42,8 @@ function page_item($where = array())
 		$result = $obj->page_model->get_page($where);
 		$obj->cache->save('page_item_' . $hash, $result, 'page_list', 0);
 	}
+	
+	$result = $obj->plugin->apply_filters('page_item', $result);
 	return $result; 
 }
 
