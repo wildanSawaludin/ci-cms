@@ -1,5 +1,9 @@
 
 <h1><?php echo $page['title']?></h1>
+
+<?php $this->plugin->do_action('page_pre_content', $page['id']); ?>
+
+
 <?php if ($this->user->level['page'] >= LEVEL_ADD) : ?>
 <div class="admin-box">
 <?php echo anchor('admin/page/create/' . $page['id'], __("Add subpage", "page")) ?>

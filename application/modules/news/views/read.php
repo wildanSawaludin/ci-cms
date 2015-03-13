@@ -1,5 +1,10 @@
 
 <h1><?php  echo $news['title']?></h1>
+<?php if($news['status'] == 0) : ?>
+<div class='notice'>
+<?php echo __("News deactivated", $module) ?>
+</div>
+<?php endif; ?>
 <?php  if ($this->user->level['news'] >= LEVEL_EDIT) : ?>
 <div class="adminbox">
 <?php  echo anchor('admin/news/create/' . $news['id'], __("Edit", "news")) ?>
