@@ -1,6 +1,5 @@
-application/config/config.php
-application/config/database.php
-application/modules/helpdoc
+media/*
+application/config/*
 application/logs/*
 ci-cms/*
 docs/*

@@ -154,8 +154,19 @@ and set to approve comments automatically.
 			}
 			else
 			{
+				
 				if($news = $this->news->get_news($uri))
 				{
+					//if draft it should not be red
+					
+					if($news['status'] == 0 && $news['author'] != $this->user->username)
+					{
+					
+						$this->template['title'] = __("Not allowed", $this->template['module']);
+						$this->layout->load($this->template, '403');
+						return;
+					
+					}
 					//pagination for comments
 					$this->template['comments'] = $this->news->get_comments($news['id']);
 					

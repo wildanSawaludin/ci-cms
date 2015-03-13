@@ -579,15 +579,24 @@ class Forum extends MX_Controller {
 					$data['last_mid'] = ($data['pid'])? $data['pid'] . '#' . $data['mid']: $data['mid'];
 					$data['notify'] = $this->input->post('notify');
 				
-                    $this->message->save($data);
-					$this->plugin->do_action('forum_message_save', $data);
-					$this->topic->update_topic($data['tid'], array('last_mid' => $this->db->escape($data['last_mid']), 'last_username' => $this->db->escape($this->user->username), 'last_date' => $data['date'], 'messages' => 'messages+1'), false);
-					if($data['pid'])
-					{
-						$this->message->update_message($data['pid'],  array('last_mid' => $this->db->escape($data['last_mid']), 'last_username' => $this->db->escape($this->user->username), 'last_date' => $data['date'], 'replies' => ' replies + 1'), false);
-					}
+                    $data = $this->plugin->apply_filters('forum_message_filter', $data);
 					
-					if($data['pid']) $this->message->notify($data['pid']);
+					if($data)
+					{
+						$this->message->save($data);
+						$this->plugin->do_action('forum_message_save', $data);
+						$this->topic->update_topic($data['tid'], array('last_mid' => $this->db->escape($data['last_mid']), 'last_username' => $this->db->escape($this->user->username), 'last_date' => $data['date'], 'messages' => 'messages+1'), false);
+						if($data['pid'])
+						{
+							$this->message->update_message($data['pid'],  array('last_mid' => $this->db->escape($data['last_mid']), 'last_username' => $this->db->escape($this->user->username), 'last_date' => $data['date'], 'replies' => ' replies + 1'), false);
+						}
+						
+						if($data['pid']) $this->message->notify($data['pid']);
+					}
+					else
+					{
+						$this->session->set_flashdata("notification", __("Message not saved", "forum"));
+					}
 				}
 				$this->session->set_flashdata("notification", __("Message saved succesfully", "forum"));
 
